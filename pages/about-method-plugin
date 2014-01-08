@@ -19,7 +19,7 @@
     {
       "type": "paragraph",
       "id": "942ad9155083e706",
-      "text": "See [https://github.com/WardCunningham/Smallest-Federated-Wiki/tree/master/client/plugins/method GitHub] for plugin source."
+      "text": "See [https://github.com/fedwiki/wiki-plugin-method GitHub] for plugin source."
     },
     {
       "type": "paragraph",
@@ -664,6 +664,16 @@
         "text": "Additional computations may be added as needed by programmers for use on a specific site."
       },
       "date": 1350426636293
+    },
+    {
+      "type": "edit",
+      "id": "942ad9155083e706",
+      "item": {
+        "type": "paragraph",
+        "id": "942ad9155083e706",
+        "text": "See [https://github.com/fedwiki/wiki-plugin-method GitHub] for plugin source."
+      },
+      "date": 1389179214247
     }
   ]
 }
