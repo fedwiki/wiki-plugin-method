@@ -4,9 +4,6 @@ asValue = method.asValue
 
 describe 'method plugin', ->
 
-	beforeEach ->
-		console.log '-----------------------------------------'
-
 	describe 'values', ->
 		traits = (value) -> [
 			method.asValue(value),
@@ -349,7 +346,6 @@ describe 'method plugin', ->
 			state =
 				local: {"Hourly Rate": 16.45, "Regular Hours": 40, "Overtime Hours": 12}
 				item: {text: "CALC Rate * ( Regular + 1.5 * Overtime )"}
-			console.log 'state', state
 			method.dispatch state, (state) ->
 				expect(Math.round(state.list[0])).to.eql 954
 				done()
@@ -358,7 +354,6 @@ describe 'method plugin', ->
 			state =
 				input: {"Hourly Rate": 16.45, "Regular Hours": 40, "Overtime Hours": 12}
 				item: {text: "Hourly Rate\nRegular Hours\nOvertime Hours\nCALC Rate * ( Regular + 1.5 * Overtime )"}
-			console.log 'state', state
 			method.dispatch state, (state) ->
 				expect(Math.round(state.list[0])).to.eql 954
 				done()
@@ -366,7 +361,6 @@ describe 'method plugin', ->
 		it 'applied by CALC with computed variables and units', (done) ->
 			state =
 				item: {text: "20.00 Rate (dollar / hour)\n40 Regular (hour)\n12 Overtime (hour)\nCALC Rate * ( Regular + 1.5 * Overtime )"}
-			console.log 'state', state
 			method.dispatch state, (state) ->
 				expect(state.list[0]).to.eql {value: 1160.00, units: ['dollar']}
 				done()
@@ -374,7 +368,6 @@ describe 'method plugin', ->
 		it 'applied by CALC with all operators, variables and units', (done) ->
 			state =
 				item: {text: "10 w (in)\n30 h (in)\n15 t (s)\nCALC t*(h/t + w/t - (h+w)/t)"}
-			console.log 'state', state
 			method.dispatch state, (state) ->
 				expect(state.list[0]).to.eql {value: 0, units: ['in']}
 				done()

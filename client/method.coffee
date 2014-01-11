@@ -373,7 +373,7 @@ dispatch = (state, done) ->
     state.caller.errors.push({message: comment})
   state.list = list
   state.list.push value if value? and ! isNaN asValue value
-  console.log "#{line} => #{inspect state.list} #{comment||''}"
+  # console.log "#{line} => #{inspect state.list} #{comment||''}"
   print state.report, value, hover, label||line, comment, color
   dispatch state, done
 
