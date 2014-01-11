@@ -1,4 +1,5 @@
-method = require './method'
+method = require '../client/method'
+expect = require 'expect.js'
 asValue = method.asValue
 
 describe 'method plugin', ->
