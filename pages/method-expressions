@@ -13,6 +13,16 @@
     },
     {
       "type": "paragraph",
+      "id": "d1b4c370f23b9ac6",
+      "text": "Say <b>CALC</b> to calculate a formula that appears on the remainder of the line."
+    },
+    {
+      "type": "paragraph",
+      "id": "bc9881953245bb68",
+      "text": "The formula, without the word CALC, becomes the name of the result and can be used to recall it in later calcuations."
+    },
+    {
+      "type": "paragraph",
       "id": "7dc8b925782038fb",
       "text": "<h3> Example"
     },
@@ -768,6 +778,48 @@
       "type": "fork",
       "site": "ward.fed.wiki.org",
       "date": 1389487413140
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "d1b4c370f23b9ac6",
+        "text": ""
+      },
+      "id": "d1b4c370f23b9ac6",
+      "type": "add",
+      "after": "eb145a5cc6759369",
+      "date": 1389494111890
+    },
+    {
+      "type": "edit",
+      "id": "d1b4c370f23b9ac6",
+      "item": {
+        "type": "paragraph",
+        "id": "d1b4c370f23b9ac6",
+        "text": "Say <b>CALC</b> to calculate a formula that appears on the remainder of the line."
+      },
+      "date": 1389494191692
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "bc9881953245bb68",
+        "text": ""
+      },
+      "id": "bc9881953245bb68",
+      "type": "add",
+      "after": "d1b4c370f23b9ac6",
+      "date": 1389494192200
+    },
+    {
+      "type": "edit",
+      "id": "bc9881953245bb68",
+      "item": {
+        "type": "paragraph",
+        "id": "bc9881953245bb68",
+        "text": "The formula, without the word CALC, becomes the name of the result and can be used to recall it in later calcuations."
+      },
+      "date": 1389494231005
     }
   ]
 }
