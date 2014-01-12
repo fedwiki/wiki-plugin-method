@@ -78,6 +78,14 @@
       "slug": "99-bottles-of-beer",
       "title": "99 Bottles of Beer",
       "text": "The kid's travel song about sharing beer exposes lots of awkwardness in many programming languages. Learn how it is written in your language to get past these bumps."
+    },
+    {
+      "type": "reference",
+      "id": "12633ae95c593dd5",
+      "site": "oscon.fed.wiki.org",
+      "slug": "oscon-2012-demo-video",
+      "title": "OSCON 2012 Demo Video",
+      "text": "We recreate in video the calculation refactoring example from the open source conference and invite viewers to try it themselves."
     }
   ],
   "journal": [
@@ -363,6 +371,42 @@
         "text": "Bottles of Beer on the Wall\nTake a Few Down\nSUM Bottles of Beer on the Wall\nTake a Few Down\nTake a Bunch Down\nSUM Bottles of Beer on the Wall"
       },
       "date": 1342303108642
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "12633ae95c593dd5"
+      },
+      "id": "12633ae95c593dd5",
+      "type": "add",
+      "after": "7938d7d8442d3248",
+      "date": 1389489097901
+    },
+    {
+      "type": "edit",
+      "id": "12633ae95c593dd5",
+      "item": {
+        "type": "reference",
+        "id": "12633ae95c593dd5",
+        "site": "oscon.fed.wiki.org",
+        "slug": "oscon-2012-demo-video",
+        "title": "OSCON 2012 Demo Video",
+        "text": "We recreate the calculation refactoring example from the open source conference and invite viewers to try it themselves."
+      },
+      "date": 1389489162447
+    },
+    {
+      "type": "edit",
+      "id": "12633ae95c593dd5",
+      "item": {
+        "type": "reference",
+        "id": "12633ae95c593dd5",
+        "site": "oscon.fed.wiki.org",
+        "slug": "oscon-2012-demo-video",
+        "title": "OSCON 2012 Demo Video",
+        "text": "We recreate in video the calculation refactoring example from the open source conference and invite viewers to try it themselves."
+      },
+      "date": 1389489259609
     }
   ]
 }

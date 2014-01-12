@@ -143,6 +143,26 @@
     },
     {
       "type": "paragraph",
+      "id": "2c50f66172992a44",
+      "text": "<h3> Application"
+    },
+    {
+      "type": "paragraph",
+      "id": "fea9217615c7dda2",
+      "text": "The Method plugin exposes its computations such that they can be applied to new values by other plugins."
+    },
+    {
+      "type": "paragraph",
+      "id": "36d2fe7c36cc2fcf",
+      "text": "See [[About Rollup Plugin]] to see how calculations contributing to a dataset can be broken down into Methods on pages and then rolled back up to make a revised dataset."
+    },
+    {
+      "type": "paragraph",
+      "id": "31056889cde13ac0",
+      "text": "See [[About Reduce Plugin]] to see how calculation on a specified sequence of pages can be treated as a whole and evaluated repeatedly as such."
+    },
+    {
+      "type": "paragraph",
       "id": "e37cccee0e49821a",
       "text": "<h3> Programming"
     },
@@ -1400,6 +1420,90 @@
       ],
       "id": "79c19bfe4976f0d2",
       "date": 1389488438630
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "2c50f66172992a44",
+        "text": ""
+      },
+      "id": "2c50f66172992a44",
+      "type": "add",
+      "after": "56356deed9dd765e",
+      "date": 1389489631017
+    },
+    {
+      "type": "edit",
+      "id": "2c50f66172992a44",
+      "item": {
+        "type": "paragraph",
+        "id": "2c50f66172992a44",
+        "text": "<h3> Application"
+      },
+      "date": 1389489690999
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "fea9217615c7dda2",
+        "text": ""
+      },
+      "id": "fea9217615c7dda2",
+      "type": "add",
+      "after": "2c50f66172992a44",
+      "date": 1389489691508
+    },
+    {
+      "type": "edit",
+      "id": "fea9217615c7dda2",
+      "item": {
+        "type": "paragraph",
+        "id": "fea9217615c7dda2",
+        "text": "The Method plugin exposes its computations such that they can be applied to new values by other plugins."
+      },
+      "date": 1389489832938
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "36d2fe7c36cc2fcf",
+        "text": ""
+      },
+      "id": "36d2fe7c36cc2fcf",
+      "type": "add",
+      "after": "fea9217615c7dda2",
+      "date": 1389489833446
+    },
+    {
+      "type": "edit",
+      "id": "36d2fe7c36cc2fcf",
+      "item": {
+        "type": "paragraph",
+        "id": "36d2fe7c36cc2fcf",
+        "text": "See [[About Rollup Plugin]] to see how calculations contributing to a dataset can be broken down into Methods on pages and then rolled back up to make a revised dataset."
+      },
+      "date": 1389489921924
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "31056889cde13ac0",
+        "text": ""
+      },
+      "id": "31056889cde13ac0",
+      "type": "add",
+      "after": "36d2fe7c36cc2fcf",
+      "date": 1389489932817
+    },
+    {
+      "type": "edit",
+      "id": "31056889cde13ac0",
+      "item": {
+        "type": "paragraph",
+        "id": "31056889cde13ac0",
+        "text": "See [[About Reduce Plugin]] to see how calculation on a specified sequence of pages can be treated as a whole and evaluated repeatedly as such."
+      },
+      "date": 1389490086672
     }
   ]
 }
