@@ -53,6 +53,36 @@
     },
     {
       "type": "paragraph",
+      "id": "8519d81d9328a3e1",
+      "text": "<h3> Units"
+    },
+    {
+      "type": "paragraph",
+      "id": "4968dfe1c5eeef2f",
+      "text": "When the name of a defined value includes parenthesized words, these words are interpreted as units."
+    },
+    {
+      "type": "method",
+      "id": "272daa7fa38d7f96",
+      "text": "12 converts to (inches) from (feet)\n3 converts to (feet) from (yards)"
+    },
+    {
+      "type": "paragraph",
+      "id": "8e0f628fb3aef156",
+      "text": "Some unit conversions can be applied automatically."
+    },
+    {
+      "type": "method",
+      "id": "dadb1d9bccf7b8ec",
+      "text": "90 (inches)\n9 (feet)\nSUM (yards) total"
+    },
+    {
+      "type": "paragraph",
+      "id": "79c2fa20baa8fe70",
+      "text": "See [[Method Unit Conversions]] for more examples."
+    },
+    {
+      "type": "paragraph",
       "id": "69084bb462636274",
       "text": "<h3>Computations"
     },
@@ -83,8 +113,23 @@
     },
     {
       "type": "paragraph",
+      "id": "efe879fb582668e9",
+      "text": "Say <b>RATIO</b> to find the ratio of two numbers."
+    },
+    {
+      "type": "paragraph",
+      "id": "f14032666eff5947",
+      "text": "Say <b>ACCUMULATE</b> to add to a running sum."
+    },
+    {
+      "type": "paragraph",
       "id": "38d211f128c7e310",
       "text": "Say AVG, MIN or MAX as an acceptable abbreviation."
+    },
+    {
+      "type": "paragraph",
+      "id": "3461b41cc070b51a",
+      "text": "See [[Method Expressions]] for concise formulas."
     },
     {
       "type": "paragraph",
@@ -674,6 +719,557 @@
         "text": "See [https://github.com/fedwiki/wiki-plugin-method GitHub] for plugin source."
       },
       "date": 1389179214247
+    },
+    {
+      "type": "move",
+      "order": [
+        "df8885c094fc1710",
+        "682d22af9d46f3a5",
+        "cd9bdca1991d8090",
+        "942ad9155083e706",
+        "c6c02f7fae9f4f03",
+        "c5af6f487a7b9907",
+        "bbcc1f9548618bb4",
+        "aec640909082f3b3",
+        "f982813c60a78119",
+        "9b5e3d7a7cc65329",
+        "69084bb462636274",
+        "f3532c800d9b42ba",
+        "0c61adb097e329f2",
+        "641952825d9a9aae",
+        "5072042a5e1ddf59",
+        "760060c9bbaee23f",
+        "38d211f128c7e310",
+        "56356deed9dd765e",
+        "c723cceb207630d0",
+        "bb9c2304a9526427",
+        "d17103da4b9a4d55"
+      ],
+      "id": "c723cceb207630d0",
+      "date": 1389485515850
+    },
+    {
+      "type": "move",
+      "order": [
+        "df8885c094fc1710",
+        "682d22af9d46f3a5",
+        "cd9bdca1991d8090",
+        "942ad9155083e706",
+        "c6c02f7fae9f4f03",
+        "c5af6f487a7b9907",
+        "bbcc1f9548618bb4",
+        "aec640909082f3b3",
+        "f982813c60a78119",
+        "9b5e3d7a7cc65329",
+        "69084bb462636274",
+        "f3532c800d9b42ba",
+        "0c61adb097e329f2",
+        "641952825d9a9aae",
+        "5072042a5e1ddf59",
+        "760060c9bbaee23f",
+        "38d211f128c7e310",
+        "56356deed9dd765e",
+        "bb9c2304a9526427",
+        "c723cceb207630d0",
+        "d17103da4b9a4d55"
+      ],
+      "id": "c723cceb207630d0",
+      "date": 1389485544179
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "4968dfe1c5eeef2f",
+        "text": ""
+      },
+      "id": "4968dfe1c5eeef2f",
+      "type": "add",
+      "after": "9b5e3d7a7cc65329",
+      "date": 1389485612801
+    },
+    {
+      "type": "edit",
+      "id": "4968dfe1c5eeef2f",
+      "item": {
+        "type": "paragraph",
+        "id": "4968dfe1c5eeef2f",
+        "text": "When the name of a defined value includes parenthesized words, these words are interpreted as units.  "
+      },
+      "date": 1389485801191
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "272daa7fa38d7f96"
+      },
+      "id": "272daa7fa38d7f96",
+      "type": "add",
+      "after": "d17103da4b9a4d55",
+      "date": 1389485810022
+    },
+    {
+      "type": "edit",
+      "id": "272daa7fa38d7f96",
+      "item": {
+        "type": "method",
+        "id": "272daa7fa38d7f96",
+        "text": "12 converts to (inches) from (feet)\n3 converts to (feet) from (yards)"
+      },
+      "date": 1389486095017
+    },
+    {
+      "type": "move",
+      "order": [
+        "df8885c094fc1710",
+        "682d22af9d46f3a5",
+        "cd9bdca1991d8090",
+        "942ad9155083e706",
+        "c6c02f7fae9f4f03",
+        "c5af6f487a7b9907",
+        "bbcc1f9548618bb4",
+        "aec640909082f3b3",
+        "f982813c60a78119",
+        "9b5e3d7a7cc65329",
+        "4968dfe1c5eeef2f",
+        "272daa7fa38d7f96",
+        "69084bb462636274",
+        "f3532c800d9b42ba",
+        "0c61adb097e329f2",
+        "641952825d9a9aae",
+        "5072042a5e1ddf59",
+        "760060c9bbaee23f",
+        "38d211f128c7e310",
+        "56356deed9dd765e",
+        "bb9c2304a9526427",
+        "c723cceb207630d0",
+        "d17103da4b9a4d55"
+      ],
+      "id": "272daa7fa38d7f96",
+      "date": 1389486106747
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "dadb1d9bccf7b8ec"
+      },
+      "id": "dadb1d9bccf7b8ec",
+      "type": "add",
+      "after": "d17103da4b9a4d55",
+      "date": 1389486150029
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "3 (yards) long\n12 (inches) wide\nPRODUCT (square feet)\n"
+      },
+      "date": 1389486238281
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "3 (yards) long\n12 (inches) wide\nPRODUCT (square feet)"
+      },
+      "date": 1389486248096
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "3 (yards) long\n12 (inches) wide\nPRODUCT (square inches)"
+      },
+      "date": 1389486257291
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "3 (yards) long\n12 (inches) wide\nSUM (feet)"
+      },
+      "date": 1389486294664
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "3 (feet) long\n12 (inches) wide\nSUM (yards)"
+      },
+      "date": 1389486312898
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "12 (inches) wide\n3 (feet) long\nSUM (yards)"
+      },
+      "date": 1389486327538
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "72 (inches)\n3 (feet)\nSUM (yards)"
+      },
+      "date": 1389486600807
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "72 (inches)\n3 (yards)\nSUM (feet)"
+      },
+      "date": 1389486613613
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "72 (inches)\n9 (feet)\nSUM (yeard)"
+      },
+      "date": 1389486654069
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "72 (inches)\n9 (feet)\nSUM (yards)"
+      },
+      "date": 1389486663112
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "72 (inches)\n9 (feet)\nSUM (yards) total"
+      },
+      "date": 1389486688726
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "78 (inches)\n9 (feet)\nSUM (yards) total"
+      },
+      "date": 1389486705090
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "80 (inches)\n9 (feet)\nSUM (yards) total"
+      },
+      "date": 1389486721518
+    },
+    {
+      "type": "edit",
+      "id": "dadb1d9bccf7b8ec",
+      "item": {
+        "type": "method",
+        "id": "dadb1d9bccf7b8ec",
+        "text": "90 (inches)\n9 (feet)\nSUM (yards) total"
+      },
+      "date": 1389486727765
+    },
+    {
+      "type": "move",
+      "order": [
+        "df8885c094fc1710",
+        "682d22af9d46f3a5",
+        "cd9bdca1991d8090",
+        "942ad9155083e706",
+        "c6c02f7fae9f4f03",
+        "c5af6f487a7b9907",
+        "bbcc1f9548618bb4",
+        "aec640909082f3b3",
+        "f982813c60a78119",
+        "9b5e3d7a7cc65329",
+        "4968dfe1c5eeef2f",
+        "272daa7fa38d7f96",
+        "dadb1d9bccf7b8ec",
+        "69084bb462636274",
+        "f3532c800d9b42ba",
+        "0c61adb097e329f2",
+        "641952825d9a9aae",
+        "5072042a5e1ddf59",
+        "760060c9bbaee23f",
+        "38d211f128c7e310",
+        "56356deed9dd765e",
+        "bb9c2304a9526427",
+        "c723cceb207630d0",
+        "d17103da4b9a4d55"
+      ],
+      "id": "dadb1d9bccf7b8ec",
+      "date": 1389486751258
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "8519d81d9328a3e1",
+        "text": ""
+      },
+      "id": "8519d81d9328a3e1",
+      "type": "add",
+      "after": "9b5e3d7a7cc65329",
+      "date": 1389486801019
+    },
+    {
+      "type": "edit",
+      "id": "8519d81d9328a3e1",
+      "item": {
+        "type": "paragraph",
+        "id": "8519d81d9328a3e1",
+        "text": "<h3> Units"
+      },
+      "date": 1389486808620
+    },
+    {
+      "type": "edit",
+      "id": "4968dfe1c5eeef2f",
+      "item": {
+        "type": "paragraph",
+        "id": "4968dfe1c5eeef2f",
+        "text": "When the name of a defined value includes parenthesized words, these words are interpreted as units."
+      },
+      "date": 1389486833280
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "8e0f628fb3aef156",
+        "text": ""
+      },
+      "id": "8e0f628fb3aef156",
+      "type": "add",
+      "after": "4968dfe1c5eeef2f",
+      "date": 1389486833787
+    },
+    {
+      "type": "edit",
+      "id": "8e0f628fb3aef156",
+      "item": {
+        "type": "paragraph",
+        "id": "8e0f628fb3aef156",
+        "text": "Some unit conversions can be applied automatically."
+      },
+      "date": 1389486850837
+    },
+    {
+      "type": "move",
+      "order": [
+        "df8885c094fc1710",
+        "682d22af9d46f3a5",
+        "cd9bdca1991d8090",
+        "942ad9155083e706",
+        "c6c02f7fae9f4f03",
+        "c5af6f487a7b9907",
+        "bbcc1f9548618bb4",
+        "aec640909082f3b3",
+        "f982813c60a78119",
+        "9b5e3d7a7cc65329",
+        "8519d81d9328a3e1",
+        "4968dfe1c5eeef2f",
+        "272daa7fa38d7f96",
+        "8e0f628fb3aef156",
+        "dadb1d9bccf7b8ec",
+        "69084bb462636274",
+        "f3532c800d9b42ba",
+        "0c61adb097e329f2",
+        "641952825d9a9aae",
+        "5072042a5e1ddf59",
+        "760060c9bbaee23f",
+        "38d211f128c7e310",
+        "56356deed9dd765e",
+        "bb9c2304a9526427",
+        "c723cceb207630d0",
+        "d17103da4b9a4d55"
+      ],
+      "id": "8e0f628fb3aef156",
+      "date": 1389486855523
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "79c2fa20baa8fe70",
+        "text": ""
+      },
+      "id": "79c2fa20baa8fe70",
+      "type": "add",
+      "after": "8e0f628fb3aef156",
+      "date": 1389486997164
+    },
+    {
+      "type": "edit",
+      "id": "79c2fa20baa8fe70",
+      "item": {
+        "type": "paragraph",
+        "id": "79c2fa20baa8fe70",
+        "text": "See [[Method Unit Conversion]]."
+      },
+      "date": 1389487035963
+    },
+    {
+      "type": "edit",
+      "id": "79c2fa20baa8fe70",
+      "item": {
+        "type": "paragraph",
+        "id": "79c2fa20baa8fe70",
+        "text": "See [[Method Unit Conversions]]."
+      },
+      "date": 1389487047805
+    },
+    {
+      "type": "move",
+      "order": [
+        "df8885c094fc1710",
+        "682d22af9d46f3a5",
+        "cd9bdca1991d8090",
+        "942ad9155083e706",
+        "c6c02f7fae9f4f03",
+        "c5af6f487a7b9907",
+        "bbcc1f9548618bb4",
+        "aec640909082f3b3",
+        "f982813c60a78119",
+        "9b5e3d7a7cc65329",
+        "8519d81d9328a3e1",
+        "4968dfe1c5eeef2f",
+        "272daa7fa38d7f96",
+        "8e0f628fb3aef156",
+        "dadb1d9bccf7b8ec",
+        "79c2fa20baa8fe70",
+        "69084bb462636274",
+        "f3532c800d9b42ba",
+        "0c61adb097e329f2",
+        "641952825d9a9aae",
+        "5072042a5e1ddf59",
+        "760060c9bbaee23f",
+        "38d211f128c7e310",
+        "56356deed9dd765e",
+        "bb9c2304a9526427",
+        "c723cceb207630d0",
+        "d17103da4b9a4d55"
+      ],
+      "id": "79c2fa20baa8fe70",
+      "date": 1389487054032
+    },
+    {
+      "type": "edit",
+      "id": "79c2fa20baa8fe70",
+      "item": {
+        "type": "paragraph",
+        "id": "79c2fa20baa8fe70",
+        "text": "See [[Method Unit Conversions]] for more examples."
+      },
+      "date": 1389487064675
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "efe879fb582668e9",
+        "text": ""
+      },
+      "id": "efe879fb582668e9",
+      "type": "add",
+      "after": "760060c9bbaee23f",
+      "date": 1389487193503
+    },
+    {
+      "type": "edit",
+      "id": "efe879fb582668e9",
+      "item": {
+        "type": "paragraph",
+        "id": "efe879fb582668e9",
+        "text": "Say <b>RATIO</b> to find the ratio of two numbers."
+      },
+      "date": 1389487235124
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "f14032666eff5947",
+        "text": ""
+      },
+      "id": "f14032666eff5947",
+      "type": "add",
+      "after": "efe879fb582668e9",
+      "date": 1389487243952
+    },
+    {
+      "type": "edit",
+      "id": "f14032666eff5947",
+      "item": {
+        "type": "paragraph",
+        "id": "f14032666eff5947",
+        "text": "Say <b>ACCUMULATE</b> to add to a running sum."
+      },
+      "date": 1389487280294
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "3461b41cc070b51a",
+        "text": ""
+      },
+      "id": "3461b41cc070b51a",
+      "type": "add",
+      "after": "38d211f128c7e310",
+      "date": 1389487425143
+    },
+    {
+      "type": "edit",
+      "id": "3461b41cc070b51a",
+      "item": {
+        "type": "paragraph",
+        "id": "3461b41cc070b51a",
+        "text": "See [[Method Expressions]] for a more concise way to write formulas."
+      },
+      "date": 1389487471919
+    },
+    {
+      "type": "edit",
+      "id": "3461b41cc070b51a",
+      "item": {
+        "type": "paragraph",
+        "id": "3461b41cc070b51a",
+        "text": "See [[Method Expressions]] for a concise way to write formulas."
+      },
+      "date": 1389487481895
+    },
+    {
+      "type": "edit",
+      "id": "3461b41cc070b51a",
+      "item": {
+        "type": "paragraph",
+        "id": "3461b41cc070b51a",
+        "text": "See [[Method Expressions]] for concise formulas."
+      },
+      "date": 1389487498819
     }
   ]
 }

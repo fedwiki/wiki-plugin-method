@@ -1,0 +1,773 @@
+{
+  "title": "Method Expressions",
+  "story": [
+    {
+      "type": "paragraph",
+      "id": "8ac043125e091f60",
+      "text": "Method gets and sets variables with long wordy keys. Here we use the context of a single Method to interpret an expression where values can be named by a small but still unique fragment of already retrieved keys."
+    },
+    {
+      "type": "paragraph",
+      "id": "eb145a5cc6759369",
+      "text": "The existing middle-school math encourages step by step calculations that are hard to misinterpret. Mostly this is due to long and more precise names."
+    },
+    {
+      "type": "paragraph",
+      "id": "7dc8b925782038fb",
+      "text": "<h3> Example"
+    },
+    {
+      "type": "paragraph",
+      "id": "4e63ceb126ae5791",
+      "text": "Consider computing a paycheck with time and a half for overtime."
+    },
+    {
+      "type": "method",
+      "id": "1464e6c8f5dee53e",
+      "text": "16.45 Hourly Rate\n40 Regular Hours\nPRODUCT Base Pay"
+    },
+    {
+      "type": "method",
+      "id": "4772756e29dce6b5",
+      "text": "Hourly Rate\n12 Overtime Hours\n1.5 Overtime Premium\nPRODUCT Overtime Pay\nBase Pay\nSUM Total Pay"
+    },
+    {
+      "type": "paragraph",
+      "id": "38767acb1b43655b",
+      "text": "This could be more concisely expressed using a formula."
+    },
+    {
+      "type": "method",
+      "id": "97f95369d329b8cd",
+      "text": "16.45 Hourly Rate\n40 Regular Hours\n12 Overtime Hours\nCALC Rate * ( Regular + 1.5 * Overtime )"
+    },
+    {
+      "type": "paragraph",
+      "id": "298f231d7f2ca467",
+      "text": "The challenge here is to define CALC to use the label field as a formula written in terms of numbers already defined in the Method. Values are more conveniently identified by single words. Here we will use a partial match on extant value names to give these words meaning."
+    },
+    {
+      "type": "paragraph",
+      "id": "6039e4732322eeca",
+      "text": "The formula itself will become the name of the result. However, one might reasonably offer a more descriptive name in a subsequent line, perhaps a SHOW operation."
+    },
+    {
+      "type": "paragraph",
+      "id": "aa91be935f49cf34",
+      "text": "The formula works with the units present in other values and will return a result with appropriate units."
+    },
+    {
+      "type": "method",
+      "id": "51066152f6d2246e",
+      "text": "16.45 Rate (dollar / hour)\n40 Regular (hour)\n12 Overtime (hour)\nCALC Rate * ( Regular + 1.5 * Overtime )"
+    },
+    {
+      "type": "paragraph",
+      "id": "781931e2bc39486d",
+      "text": "Hover over the results from this and the previous calculation to compare the difference that units makes."
+    },
+    {
+      "type": "paragraph",
+      "id": "74c330ff65795579",
+      "text": "<h3> Resources"
+    },
+    {
+      "type": "paragraph",
+      "id": "50b1e705f893e0f0",
+      "text": "[http://silentmatt.com/javascript-expression-evaluator/ Matthew Crumley] evaluator adapted from Raphael Graf’s ActionScript."
+    },
+    {
+      "type": "paragraph",
+      "id": "3ee498754cff9ad2",
+      "text": "[http://javascript.crockford.com/tdop/tdop.html Douglas Crockford] javascript evaluator using Pratt's top-down operator precedence."
+    },
+    {
+      "type": "paragraph",
+      "id": "d779234bb9e1cd70",
+      "text": "[https://gist.github.com/Jxck/3462396 Jxck] simple recursive-descent evaluator in a 90 line gist including tests."
+    },
+    {
+      "type": "paragraph",
+      "id": "ba328f9669be2e9a",
+      "text": "[[About Method Plugin]] for regular documentation."
+    }
+  ],
+  "journal": [
+    {
+      "type": "create",
+      "item": {
+        "title": "Method Expressions",
+        "story": [
+
+        ]
+      },
+      "date": 1385393561039
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "8ac043125e091f60"
+      },
+      "id": "8ac043125e091f60",
+      "type": "add",
+      "date": 1385393563488
+    },
+    {
+      "type": "edit",
+      "id": "8ac043125e091f60",
+      "item": {
+        "type": "paragraph",
+        "id": "8ac043125e091f60",
+        "text": "Method gets and sets variables with long wordy keys. Here we use the context of a single Method to interpret an expression where values can be named by a small but still unique fragment of already retrieved keys."
+      },
+      "date": 1385393739015
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "05082230f4a82100",
+        "text": ""
+      },
+      "id": "05082230f4a82100",
+      "type": "add",
+      "after": "8ac043125e091f60",
+      "date": 1385393739521
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "d185bfeb81c3ab2b"
+      },
+      "id": "d185bfeb81c3ab2b",
+      "type": "add",
+      "after": "05082230f4a82100",
+      "date": 1385393805399
+    },
+    {
+      "type": "remove",
+      "id": "05082230f4a82100",
+      "date": 1385393807719
+    },
+    {
+      "type": "remove",
+      "id": "d185bfeb81c3ab2b",
+      "date": 1385393810638
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "1464e6c8f5dee53e"
+      },
+      "id": "1464e6c8f5dee53e",
+      "type": "add",
+      "after": "8ac043125e091f60",
+      "date": 1385393813694
+    },
+    {
+      "type": "edit",
+      "id": "1464e6c8f5dee53e",
+      "item": {
+        "type": "method",
+        "id": "1464e6c8f5dee53e",
+        "text": "16.45 Hourly Rate\n40 Regular Hours\nPRODUCT Base Pay\n1.5 Overtime Premium\nHourly Rate\n12 Overtime Hours\nPRODUCT Overtime Pay\nBase Pay\nSUM Total Pay\n"
+      },
+      "date": 1385394147373
+    },
+    {
+      "type": "edit",
+      "id": "1464e6c8f5dee53e",
+      "item": {
+        "type": "method",
+        "id": "1464e6c8f5dee53e",
+        "text": "16.45 Hourly Rate\n40 Regular Hours\nPRODUCT Base Pay\n1.5 Overtime Premium\nHourly Rate\n12 Overtime Hours\nPRODUCT Overtime Pay\nBase Pay\nSUM Total Pay"
+      },
+      "date": 1385394156565
+    },
+    {
+      "type": "edit",
+      "id": "1464e6c8f5dee53e",
+      "item": {
+        "type": "method",
+        "id": "1464e6c8f5dee53e",
+        "text": "16.45 Hourly Rate\n40 Regular Hours\nPRODUCT Base Pay"
+      },
+      "date": 1385394213425
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "4772756e29dce6b5"
+      },
+      "id": "4772756e29dce6b5",
+      "type": "add",
+      "after": "1464e6c8f5dee53e",
+      "date": 1385394217138
+    },
+    {
+      "type": "edit",
+      "id": "4772756e29dce6b5",
+      "item": {
+        "type": "method",
+        "id": "4772756e29dce6b5",
+        "text": "1.5 Overtime Premium\nHourly Rate\n12 Overtime Hours\nPRODUCT Overtime Pay\nBase Pay\nSUM Total Pay"
+      },
+      "date": 1385394230322
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "1362de4f45cf727a",
+        "text": ""
+      },
+      "id": "1362de4f45cf727a",
+      "type": "add",
+      "after": "8ac043125e091f60",
+      "date": 1385394256478
+    },
+    {
+      "type": "remove",
+      "id": "1362de4f45cf727a",
+      "date": 1385394266117
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "6917a152e57bcf31"
+      },
+      "id": "6917a152e57bcf31",
+      "type": "add",
+      "after": "4772756e29dce6b5",
+      "date": 1385394279108
+    },
+    {
+      "type": "edit",
+      "id": "6917a152e57bcf31",
+      "item": {
+        "type": "code",
+        "id": "6917a152e57bcf31",
+        "text": "16.45 Hourly Rate\n40 Regular Hours\n12 Overtime Hours\nCALC Base * ( Regular + 1.5 * Overtime )"
+      },
+      "date": 1385394390563
+    },
+    {
+      "type": "edit",
+      "id": "6917a152e57bcf31",
+      "item": {
+        "type": "code",
+        "id": "6917a152e57bcf31",
+        "text": "16.45 Hourly Rate\n40 Regular Hours\n12 Overtime Hours\nCALC Rate * ( Regular + 1.5 * Overtime )"
+      },
+      "date": 1385394410442
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "eb145a5cc6759369",
+        "text": ""
+      },
+      "id": "eb145a5cc6759369",
+      "type": "add",
+      "after": "8ac043125e091f60",
+      "date": 1385394448562
+    },
+    {
+      "type": "edit",
+      "id": "eb145a5cc6759369",
+      "item": {
+        "type": "paragraph",
+        "id": "eb145a5cc6759369",
+        "text": "The existing middle-school math encourages step by step calculations that are hard to misinterpret. Mostly this is due to long and more precise names."
+      },
+      "date": 1385394545336
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "4e63ceb126ae5791",
+        "text": ""
+      },
+      "id": "4e63ceb126ae5791",
+      "type": "add",
+      "after": "eb145a5cc6759369",
+      "date": 1385394549581
+    },
+    {
+      "type": "edit",
+      "id": "4e63ceb126ae5791",
+      "item": {
+        "type": "paragraph",
+        "id": "4e63ceb126ae5791",
+        "text": "Consider computing a paycheck with time and a half for overtime."
+      },
+      "date": 1385394632458
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "7dc8b925782038fb",
+        "text": ""
+      },
+      "id": "7dc8b925782038fb",
+      "type": "add",
+      "after": "eb145a5cc6759369",
+      "date": 1385394643283
+    },
+    {
+      "type": "edit",
+      "id": "7dc8b925782038fb",
+      "item": {
+        "type": "paragraph",
+        "id": "7dc8b925782038fb",
+        "text": "<h3> Example"
+      },
+      "date": 1385394648321
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "38767acb1b43655b",
+        "text": ""
+      },
+      "id": "38767acb1b43655b",
+      "type": "add",
+      "after": "4e63ceb126ae5791",
+      "date": 1385394657097
+    },
+    {
+      "type": "edit",
+      "id": "38767acb1b43655b",
+      "item": {
+        "type": "paragraph",
+        "id": "38767acb1b43655b",
+        "text": "This could be more concisely expressed using a formula."
+      },
+      "date": 1385394674424
+    },
+    {
+      "type": "move",
+      "order": [
+        "8ac043125e091f60",
+        "eb145a5cc6759369",
+        "7dc8b925782038fb",
+        "4e63ceb126ae5791",
+        "1464e6c8f5dee53e",
+        "4772756e29dce6b5",
+        "38767acb1b43655b",
+        "6917a152e57bcf31"
+      ],
+      "id": "38767acb1b43655b",
+      "date": 1385394678816
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "97f95369d329b8cd"
+      },
+      "id": "97f95369d329b8cd",
+      "type": "add",
+      "after": "6917a152e57bcf31",
+      "date": 1385394689831
+    },
+    {
+      "type": "edit",
+      "id": "97f95369d329b8cd",
+      "item": {
+        "type": "method",
+        "id": "97f95369d329b8cd",
+        "text": "16.45 Hourly Rate\n40 Regular Hours\n12 Overtime Hours\nCALC Rate * ( Regular + 1.5 * Overtime )"
+      },
+      "date": 1385394694220
+    },
+    {
+      "type": "move",
+      "order": [
+        "8ac043125e091f60",
+        "eb145a5cc6759369",
+        "7dc8b925782038fb",
+        "4e63ceb126ae5791",
+        "1464e6c8f5dee53e",
+        "4772756e29dce6b5",
+        "38767acb1b43655b",
+        "97f95369d329b8cd",
+        "6917a152e57bcf31"
+      ],
+      "id": "97f95369d329b8cd",
+      "date": 1385394709712
+    },
+    {
+      "type": "remove",
+      "id": "6917a152e57bcf31",
+      "date": 1385394717815
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "4eb77466abbef9b0"
+      },
+      "id": "4eb77466abbef9b0",
+      "type": "add",
+      "after": "97f95369d329b8cd",
+      "date": 1385394729415
+    },
+    {
+      "type": "edit",
+      "id": "4eb77466abbef9b0",
+      "item": {
+        "type": "paragraph",
+        "id": "4eb77466abbef9b0",
+        "text": "The challenge here is to define CALC to use the label field as a formula written in terms of numbers already defined in the Method. Values are more conveniently identified by single words. Here we will use a partial match on extant value names to give these words meaning."
+      },
+      "date": 1385394886571
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "6039e4732322eeca",
+        "text": ""
+      },
+      "id": "6039e4732322eeca",
+      "type": "add",
+      "after": "4eb77466abbef9b0",
+      "date": 1385394912483
+    },
+    {
+      "type": "edit",
+      "id": "6039e4732322eeca",
+      "item": {
+        "type": "paragraph",
+        "id": "6039e4732322eeca",
+        "text": "The formula itself will become the name of the result. However, one might reasonably offer a more descriptive name in a subsequent line, perhaps a SHOW operation."
+      },
+      "date": 1385394967888
+    },
+    {
+      "type": "edit",
+      "id": "4eb77466abbef9b0",
+      "item": {
+        "type": "paragraph",
+        "id": "4eb77466abbef9b0",
+        "text": "Ignore the error as this feature has not yet been implemented."
+      },
+      "date": 1385395042184
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "298f231d7f2ca467",
+        "text": "The challenge here is to define CALC to use the label field as a formula written in terms of numbers already defined in the Method. Values are more conveniently identified by single words. Here we will use a partial match on extant value names to give these words meaning."
+      },
+      "id": "298f231d7f2ca467",
+      "type": "add",
+      "after": "4eb77466abbef9b0",
+      "date": 1385395042695
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "e42fb9c915e4fb8e",
+        "text": ""
+      },
+      "id": "e42fb9c915e4fb8e",
+      "type": "add",
+      "after": "6039e4732322eeca",
+      "date": 1385395066829
+    },
+    {
+      "type": "remove",
+      "id": "e42fb9c915e4fb8e",
+      "date": 1385395073427
+    },
+    {
+      "type": "edit",
+      "id": "4772756e29dce6b5",
+      "item": {
+        "type": "method",
+        "id": "4772756e29dce6b5",
+        "text": "Hourly Rate\n12 Overtime Hours\n1.5 Overtime Premium\nPRODUCT Overtime Pay\nBase Pay\nSUM Total Pay"
+      },
+      "date": 1385397191401
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "74c330ff65795579"
+      },
+      "id": "74c330ff65795579",
+      "type": "add",
+      "after": "6039e4732322eeca",
+      "date": 1385397397372
+    },
+    {
+      "type": "edit",
+      "id": "74c330ff65795579",
+      "item": {
+        "type": "paragraph",
+        "id": "74c330ff65795579",
+        "text": "<h3> Resources"
+      },
+      "date": 1385397409854
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "50b1e705f893e0f0"
+      },
+      "id": "50b1e705f893e0f0",
+      "type": "add",
+      "after": "74c330ff65795579",
+      "date": 1385397551942
+    },
+    {
+      "type": "edit",
+      "id": "50b1e705f893e0f0",
+      "item": {
+        "type": "paragraph",
+        "id": "50b1e705f893e0f0",
+        "text": "[http://silentmatt.com/javascript-expression-evaluator/ matt] evaluator adapted from ActionScript."
+      },
+      "date": 1385397615962
+    },
+    {
+      "type": "edit",
+      "id": "50b1e705f893e0f0",
+      "item": {
+        "type": "paragraph",
+        "id": "50b1e705f893e0f0",
+        "text": "[http://silentmatt.com/javascript-expression-evaluator/ matt] evaluator adapted from Raphael Graf’s ActionScript."
+      },
+      "date": 1385397680925
+    },
+    {
+      "type": "edit",
+      "id": "50b1e705f893e0f0",
+      "item": {
+        "type": "paragraph",
+        "id": "50b1e705f893e0f0",
+        "text": "[http://silentmatt.com/javascript-expression-evaluator/ Matthew Crumley]'s evaluator adapted from Raphael Graf’s ActionScript."
+      },
+      "date": 1385397727477
+    },
+    {
+      "type": "edit",
+      "id": "50b1e705f893e0f0",
+      "item": {
+        "type": "paragraph",
+        "id": "50b1e705f893e0f0",
+        "text": "[http://silentmatt.com/javascript-expression-evaluator/ Matthew Crumley] evaluator adapted from Raphael Graf’s ActionScript."
+      },
+      "date": 1385397739548
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "3ee498754cff9ad2",
+        "text": ""
+      },
+      "id": "3ee498754cff9ad2",
+      "type": "add",
+      "after": "50b1e705f893e0f0",
+      "date": 1385397829955
+    },
+    {
+      "type": "edit",
+      "id": "3ee498754cff9ad2",
+      "item": {
+        "type": "paragraph",
+        "id": "3ee498754cff9ad2",
+        "text": "[http://javascript.crockford.com/tdop/tdop.html Douglas Crockford] javascript evaluator."
+      },
+      "date": 1385397870767
+    },
+    {
+      "type": "edit",
+      "id": "3ee498754cff9ad2",
+      "item": {
+        "type": "paragraph",
+        "id": "3ee498754cff9ad2",
+        "text": "[http://javascript.crockford.com/tdop/tdop.html Douglas Crockford] javascript evaluator using Pratt's top-down operator precince."
+      },
+      "date": 1385397928868
+    },
+    {
+      "type": "edit",
+      "id": "3ee498754cff9ad2",
+      "item": {
+        "type": "paragraph",
+        "id": "3ee498754cff9ad2",
+        "text": "[http://javascript.crockford.com/tdop/tdop.html Douglas Crockford] javascript evaluator using Pratt's top-down operator precedence."
+      },
+      "date": 1385397943232
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "d779234bb9e1cd70"
+      },
+      "id": "d779234bb9e1cd70",
+      "type": "add",
+      "after": "3ee498754cff9ad2",
+      "date": 1385398093983
+    },
+    {
+      "type": "edit",
+      "id": "d779234bb9e1cd70",
+      "item": {
+        "type": "paragraph",
+        "id": "d779234bb9e1cd70",
+        "text": "[https://gist.github.com/Jxck/3462396 xx] simple evaluator in a 90 line gist."
+      },
+      "date": 1385398135351
+    },
+    {
+      "type": "edit",
+      "id": "d779234bb9e1cd70",
+      "item": {
+        "type": "paragraph",
+        "id": "d779234bb9e1cd70",
+        "text": "[https://gist.github.com/Jxck/3462396 Jxck] simple recursive-descent evaluator in a 90 line gist including tests."
+      },
+      "date": 1385398304419
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "ba328f9669be2e9a",
+        "text": ""
+      },
+      "id": "ba328f9669be2e9a",
+      "type": "add",
+      "after": "d779234bb9e1cd70",
+      "date": 1385493405616
+    },
+    {
+      "type": "edit",
+      "id": "ba328f9669be2e9a",
+      "item": {
+        "type": "paragraph",
+        "id": "ba328f9669be2e9a",
+        "text": "[[About Method Plugin]] for regular documentation."
+      },
+      "date": 1385493501749
+    },
+    {
+      "type": "remove",
+      "id": "4eb77466abbef9b0",
+      "date": 1388875696511
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "aa91be935f49cf34",
+        "text": ""
+      },
+      "id": "aa91be935f49cf34",
+      "type": "add",
+      "after": "6039e4732322eeca",
+      "date": 1388875728696
+    },
+    {
+      "type": "edit",
+      "id": "aa91be935f49cf34",
+      "item": {
+        "type": "paragraph",
+        "id": "aa91be935f49cf34",
+        "text": "The formula works with the units present in other values and will return a result with appropriate units."
+      },
+      "date": 1388875771356
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "51066152f6d2246e"
+      },
+      "id": "51066152f6d2246e",
+      "type": "add",
+      "after": "ba328f9669be2e9a",
+      "date": 1388875776524
+    },
+    {
+      "type": "edit",
+      "id": "51066152f6d2246e",
+      "item": {
+        "type": "method",
+        "id": "51066152f6d2246e",
+        "text": "16.45 Rate (dollar / hour)\n40 Regular (hour)\n12 Overtime (hour)\nCALC Rate * ( Regular + 1.5 * Overtime )"
+      },
+      "date": 1388875781259
+    },
+    {
+      "type": "move",
+      "order": [
+        "8ac043125e091f60",
+        "eb145a5cc6759369",
+        "7dc8b925782038fb",
+        "4e63ceb126ae5791",
+        "1464e6c8f5dee53e",
+        "4772756e29dce6b5",
+        "38767acb1b43655b",
+        "97f95369d329b8cd",
+        "298f231d7f2ca467",
+        "6039e4732322eeca",
+        "aa91be935f49cf34",
+        "51066152f6d2246e",
+        "74c330ff65795579",
+        "50b1e705f893e0f0",
+        "3ee498754cff9ad2",
+        "d779234bb9e1cd70",
+        "ba328f9669be2e9a"
+      ],
+      "id": "51066152f6d2246e",
+      "date": 1388875787389
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "781931e2bc39486d"
+      },
+      "id": "781931e2bc39486d",
+      "type": "add",
+      "after": "ba328f9669be2e9a",
+      "date": 1388875854858
+    },
+    {
+      "type": "edit",
+      "id": "781931e2bc39486d",
+      "item": {
+        "type": "paragraph",
+        "id": "781931e2bc39486d",
+        "text": "Hover over the results from this and the previous calculation to compare the difference that units makes."
+      },
+      "date": 1388875888488
+    },
+    {
+      "type": "move",
+      "order": [
+        "8ac043125e091f60",
+        "eb145a5cc6759369",
+        "7dc8b925782038fb",
+        "4e63ceb126ae5791",
+        "1464e6c8f5dee53e",
+        "4772756e29dce6b5",
+        "38767acb1b43655b",
+        "97f95369d329b8cd",
+        "298f231d7f2ca467",
+        "6039e4732322eeca",
+        "aa91be935f49cf34",
+        "51066152f6d2246e",
+        "781931e2bc39486d",
+        "74c330ff65795579",
+        "50b1e705f893e0f0",
+        "3ee498754cff9ad2",
+        "d779234bb9e1cd70",
+        "ba328f9669be2e9a"
+      ],
+      "id": "781931e2bc39486d",
+      "date": 1388875893027
+    },
+    {
+      "type": "fork",
+      "site": "ward.fed.wiki.org",
+      "date": 1389487413140
+    }
+  ]
+}

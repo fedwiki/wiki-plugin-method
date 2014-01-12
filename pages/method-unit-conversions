@@ -1,0 +1,4195 @@
+{
+  "title": "Method Unit Conversions",
+  "story": [
+    {
+      "type": "paragraph",
+      "id": "3ce6aff72ab21349",
+      "text": "We propose to extend the Method plugin's calculation with measurement unit tracking, checking, formatting and some implicit conversions. Unit nomenclature and allowed conversions will be written explicitly on nearby pages. See [[Method Unit Coding]]"
+    },
+    {
+      "type": "paragraph",
+      "id": "525432e02c375c5d",
+      "text": "<h3> Unit Labels"
+    },
+    {
+      "type": "paragraph",
+      "id": "e11e11501dc13c9a",
+      "text": "We've already seen units appear in labels as a convenience. We will systematize these conventions as our primary interface."
+    },
+    {
+      "type": "method",
+      "id": "845fc86d899f9ab0",
+      "text": "166 Recovered Area (Acres)\n32.67 Annual Consumption (Metric Tons)\n0.02 Consumption (Tonne / Year / Person)"
+    },
+    {
+      "type": "paragraph",
+      "id": "a113da842edd0914",
+      "text": "We will interpret the contents of parentheses as units. However, our interpretation will depend on a series of conventions applied quite literally."
+    },
+    {
+      "type": "paragraph",
+      "id": "62874084310f12c3",
+      "text": "Unit names may be singular or plural, but not both interchangeably. That is <b>Acre</b> and <b>Acres</b> are different."
+    },
+    {
+      "type": "paragraph",
+      "id": "32ac8e020c1cd2fd",
+      "text": "Unit names must be identical if they are to name the same unit. That is <b>foot</b>, <b>Foot</b> and <b>Feet</b> are three different units."
+    },
+    {
+      "type": "paragraph",
+      "id": "d9c8c464b9e23c32",
+      "text": "Unit names won't contain spaces if they name an individual unit. Thus metric tons must be spelt <b>MetricTons</b>"
+    },
+    {
+      "type": "paragraph",
+      "id": "1e672adc12a3f324",
+      "text": "Unit names combine when measurements involve multiple scales. The combination is independent of the order. That is <b>Foot Pound</b> and <b>Pound Foot</b> are the same internally."
+    },
+    {
+      "type": "paragraph",
+      "id": "7b03dfb7011a51ce",
+      "text": "Unit names for ratios may be composed of a numerator and denominator represented by a single slash. Units to the right of the slash are all in the denominator. That is tonne per year per person would be <b>Tonne / Year Person</b>."
+    },
+    {
+      "type": "paragraph",
+      "id": "fa63ab0393a1836b",
+      "text": "<h3> Sums"
+    },
+    {
+      "type": "paragraph",
+      "id": "85cc2dbc49d24626",
+      "text": "When conversion factors have been provided they can be applied automatically to sum measurements in different units."
+    },
+    {
+      "type": "method",
+      "id": "63f2c2a7b6f35a27",
+      "text": "12 (inches) per (feet)"
+    },
+    {
+      "type": "paragraph",
+      "id": "1fe8be1ca48d7aa9",
+      "text": "A running sum will be in the units last used. A measurement without units will sum as the prevailing unit."
+    },
+    {
+      "type": "method",
+      "id": "09107457fa1b6075",
+      "text": "5 Coarse Height (feet)\n6 And Then Some (inches)\nSUM Actual Height"
+    },
+    {
+      "type": "paragraph",
+      "id": "b313fe681b6daab6",
+      "text": "<i>when implemented, sum of 66 expected"
+    },
+    {
+      "type": "paragraph",
+      "id": "08bdc8d78f94a472",
+      "text": "When the preferred unit of a result is specified then provided conversion factors will be applied."
+    },
+    {
+      "type": "method",
+      "id": "2f2f1e7203c2bb99",
+      "text": "5 Coarse Height (feet)\n6 And Then Some (inches)\nSUM Actual Height (feet)"
+    },
+    {
+      "type": "paragraph",
+      "id": "5e51ead6371b6f5c",
+      "text": "<i>when implemented, sum of 5.5 expected"
+    },
+    {
+      "type": "paragraph",
+      "id": "3e7f75fb3f1bec61",
+      "text": "When units are specified they will be checked and conversions applied if available."
+    },
+    {
+      "type": "paragraph",
+      "id": "76705321ff32c889",
+      "text": "When units aren't specified they will be inferred and visible by hovering over the result."
+    },
+    {
+      "type": "paragraph",
+      "id": "c4d26213d5cfebdb",
+      "text": "When units aren't specified for SHOW they will be inferred and added to the visible caption on a line by itself."
+    },
+    {
+      "type": "paragraph",
+      "id": "55e58c1887ed135d",
+      "text": "<h3> Products"
+    },
+    {
+      "type": "paragraph",
+      "id": "ee2f0a9928a4f839",
+      "text": "Multiplying numbers yields quantities with composed units. For example, height x width in inches yields area in square inches."
+    },
+    {
+      "type": "method",
+      "id": "c3c68c01412cfab7",
+      "text": "12 Height (Inches)\n24 Width (Inches)\nPRODUCT Area (Inches Inches)"
+    },
+    {
+      "type": "paragraph",
+      "id": "9b0a7bc5f9597a90",
+      "text": "We anticipate the use of superscript powers as an output formatting embellishment. Area would report as (Inches²). This could be reported in (Feet²) given appropriate conversions. The unit (Feet²) is written in input as (Feet Feet) and stored as such internally."
+    },
+    {
+      "type": "paragraph",
+      "id": "e909e883048d2a40",
+      "text": "Alternatively, the Google calculator is happy to report inches x inches as inches squared or square inches."
+    },
+    {
+      "type": "paragraph",
+      "id": "3e77667f0a5bdea8",
+      "text": "<h3> Ratios"
+    },
+    {
+      "type": "paragraph",
+      "id": "03ee61d49a23089d",
+      "text": "First observe that numbers may come directly from a measurement or be the result of comparing two measurements as a ratio."
+    },
+    {
+      "type": "method",
+      "id": "94cb6dd8e2d8f949",
+      "text": "150 Distance Traveled (Miles)\n2.5 Elapsed Time (Hours)\nRATIO Average Speed (Miles / Hours)"
+    },
+    {
+      "type": "paragraph",
+      "id": "de59e7792ace8b13",
+      "text": "While we might find it convenient to name ratios, it doesn't make sense to sum them. "
+    },
+    {
+      "type": "method",
+      "id": "0f9a01fe65f987e4",
+      "text": "18.7 City Traffic (MPG)\n23.5 Open Road (MPG)\nSUM Total Fuel Efficency"
+    },
+    {
+      "type": "paragraph",
+      "id": "323c2d52de2d01a1",
+      "text": "<i>not a reasonable computation, prefer weighted average"
+    },
+    {
+      "type": "paragraph",
+      "id": "b176b25a6003f9ae",
+      "text": "A product of ratios will yield unit numerators and denominators composed independently. "
+    },
+    {
+      "type": "paragraph",
+      "id": "fd9431226174d6cd",
+      "text": "A ratio of ratios will yield unit numerators and denominators composed independently after units of the divisor have been inverted."
+    },
+    {
+      "type": "paragraph",
+      "id": "abb022a35df34d66",
+      "text": "Like units in the numerator and denominator will be canceled."
+    },
+    {
+      "type": "paragraph",
+      "id": "3fb050c05379f0d3",
+      "text": "A ratio can yield a unit-less quantity which is not the same as a quantity for which units have not been specified. The two have different default behavior in sums."
+    },
+    {
+      "type": "paragraph",
+      "id": "142766c33e0fd56b",
+      "text": "<h3> Conversions"
+    },
+    {
+      "type": "paragraph",
+      "id": "645e03a3a8dcfa6e",
+      "text": "Conversion factors specified quantities of a destination unit that comes from each 1.0 of a source unit. Conversions are recognized by two sets of parenthesis."
+    },
+    {
+      "type": "method",
+      "id": "623718b263695a84",
+      "text": "12 (Inches) from (Feet)\n144 (Square Inches) from (Square Feet)\n1728 (Cubic Inches) from (Cubic Feet)"
+    },
+    {
+      "type": "paragraph",
+      "id": "a71289bd6bf55a9c",
+      "text": "Conversions may assume additional physical properties such as what is being measured and/or converted. These appear outside the parenthesis. Additional assumptions are not checked but can be viewed by hovering over converted quantities."
+    },
+    {
+      "type": "method",
+      "id": "b29d1b74f7de5b78",
+      "text": "7.48052 (Gallons) from (Cubic Feet) Water\n8.34 (Pounds) from (Gallons) Water\n0.44548 (kg) CO2 from (kW Hr) Grid Electricity"
+    },
+    {
+      "type": "paragraph",
+      "id": "bd5cc0715cae69d7",
+      "text": "See Conversion factors from the Carbon Trust. [http://www.carbontrust.com/media/18223/ctl153_conversion_factors.pdf pdf]"
+    },
+    {
+      "type": "paragraph",
+      "id": "87a1633af7878566",
+      "text": "Some conversion factors may need explanation that exceeds that possible in the label. Consider the example of these historic exchange rates averaged over the month of June, 2000. [http://fxtop.com/en/historical-exchange-rates.php source]"
+    },
+    {
+      "type": "method",
+      "id": "59f1ed4b91d957a0",
+      "text": "106.1092 Japanese (Yen) from US (Dollars)\n1.5084 US (Dollars) from GB (Pounds) "
+    },
+    {
+      "type": "paragraph",
+      "id": "721be21bc38ef959",
+      "text": "Only one conversion will be applied at a time. One must have the source units and want the destination units for a forward conversion (multiply) or the exact opposite for a reverse conversion (divide)."
+    },
+    {
+      "type": "paragraph",
+      "id": "00612c0db54bda30",
+      "text": "Consider an 8 x 10 foot holding tank filled to 9 inches with water. We can compute the water's weight using conversions above."
+    },
+    {
+      "type": "method",
+      "id": "e6382e058f8a4e41",
+      "text": "8 Wide (Feet)\n10 Long (Feet)\nPRODUCT (Square Inches)\n9 Deep (Inches)\nPRODUCT (Cubic Feet)\nSUM (Gallons)\nSUM (Pounds)"
+    },
+    {
+      "type": "paragraph",
+      "id": "248affd5af0cf758",
+      "text": "<i>not yet implemented, expected 60 cubic feet, 448 gallons, 3745 pounds."
+    },
+    {
+      "type": "paragraph",
+      "id": "1fe16c0626349f22",
+      "text": "We switch from feet to inches and back and then from gallons to pounds to match the available conversions."
+    },
+    {
+      "type": "paragraph",
+      "id": "56e7671875caed38",
+      "text": "Implicit conversions are retrieved based on source and destination units alone. Should there be multiple conversions that might apply, the closest conversion will be chosen."
+    },
+    {
+      "type": "paragraph",
+      "id": "83e8530877899e11",
+      "text": "Conversion factors can be explicitly applied by recalling exactly the factor desired and applying it with PRODUCT."
+    },
+    {
+      "type": "method",
+      "id": "ab363daff83ea92e",
+      "text": "2400 Annual per Capita Lighting (kW Hr)\n(kg) CO2 from (kW Hr) Grid Electricity\nPRODUCT Annual CO2 per Capita Lighting (kg)"
+    },
+    {
+      "type": "paragraph",
+      "id": "cf4d070adc529927",
+      "text": "Conversions are themselves ratios that have been labeled such that they are clearly intended for implicit application. A ratio and its inverse are equivalent conversions."
+    },
+    {
+      "type": "method",
+      "id": "970adeeaa04c1103",
+      "text": "88 (Feet / Seconds)\n60 (Miles / Hours)\nRATIO (Feet / Seconds) from (Miles / Hours)"
+    },
+    {
+      "type": "method",
+      "id": "8ccc4d34753c1779",
+      "text": "60 (Miles / Hours)\n88 (Feet / Seconds)\nRATIO (Miles / Hours) from (Feet / Seconds)"
+    },
+    {
+      "type": "paragraph",
+      "id": "bf8d6883b0f212c1",
+      "text": "<h3> Errors"
+    },
+    {
+      "type": "paragraph",
+      "id": "9c4947bc9b3ee208",
+      "text": "It is an error to convert a result with units to other units for which there is not a direct conversion factor."
+    },
+    {
+      "type": "paragraph",
+      "id": "a44e49da14a35c29",
+      "text": "It is not an error to convert a result without units to any units desired. (But this conversion simply asserts the units of the current result.)"
+    },
+    {
+      "type": "paragraph",
+      "id": "48c20d51671c001e",
+      "text": "It is an error to sum quantities that cannot be converted to the prevailing unit"
+    },
+    {
+      "type": "paragraph",
+      "id": "562e9406327385fb",
+      "text": "It is an error to sum quantities that are ratios (have a unit denominator.) A ratio who's units have canceled is still considered to have a denominator."
+    },
+    {
+      "type": "paragraph",
+      "id": "8e6c786c950b681a",
+      "text": "It is not an error to multiply quantities that cannot be converted to the prevailing unit. (However, this may lead to unwanted units that won't convert later.)"
+    },
+    {
+      "type": "paragraph",
+      "id": "fa8a4f61a8789fd0",
+      "text": "It is not yet possible to convert Centigrade to Fahrenheit with this conversion mechanism."
+    },
+    {
+      "type": "paragraph",
+      "id": "9038e34f351b90fb",
+      "text": "One can check that variables are being defined with the expected units by setting \"debug\" to non-zero. Refresh whole pages to see debug output."
+    },
+    {
+      "type": "method",
+      "id": "84e0ecd583f6351f",
+      "text": "0 debug"
+    },
+    {
+      "type": "paragraph",
+      "id": "5812c30cd5029be3",
+      "text": "<h3> Representation"
+    },
+    {
+      "type": "paragraph",
+      "id": "f6de14b98f82b8a9",
+      "text": "A feature of this scheme is that it almost works with no more representation than that squeezed into value labels themselves. However, there are a few additional needs that will drive us to attach units directly to values."
+    },
+    {
+      "type": "paragraph",
+      "id": "606c5b42e79fe8a4",
+      "text": "We need for units to travel with values even when the values leave their labeled locations. We have asValue() to extract a number from a more complex value."
+    },
+    {
+      "type": "paragraph",
+      "id": "4e98f8c888b24c24",
+      "text": "We need to know if units given in labels have been interpreted and how they have been interpreted if there is any ambiguity."
+    },
+    {
+      "type": "paragraph",
+      "id": "3b45116df6408a0a",
+      "text": "We need to know what units have been assumed when units have not been provided."
+    },
+    {
+      "type": "paragraph",
+      "id": "28813eb6f0767789",
+      "text": "We need a normalized and easily interpreted form for units that is independent of any formatting fashion, say between square inches, inches squared and inches<sup>2</sup>."
+    },
+    {
+      "type": "paragraph",
+      "id": "16ee7e4f2a02d996",
+      "text": "A value with units will be represented by an object that we will informally call a measurement."
+    },
+    {
+      "type": "code",
+      "id": "32e21d3266824394",
+      "text": "value = number | measure\nmeasure = { value: number, units: terms | ratio }\nratio = { units: terms, per: terms }\nterms = [ words ]"
+    },
+    {
+      "type": "paragraph",
+      "id": "59d39498a0d91af3",
+      "text": ""
+    },
+    {
+      "type": "paragraph",
+      "id": "21deb303c7fe410e",
+      "text": "Terms are alphabetized arrays of single unit names. Square feet would be [ \"Feet\", \"Feet\" ]."
+    },
+    {
+      "type": "paragraph",
+      "id": "e8e0cc624abbdce2",
+      "text": "A measurement has units which may be terms or a ratio of terms. When units cancel a denominator may become empty but it won't revert from a ratio."
+    },
+    {
+      "type": "paragraph",
+      "id": "fe5e99f6eeb73315",
+      "text": "A conversion factors are measurements that add source units in a from field, <i>from: terms | ratio</i>."
+    },
+    {
+      "type": "code",
+      "id": "67c08432cc3c0922",
+      "text": "{   \"value\": 144,\n    \"units\": [ \"Inches\", \"Inches\" ],\n    \"from\":  [ \"Feet\", \"Feet\" ] }"
+    }
+  ],
+  "journal": [
+    {
+      "type": "create",
+      "item": {
+        "title": "Method Unit Conversions",
+        "story": [
+
+        ]
+      },
+      "date": 1385654989049
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "3ce6aff72ab21349"
+      },
+      "id": "3ce6aff72ab21349",
+      "type": "add",
+      "date": 1385654998378
+    },
+    {
+      "type": "edit",
+      "id": "3ce6aff72ab21349",
+      "item": {
+        "type": "paragraph",
+        "id": "3ce6aff72ab21349",
+        "text": "We propose to extend the Method plugin's calculation with measurement unit tracking, checking, formatting and some explicit conversions. Unit nomenclature and allowed conversions will be written explicitly on nearby pages."
+      },
+      "date": 1385655231659
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "525432e02c375c5d"
+      },
+      "id": "525432e02c375c5d",
+      "type": "add",
+      "after": "3ce6aff72ab21349",
+      "date": 1385655244327
+    },
+    {
+      "type": "edit",
+      "id": "525432e02c375c5d",
+      "item": {
+        "type": "paragraph",
+        "id": "525432e02c375c5d",
+        "text": "<h3> Unit Labels"
+      },
+      "date": 1385655298873
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "e11e11501dc13c9a",
+        "text": ""
+      },
+      "id": "e11e11501dc13c9a",
+      "type": "add",
+      "after": "525432e02c375c5d",
+      "date": 1385655299382
+    },
+    {
+      "type": "edit",
+      "id": "e11e11501dc13c9a",
+      "item": {
+        "type": "paragraph",
+        "id": "e11e11501dc13c9a",
+        "text": "We've already seen units appear in labels as a convenience. We will systematize these conventions as our primary interface."
+      },
+      "date": 1385655388016
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "845fc86d899f9ab0"
+      },
+      "id": "845fc86d899f9ab0",
+      "type": "add",
+      "after": "e11e11501dc13c9a",
+      "date": 1385655390467
+    },
+    {
+      "type": "edit",
+      "id": "845fc86d899f9ab0",
+      "item": {
+        "type": "method",
+        "id": "845fc86d899f9ab0",
+        "text": "166 Recovered Area (Acres)\n32.67 Consumption (Metric Tons)\n0.002 Consumption (Tonne / Year / Person)"
+      },
+      "date": 1385655685861
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "a113da842edd0914"
+      },
+      "id": "a113da842edd0914",
+      "type": "add",
+      "after": "845fc86d899f9ab0",
+      "date": 1385655774759
+    },
+    {
+      "type": "edit",
+      "id": "a113da842edd0914",
+      "item": {
+        "type": "paragraph",
+        "id": "a113da842edd0914",
+        "text": "We start by observing that numbers may come directly from a measurement or be the result of comparing two measurements as a ratio."
+      },
+      "date": 1385656041273
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "94cb6dd8e2d8f949"
+      },
+      "id": "94cb6dd8e2d8f949",
+      "type": "add",
+      "after": "a113da842edd0914",
+      "date": 1385656043560
+    },
+    {
+      "type": "edit",
+      "id": "94cb6dd8e2d8f949",
+      "item": {
+        "type": "method",
+        "id": "94cb6dd8e2d8f949",
+        "text": "150 Distance Traveled (Miles)\n2.5 Elapsed Time (Hours)\nRATIO Average Speed (Miles / Hour)"
+      },
+      "date": 1385656161619
+    },
+    {
+      "type": "edit",
+      "id": "845fc86d899f9ab0",
+      "item": {
+        "type": "method",
+        "id": "845fc86d899f9ab0",
+        "text": "166 Recovered Area (Acres)\n32.67 Consumption (Metric Tons)\n0.02 Consumption (Tonne / Year / Person)"
+      },
+      "date": 1385656198989
+    },
+    {
+      "type": "edit",
+      "id": "845fc86d899f9ab0",
+      "item": {
+        "type": "method",
+        "id": "845fc86d899f9ab0",
+        "text": "166 Recovered Area (Acres)\n32.67 Annual Consumption (Metric Tons)\n0.02 Consumption (Tonne / Year / Person)"
+      },
+      "date": 1385656217229
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "de59e7792ace8b13"
+      },
+      "id": "de59e7792ace8b13",
+      "type": "add",
+      "after": "94cb6dd8e2d8f949",
+      "date": 1385656243296
+    },
+    {
+      "type": "edit",
+      "id": "de59e7792ace8b13",
+      "item": {
+        "type": "paragraph",
+        "id": "de59e7792ace8b13",
+        "text": "While we might find it convenient to name ratios, it doesn't make sense to sum them. "
+      },
+      "date": 1385656328185
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "0f9a01fe65f987e4"
+      },
+      "id": "0f9a01fe65f987e4",
+      "type": "add",
+      "after": "de59e7792ace8b13",
+      "date": 1385656331875
+    },
+    {
+      "type": "edit",
+      "id": "0f9a01fe65f987e4",
+      "item": {
+        "type": "method",
+        "id": "0f9a01fe65f987e4",
+        "text": "18.7 City Traffic (MPG)\n23.5 Open Road (MPG)\nSUM Total Mileage"
+      },
+      "date": 1385656448248
+    },
+    {
+      "type": "edit",
+      "id": "0f9a01fe65f987e4",
+      "item": {
+        "type": "method",
+        "id": "0f9a01fe65f987e4",
+        "text": "18.7 City Traffic (MPG)\n23.5 Open Road (MPG)\nSUM Total Fuel Efficency"
+      },
+      "date": 1385656472622
+    },
+    {
+      "type": "edit",
+      "id": "a113da842edd0914",
+      "item": {
+        "type": "paragraph",
+        "id": "a113da842edd0914",
+        "text": "<h3> Ratios"
+      },
+      "date": 1385656554857
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "03ee61d49a23089d",
+        "text": " that numbers may come directly from a measurement or be the result of comparing two measurements as a ratio."
+      },
+      "id": "03ee61d49a23089d",
+      "type": "add",
+      "after": "a113da842edd0914",
+      "date": 1385656555365
+    },
+    {
+      "type": "edit",
+      "id": "03ee61d49a23089d",
+      "item": {
+        "type": "paragraph",
+        "id": "03ee61d49a23089d",
+        "text": "Observe that numbers may come directly from a measurement or be the result of comparing two measurements as a ratio."
+      },
+      "date": 1385656563607
+    },
+    {
+      "type": "edit",
+      "id": "a113da842edd0914",
+      "item": {
+        "type": "paragraph",
+        "id": "a113da842edd0914",
+        "text": "We will interpret the contents of parentheses as units. "
+      },
+      "date": 1385657264026
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "32ac8e020c1cd2fd",
+        "text": "Unit names Unit names won't contain spaces. <h3> Ratios"
+      },
+      "id": "32ac8e020c1cd2fd",
+      "type": "add",
+      "after": "a113da842edd0914",
+      "date": 1385657264538
+    },
+    {
+      "type": "edit",
+      "id": "32ac8e020c1cd2fd",
+      "item": {
+        "type": "paragraph",
+        "id": "32ac8e020c1cd2fd",
+        "text": "Unit names must be identical if they are to name the same unit. That is, <b>Foot</b> and <b>Feet</b> are three different units."
+      },
+      "date": 1385657424691
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "e2f8632b78b97887",
+        "text": " Unit names won't contain spaces. <h3> Ratios"
+      },
+      "id": "e2f8632b78b97887",
+      "type": "add",
+      "after": "32ac8e020c1cd2fd",
+      "date": 1385657425199
+    },
+    {
+      "type": "remove",
+      "id": "e2f8632b78b97887",
+      "date": 1385657429931
+    },
+    {
+      "type": "edit",
+      "id": "32ac8e020c1cd2fd",
+      "item": {
+        "type": "paragraph",
+        "id": "32ac8e020c1cd2fd",
+        "text": "Unit names must be identical if they are to name the same unit. That is, <b>Foot</b> and <b>Feet</b> are three different units."
+      },
+      "date": 1385657436954
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "d9c8c464b9e23c32",
+        "text": " Unit names won't contain spaces. <h3> Ratios"
+      },
+      "id": "d9c8c464b9e23c32",
+      "type": "add",
+      "after": "32ac8e020c1cd2fd",
+      "date": 1385657437461
+    },
+    {
+      "type": "edit",
+      "id": "32ac8e020c1cd2fd",
+      "item": {
+        "type": "paragraph",
+        "id": "32ac8e020c1cd2fd",
+        "text": "Unit names must be identical if they are to name the same unit. That is <b>foot</b>, <b>Foot</b> and <b>Feet</b> are three different units."
+      },
+      "date": 1385657456113
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "1e672adc12a3f324",
+        "text": ""
+      },
+      "id": "1e672adc12a3f324",
+      "type": "add",
+      "after": "32ac8e020c1cd2fd",
+      "date": 1385657480306
+    },
+    {
+      "type": "edit",
+      "id": "1e672adc12a3f324",
+      "item": {
+        "type": "paragraph",
+        "id": "1e672adc12a3f324",
+        "text": "Unit names combine when measurements involve multiple scales. The combination is independent of the order. That is <b>Foot Pound</b> and <b>Pound Foot</b> are the same internally."
+      },
+      "date": 1385657734812
+    },
+    {
+      "type": "edit",
+      "id": "d9c8c464b9e23c32",
+      "item": {
+        "type": "paragraph",
+        "id": "d9c8c464b9e23c32",
+        "text": "Unit names won't contain spaces if they name an individual unit. Thus metric tons must be spelt <b>MetricTons</b>"
+      },
+      "date": 1385657894711
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "3e77667f0a5bdea8",
+        "text": "<h3> Ratios"
+      },
+      "id": "3e77667f0a5bdea8",
+      "type": "add",
+      "after": "d9c8c464b9e23c32",
+      "date": 1385657895223
+    },
+    {
+      "type": "edit",
+      "id": "a113da842edd0914",
+      "item": {
+        "type": "paragraph",
+        "id": "a113da842edd0914",
+        "text": "We will interpret the contents of parentheses as units. However, our interpretation will depend on a series of conventions applied quite literally."
+      },
+      "date": 1385658189889
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "62874084310f12c3",
+        "text": ""
+      },
+      "id": "62874084310f12c3",
+      "type": "add",
+      "after": "a113da842edd0914",
+      "date": 1385658190397
+    },
+    {
+      "type": "edit",
+      "id": "62874084310f12c3",
+      "item": {
+        "type": "paragraph",
+        "id": "62874084310f12c3",
+        "text": "Unit names may be singular or plural, but not both interchangeably. That is <b>Acre</b> and <b>Acres<b> are different units."
+      },
+      "date": 1385658260902
+    },
+    {
+      "type": "edit",
+      "id": "62874084310f12c3",
+      "item": {
+        "type": "paragraph",
+        "id": "62874084310f12c3",
+        "text": "Unit names may be singular or plural, but not both interchangeably. That is <b>Acre</b> and <b>Acres</b> are different."
+      },
+      "date": 1385658276006
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4"
+      ],
+      "id": "d9c8c464b9e23c32",
+      "date": 1385658304500
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "fa63ab0393a1836b",
+        "text": ""
+      },
+      "id": "fa63ab0393a1836b",
+      "type": "add",
+      "after": "1e672adc12a3f324",
+      "date": 1385658372674
+    },
+    {
+      "type": "edit",
+      "id": "fa63ab0393a1836b",
+      "item": {
+        "type": "paragraph",
+        "id": "fa63ab0393a1836b",
+        "text": "<b> Sums"
+      },
+      "date": 1385658380220
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "85cc2dbc49d24626",
+        "text": ""
+      },
+      "id": "85cc2dbc49d24626",
+      "type": "add",
+      "after": "fa63ab0393a1836b",
+      "date": 1385658380726
+    },
+    {
+      "type": "edit",
+      "id": "85cc2dbc49d24626",
+      "item": {
+        "type": "paragraph",
+        "id": "85cc2dbc49d24626",
+        "text": "When conversion factors have been provided they can be applied automatically to sum measurements in different units. A running sum will be in the units last used. A measurement without units will sum as the preferred unit."
+      },
+      "date": 1385658697631
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "09107457fa1b6075"
+      },
+      "id": "09107457fa1b6075",
+      "type": "add",
+      "after": "0f9a01fe65f987e4",
+      "date": 1385658701011
+    },
+    {
+      "type": "edit",
+      "id": "09107457fa1b6075",
+      "item": {
+        "type": "method",
+        "id": "09107457fa1b6075",
+        "text": "5 (feet)\n6 (inches)\nSUM (inches)"
+      },
+      "date": 1385658786638
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4"
+      ],
+      "id": "09107457fa1b6075",
+      "date": 1385658812557
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "b313fe681b6daab6"
+      },
+      "id": "b313fe681b6daab6",
+      "type": "add",
+      "after": "0f9a01fe65f987e4",
+      "date": 1385658876539
+    },
+    {
+      "type": "edit",
+      "id": "b313fe681b6daab6",
+      "item": {
+        "type": "paragraph",
+        "id": "b313fe681b6daab6",
+        "text": "<i>not yet implemented, ignore incorrect result"
+      },
+      "date": 1385658907193
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4"
+      ],
+      "id": "b313fe681b6daab6",
+      "date": 1385658912035
+    },
+    {
+      "type": "edit",
+      "id": "fa63ab0393a1836b",
+      "item": {
+        "type": "paragraph",
+        "id": "fa63ab0393a1836b",
+        "text": "<h3> Sums"
+      },
+      "date": 1385658930878
+    },
+    {
+      "type": "edit",
+      "id": "09107457fa1b6075",
+      "item": {
+        "type": "method",
+        "id": "09107457fa1b6075",
+        "text": "5 (feet)\n6 (inches)\nSUM"
+      },
+      "date": 1385658973547
+    },
+    {
+      "type": "edit",
+      "id": "b313fe681b6daab6",
+      "item": {
+        "type": "paragraph",
+        "id": "b313fe681b6daab6",
+        "text": "<i>not yet implemented, sum of 77 expected"
+      },
+      "date": 1385659027101
+    },
+    {
+      "type": "edit",
+      "id": "09107457fa1b6075",
+      "item": {
+        "type": "method",
+        "id": "09107457fa1b6075",
+        "text": "5 Course Height (feet)\n6 And Then Some (inches)\nSUM Actual Height"
+      },
+      "date": 1385659109480
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "5e51ead6371b6f5c",
+        "text": ""
+      },
+      "id": "5e51ead6371b6f5c",
+      "type": "add",
+      "after": "b313fe681b6daab6",
+      "date": 1385659150640
+    },
+    {
+      "type": "edit",
+      "id": "5e51ead6371b6f5c",
+      "item": {
+        "type": "paragraph",
+        "id": "5e51ead6371b6f5c",
+        "text": "<i>not yet implemented, sum of 5.5 expected"
+      },
+      "date": 1385659160810
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "08bdc8d78f94a472"
+      },
+      "id": "08bdc8d78f94a472",
+      "type": "add",
+      "after": "0f9a01fe65f987e4",
+      "date": 1385659168291
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "5e51ead6371b6f5c",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4"
+      ],
+      "id": "08bdc8d78f94a472",
+      "date": 1385659171873
+    },
+    {
+      "type": "edit",
+      "id": "08bdc8d78f94a472",
+      "item": {
+        "type": "paragraph",
+        "id": "08bdc8d78f94a472",
+        "text": "When the preferred unit of a result is specified then provided conversion factors will be applied."
+      },
+      "date": 1385659387897
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "2f2f1e7203c2bb99"
+      },
+      "id": "2f2f1e7203c2bb99",
+      "type": "add",
+      "after": "0f9a01fe65f987e4",
+      "date": 1385659396995
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4"
+      ],
+      "id": "2f2f1e7203c2bb99",
+      "date": 1385659402249
+    },
+    {
+      "type": "edit",
+      "id": "2f2f1e7203c2bb99",
+      "item": {
+        "type": "method",
+        "id": "2f2f1e7203c2bb99",
+        "text": "5 Course Height (feet)\n6 And Then Some (inches)\nSUM Actual Height (feet)"
+      },
+      "date": 1385659462176
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "3e7f75fb3f1bec61",
+        "text": ""
+      },
+      "id": "3e7f75fb3f1bec61",
+      "type": "add",
+      "after": "5e51ead6371b6f5c",
+      "date": 1385659585892
+    },
+    {
+      "type": "edit",
+      "id": "3e7f75fb3f1bec61",
+      "item": {
+        "type": "paragraph",
+        "id": "3e7f75fb3f1bec61",
+        "text": "When units are specified they will be checked and conversions applied if available."
+      },
+      "date": 1385659635694
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "76705321ff32c889",
+        "text": ""
+      },
+      "id": "76705321ff32c889",
+      "type": "add",
+      "after": "3e7f75fb3f1bec61",
+      "date": 1385659636201
+    },
+    {
+      "type": "edit",
+      "id": "76705321ff32c889",
+      "item": {
+        "type": "paragraph",
+        "id": "76705321ff32c889",
+        "text": "When units aren't specified they will be inferred and visible by hovering over the result."
+      },
+      "date": 1385659688772
+    },
+    {
+      "type": "edit",
+      "id": "03ee61d49a23089d",
+      "item": {
+        "type": "paragraph",
+        "id": "03ee61d49a23089d",
+        "text": "First observe that numbers may come directly from a measurement or be the result of comparing two measurements as a ratio."
+      },
+      "date": 1385659730570
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "55e58c1887ed135d",
+        "text": ""
+      },
+      "id": "55e58c1887ed135d",
+      "type": "add",
+      "after": "76705321ff32c889",
+      "date": 1385659776414
+    },
+    {
+      "type": "edit",
+      "id": "55e58c1887ed135d",
+      "item": {
+        "type": "paragraph",
+        "id": "55e58c1887ed135d",
+        "text": "<h3> Products"
+      },
+      "date": 1385659785938
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "ee2f0a9928a4f839",
+        "text": ""
+      },
+      "id": "ee2f0a9928a4f839",
+      "type": "add",
+      "after": "55e58c1887ed135d",
+      "date": 1385659786444
+    },
+    {
+      "type": "edit",
+      "id": "ee2f0a9928a4f839",
+      "item": {
+        "type": "paragraph",
+        "id": "ee2f0a9928a4f839",
+        "text": "Multiplying numbers yields quantities with composed units. For example, height x width in inches yields area in square inches."
+      },
+      "date": 1385660374024
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "b5e7d85ee20a1f3f",
+        "text": ""
+      },
+      "id": "b5e7d85ee20a1f3f",
+      "type": "add",
+      "after": "ee2f0a9928a4f839",
+      "date": 1385660374532
+    },
+    {
+      "type": "remove",
+      "id": "b5e7d85ee20a1f3f",
+      "date": 1385660387483
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "9b0a7bc5f9597a90"
+      },
+      "id": "9b0a7bc5f9597a90",
+      "type": "add",
+      "after": "0f9a01fe65f987e4",
+      "date": 1385660391251
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "9b0a7bc5f9597a90",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4"
+      ],
+      "id": "9b0a7bc5f9597a90",
+      "date": 1385660396385
+    },
+    {
+      "type": "edit",
+      "id": "9b0a7bc5f9597a90",
+      "item": {
+        "type": "paragraph",
+        "id": "9b0a7bc5f9597a90",
+        "text": "12 Height (In)"
+      },
+      "date": 1385660447453
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "befc7dec14bc7f8c",
+        "text": ""
+      },
+      "id": "befc7dec14bc7f8c",
+      "type": "add",
+      "after": "9b0a7bc5f9597a90",
+      "date": 1385660447961
+    },
+    {
+      "type": "remove",
+      "id": "befc7dec14bc7f8c",
+      "date": 1385660450090
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "c3c68c01412cfab7"
+      },
+      "id": "c3c68c01412cfab7",
+      "type": "add",
+      "after": "0f9a01fe65f987e4",
+      "date": 1385660452973
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4"
+      ],
+      "id": "c3c68c01412cfab7",
+      "date": 1385660456546
+    },
+    {
+      "type": "edit",
+      "id": "c3c68c01412cfab7",
+      "item": {
+        "type": "method",
+        "id": "c3c68c01412cfab7",
+        "text": "12 Height (In)\n24 Width (In)\nPRODUCT Area (In In)"
+      },
+      "date": 1385660527389
+    },
+    {
+      "type": "edit",
+      "id": "c3c68c01412cfab7",
+      "item": {
+        "type": "method",
+        "id": "c3c68c01412cfab7",
+        "text": "12 Height (Inches)\n24 Width (Inches)\nPRODUCT Area (Inches Inches)"
+      },
+      "date": 1385660556018
+    },
+    {
+      "type": "edit",
+      "id": "9b0a7bc5f9597a90",
+      "item": {
+        "type": "paragraph",
+        "id": "9b0a7bc5f9597a90",
+        "text": "This could be reported in (Feet²) given appropriate conversions. The use of superscript powers is an output formatting convenience. The unit (Feet²) is written in input as (Feet Feet) and stored as such internally."
+      },
+      "date": 1385661210912
+    },
+    {
+      "type": "edit",
+      "id": "c3c68c01412cfab7",
+      "item": {
+        "type": "method",
+        "id": "c3c68c01412cfab7",
+        "text": "12 Height (Inches)\n24 Width (Inches)\nPRODUCT Area (Inches²)"
+      },
+      "date": 1385661221188
+    },
+    {
+      "type": "edit",
+      "id": "c3c68c01412cfab7",
+      "item": {
+        "type": "method",
+        "id": "c3c68c01412cfab7",
+        "text": "12 Height (Inches)\n24 Width (Inches)\nPRODUCT Area (Inches Inches)"
+      },
+      "date": 1385661276938
+    },
+    {
+      "type": "edit",
+      "id": "9b0a7bc5f9597a90",
+      "item": {
+        "type": "paragraph",
+        "id": "9b0a7bc5f9597a90",
+        "text": "We anticipate the use of superscript powers as an output formatting embellishment. Square inches would report as (Inches²)"
+      },
+      "date": 1385661422028
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "fc7073d6ad121851",
+        "text": "This could be reported in (Feet²) given appropriate conversions. The unit (Feet²) is written in input as (Feet Feet) and stored as such internally."
+      },
+      "id": "fc7073d6ad121851",
+      "type": "add",
+      "after": "9b0a7bc5f9597a90",
+      "date": 1385661422543
+    },
+    {
+      "type": "edit",
+      "id": "9b0a7bc5f9597a90",
+      "item": {
+        "type": "paragraph",
+        "id": "9b0a7bc5f9597a90",
+        "text": "We anticipate the use of superscript powers as an output formatting embellishment. Area would report as (Inches²)"
+      },
+      "date": 1385661502001
+    },
+    {
+      "type": "edit",
+      "id": "9b0a7bc5f9597a90",
+      "item": {
+        "type": "paragraph",
+        "id": "9b0a7bc5f9597a90",
+        "text": "We anticipate the use of superscript powers as an output formatting embellishment. Area would report as (Inches²)."
+      },
+      "date": 1385661509178
+    },
+    {
+      "type": "remove",
+      "id": "fc7073d6ad121851",
+      "date": 1385661522385
+    },
+    {
+      "type": "edit",
+      "id": "9b0a7bc5f9597a90",
+      "item": {
+        "type": "paragraph",
+        "id": "9b0a7bc5f9597a90",
+        "text": "We anticipate the use of superscript powers as an output formatting embellishment. Area would report as (Inches²). This could be reported in (Feet²) given appropriate conversions. The unit (Feet²) is written in input as (Feet Feet) and stored as such internally."
+      },
+      "date": 1385661524920
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "e909e883048d2a40",
+        "text": ""
+      },
+      "id": "e909e883048d2a40",
+      "type": "add",
+      "after": "9b0a7bc5f9597a90",
+      "date": 1385662007087
+    },
+    {
+      "type": "edit",
+      "id": "e909e883048d2a40",
+      "item": {
+        "type": "paragraph",
+        "id": "e909e883048d2a40",
+        "text": "Alternatively, the Google calculator would report (Inches Inches) as (Inches squared)."
+      },
+      "date": 1385662043418
+    },
+    {
+      "type": "edit",
+      "id": "e909e883048d2a40",
+      "item": {
+        "type": "paragraph",
+        "id": "e909e883048d2a40",
+        "text": "Alternatively, the Google calculator is happy to report inches x inches as inches squared or square inches."
+      },
+      "date": 1385662323316
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "323c2d52de2d01a1"
+      },
+      "id": "323c2d52de2d01a1",
+      "type": "add",
+      "after": "0f9a01fe65f987e4",
+      "date": 1385662370974
+    },
+    {
+      "type": "edit",
+      "id": "323c2d52de2d01a1",
+      "item": {
+        "type": "paragraph",
+        "id": "323c2d52de2d01a1",
+        "text": "A product of ratios will yield unit numerators and denominators composed independently. "
+      },
+      "date": 1385662463248
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "fd9431226174d6cd",
+        "text": ""
+      },
+      "id": "fd9431226174d6cd",
+      "type": "add",
+      "after": "323c2d52de2d01a1",
+      "date": 1385662463754
+    },
+    {
+      "type": "edit",
+      "id": "fd9431226174d6cd",
+      "item": {
+        "type": "paragraph",
+        "id": "fd9431226174d6cd",
+        "text": "A ratio of ratios will yield unit numerators and denominators composed independently after units of the divisor have been inverted."
+      },
+      "date": 1385662547262
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "abb022a35df34d66",
+        "text": ""
+      },
+      "id": "abb022a35df34d66",
+      "type": "add",
+      "after": "fd9431226174d6cd",
+      "date": 1385662764358
+    },
+    {
+      "type": "edit",
+      "id": "abb022a35df34d66",
+      "item": {
+        "type": "paragraph",
+        "id": "abb022a35df34d66",
+        "text": "Like units in the numerator and denominator will be canceled. This can yield a unit-less quantity which is not the same as a quantity for which units have not been specified. The two have different default behavior in sums."
+      },
+      "date": 1385662935567
+    },
+    {
+      "type": "edit",
+      "id": "abb022a35df34d66",
+      "item": {
+        "type": "paragraph",
+        "id": "abb022a35df34d66",
+        "text": "Like units in the numerator and denominator will be canceled."
+      },
+      "date": 1385662951308
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "3fb050c05379f0d3",
+        "text": "This can yield a unit-less quantity which is not the same as a quantity for which units have not been specified. The two have different default behavior in sums."
+      },
+      "id": "3fb050c05379f0d3",
+      "type": "add",
+      "after": "abb022a35df34d66",
+      "date": 1385662951815
+    },
+    {
+      "type": "edit",
+      "id": "3fb050c05379f0d3",
+      "item": {
+        "type": "paragraph",
+        "id": "3fb050c05379f0d3",
+        "text": "A ratio can yield a unit-less quantity which is not the same as a quantity for which units have not been specified. The two have different default behavior in sums."
+      },
+      "date": 1385662969778
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "142766c33e0fd56b",
+        "text": ""
+      },
+      "id": "142766c33e0fd56b",
+      "type": "add",
+      "after": "3fb050c05379f0d3",
+      "date": 1385663004700
+    },
+    {
+      "type": "edit",
+      "id": "142766c33e0fd56b",
+      "item": {
+        "type": "paragraph",
+        "id": "142766c33e0fd56b",
+        "text": "<h3> Conversions"
+      },
+      "date": 1385663014994
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "7b03dfb7011a51ce",
+        "text": ""
+      },
+      "id": "7b03dfb7011a51ce",
+      "type": "add",
+      "after": "1e672adc12a3f324",
+      "date": 1385663080641
+    },
+    {
+      "type": "edit",
+      "id": "7b03dfb7011a51ce",
+      "item": {
+        "type": "paragraph",
+        "id": "7b03dfb7011a51ce",
+        "text": "Unit names for ratios may be composed of a numerator and denominator represented by a single slash (/). Units to the right of the slash are all in the denominator. That is tonne per year per person would be <b>(Tonne / Year Person)</b>."
+      },
+      "date": 1385663405681
+    },
+    {
+      "type": "edit",
+      "id": "7b03dfb7011a51ce",
+      "item": {
+        "type": "paragraph",
+        "id": "7b03dfb7011a51ce",
+        "text": "Unit names for ratios may be composed of a numerator and denominator represented by a single slash. Units to the right of the slash are all in the denominator. That is tonne per year per person would be <b>(Tonne / Year Person)</b>."
+      },
+      "date": 1385663437480
+    },
+    {
+      "type": "edit",
+      "id": "7b03dfb7011a51ce",
+      "item": {
+        "type": "paragraph",
+        "id": "7b03dfb7011a51ce",
+        "text": "Unit names for ratios may be composed of a numerator and denominator represented by a single slash. Units to the right of the slash are all in the denominator. That is tonne per year per person would be <b>Tonne / Year Person</b>."
+      },
+      "date": 1385663456558
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "645e03a3a8dcfa6e",
+        "text": ""
+      },
+      "id": "645e03a3a8dcfa6e",
+      "type": "add",
+      "after": "142766c33e0fd56b",
+      "date": 1385663504990
+    },
+    {
+      "type": "edit",
+      "id": "645e03a3a8dcfa6e",
+      "item": {
+        "type": "paragraph",
+        "id": "645e03a3a8dcfa6e",
+        "text": "Conversion factors are specified quantities of one unit that yields exactly 1.0 of another unit. Conversions are recognized by two sets of parenthesis."
+      },
+      "date": 1385663805885
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "623718b263695a84"
+      },
+      "id": "623718b263695a84",
+      "type": "add",
+      "after": "645e03a3a8dcfa6e",
+      "date": 1385663811435
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) to one (Feet)"
+      },
+      "date": 1385663946031
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) to one (Feet)\n8.34 (Pounds) to one (Gallons) water"
+      },
+      "date": 1385664119376
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) to one (Feet)\n8.34 (Pounds) to one (Gallons) water\n2.24477 "
+      },
+      "date": 1385664438797
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) to one (Feet)\n8.34 (Pounds) to one (Gallons) water\n2.24477 (kW Hr) electric grid to one (kg) CO₂\n2.24477 (kW Hr) electric grid to one (kgCO2) "
+      },
+      "date": 1385664769977
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) to one (Feet)\n8.34 (Pounds) to one (Gallons) water\n2.24477 (kW Hr) electric grid to one (kg) CO2\n2.24477 (kW Hr) electric grid to one (kgCO2) "
+      },
+      "date": 1385664782538
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) to one (Feet)\n8.34 (Pounds) to one (Gallons) Water\n2.24477 (kW Hr) Electric Grid to one (kg) CO2\n2.24477 (kW Hr) Electric Grid to one (kgCO2) "
+      },
+      "date": 1385664817749
+    },
+    {
+      "type": "edit",
+      "id": "645e03a3a8dcfa6e",
+      "item": {
+        "type": "paragraph",
+        "id": "645e03a3a8dcfa6e",
+        "text": "Conversion factors are specified quantities of a source unit that yields exactly 1.0 of another unit. Conversions are recognized by two sets of parenthesis."
+      },
+      "date": 1385664925140
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "bd5cc0715cae69d7"
+      },
+      "id": "bd5cc0715cae69d7",
+      "type": "add",
+      "after": "623718b263695a84",
+      "date": 1385665072305
+    },
+    {
+      "type": "edit",
+      "id": "bd5cc0715cae69d7",
+      "item": {
+        "type": "paragraph",
+        "id": "bd5cc0715cae69d7",
+        "text": "See Conversion Factors from the Carbon Trust. [http://www.carbontrust.com/media/18223/ctl153_conversion_factors.pdf pdf]"
+      },
+      "date": 1385665104292
+    },
+    {
+      "type": "edit",
+      "id": "bd5cc0715cae69d7",
+      "item": {
+        "type": "paragraph",
+        "id": "bd5cc0715cae69d7",
+        "text": "See Conversion factors from the Carbon Trust. [http://www.carbontrust.com/media/18223/ctl153_conversion_factors.pdf pdf]"
+      },
+      "date": 1385665133478
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) to one (Feet)\n8.34 (Pounds) to one (Gallons) Water\n2.24477 (kW Hr) Electric Grid to one (kg) CO2"
+      },
+      "date": 1385665285605
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "d3cba4c536024b54"
+      },
+      "id": "d3cba4c536024b54",
+      "type": "add",
+      "after": "bd5cc0715cae69d7",
+      "date": 1385665287997
+    },
+    {
+      "type": "edit",
+      "id": "d3cba4c536024b54",
+      "item": {
+        "type": "method",
+        "id": "d3cba4c536024b54",
+        "text": "2.24477 (kW Hr) Electric Grid to one (kgCO2) "
+      },
+      "date": 1385665293620
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": ""
+      },
+      "id": "cf4d070adc529927",
+      "type": "add",
+      "after": "bd5cc0715cae69d7",
+      "date": 1385665320715
+    },
+    {
+      "type": "edit",
+      "id": "cf4d070adc529927",
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": "Conversions are themselves ratios that have been specified  "
+      },
+      "date": 1385665530708
+    },
+    {
+      "type": "edit",
+      "id": "cf4d070adc529927",
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": "Conversions are themselves ratios that have been specified such that they are clearly intended for implicit application."
+      },
+      "date": 1385665808145
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "8ccc4d34753c1779"
+      },
+      "id": "8ccc4d34753c1779",
+      "type": "add",
+      "after": "d3cba4c536024b54",
+      "date": 1385665946585
+    },
+    {
+      "type": "edit",
+      "id": "8ccc4d34753c1779",
+      "item": {
+        "type": "method",
+        "id": "8ccc4d34753c1779",
+        "text": "1.46667 (Feet / Second) to one (Miles / Hours)"
+      },
+      "date": 1385665990490
+    },
+    {
+      "type": "edit",
+      "id": "cf4d070adc529927",
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": "Conversions are themselves ratios that have been specified such that they are clearly intended for implicit application. The desired units might be the first or the second specified. Conversion will apply the factor accordingly."
+      },
+      "date": 1385666090227
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "bd5cc0715cae69d7",
+        "cf4d070adc529927",
+        "8ccc4d34753c1779",
+        "d3cba4c536024b54"
+      ],
+      "id": "8ccc4d34753c1779",
+      "date": 1385666105342
+    },
+    {
+      "type": "edit",
+      "id": "cf4d070adc529927",
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": "Conversions are themselves ratios that have been specified such that they are clearly intended for implicit application. Available and desired units must match both of those in the conversion."
+      },
+      "date": 1385666321390
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "bf8d6883b0f212c1"
+      },
+      "id": "bf8d6883b0f212c1",
+      "type": "add",
+      "after": "d3cba4c536024b54",
+      "date": 1385666339184
+    },
+    {
+      "type": "edit",
+      "id": "bf8d6883b0f212c1",
+      "item": {
+        "type": "paragraph",
+        "id": "bf8d6883b0f212c1",
+        "text": "88 (Feet / Seconds)"
+      },
+      "date": 1385666360115
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "3b5451811b17508e",
+        "text": ""
+      },
+      "id": "3b5451811b17508e",
+      "type": "add",
+      "after": "bf8d6883b0f212c1",
+      "date": 1385666360623
+    },
+    {
+      "type": "remove",
+      "id": "3b5451811b17508e",
+      "date": 1385666363985
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "970adeeaa04c1103"
+      },
+      "id": "970adeeaa04c1103",
+      "type": "add",
+      "after": "bf8d6883b0f212c1",
+      "date": 1385666370490
+    },
+    {
+      "type": "edit",
+      "id": "970adeeaa04c1103",
+      "item": {
+        "type": "method",
+        "id": "970adeeaa04c1103",
+        "text": "88 (Feet / Seconds)\n60 (Miles / Hours)\nRATIO (Feet / Seconds) to (Miles / Hours)"
+      },
+      "date": 1385666473397
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "bd5cc0715cae69d7",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "d3cba4c536024b54",
+        "bf8d6883b0f212c1"
+      ],
+      "id": "970adeeaa04c1103",
+      "date": 1385666586681
+    },
+    {
+      "type": "edit",
+      "id": "970adeeaa04c1103",
+      "item": {
+        "type": "method",
+        "id": "970adeeaa04c1103",
+        "text": "88 (Feet / Seconds)\n60 (Miles / Hours)\nRATIO (Feet / Seconds) from (Miles / Hours)"
+      },
+      "date": 1385666644455
+    },
+    {
+      "type": "edit",
+      "id": "8ccc4d34753c1779",
+      "item": {
+        "type": "method",
+        "id": "8ccc4d34753c1779",
+        "text": "60 (Miles / Hours)\n88 (Feet / Seconds)\nRATIO (Miles / Hours) from (Feet / Seconds)"
+      },
+      "date": 1385666852744
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) from (Feet)\n8.34 (Pounds) from (Gallons) Water\n2.24477 (kW Hr) Electric Grid from (kg) CO2"
+      },
+      "date": 1385666910767
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "d3cba4c536024b54",
+        "bd5cc0715cae69d7",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1"
+      ],
+      "id": "d3cba4c536024b54",
+      "date": 1385666971782
+    },
+    {
+      "type": "edit",
+      "id": "645e03a3a8dcfa6e",
+      "item": {
+        "type": "paragraph",
+        "id": "645e03a3a8dcfa6e",
+        "text": "Conversion factors specified quantities of a destination unit that comes from 1.0 of a source unit. Conversions are recognized by two sets of parenthesis."
+      },
+      "date": 1385667414780
+    },
+    {
+      "type": "edit",
+      "id": "645e03a3a8dcfa6e",
+      "item": {
+        "type": "paragraph",
+        "id": "645e03a3a8dcfa6e",
+        "text": "Conversion factors specified quantities of a destination unit that comes from each 1.0 of a source unit. Conversions are recognized by two sets of parenthesis."
+      },
+      "date": 1385667438894
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) from (Feet)\n8.34 (Pounds) from (Gallons) Water\n0.44548 (kg) CO2 from (kW Hr) Grid Electricity"
+      },
+      "date": 1385667605697
+    },
+    {
+      "type": "remove",
+      "id": "d3cba4c536024b54",
+      "date": 1385667638937
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "721be21bc38ef959",
+        "text": ""
+      },
+      "id": "721be21bc38ef959",
+      "type": "add",
+      "after": "bd5cc0715cae69d7",
+      "date": 1385667865326
+    },
+    {
+      "type": "edit",
+      "id": "721be21bc38ef959",
+      "item": {
+        "type": "paragraph",
+        "id": "721be21bc38ef959",
+        "text": "Only one conversion will be applied at a time. One must have the source units and want the destination units for a forward conversion (multiply) or the exact opposite for a reverse conversion (divide)."
+      },
+      "date": 1385667994560
+    },
+    {
+      "type": "edit",
+      "id": "cf4d070adc529927",
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": "Conversions are themselves ratios that have been specified such that they are clearly intended for implicit application."
+      },
+      "date": 1385668067743
+    },
+    {
+      "type": "edit",
+      "id": "cf4d070adc529927",
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": "Conversions are themselves ratios that have been labeled such that they are clearly intended for implicit application."
+      },
+      "date": 1385668088318
+    },
+    {
+      "type": "edit",
+      "id": "cf4d070adc529927",
+      "item": {
+        "type": "paragraph",
+        "id": "cf4d070adc529927",
+        "text": "Conversions are themselves ratios that have been labeled such that they are clearly intended for implicit application. A ratio and its inverse are equivalent conversions."
+      },
+      "date": 1385668166348
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "248affd5af0cf758",
+        "text": ""
+      },
+      "id": "248affd5af0cf758",
+      "type": "add",
+      "after": "721be21bc38ef959",
+      "date": 1385668491233
+    },
+    {
+      "type": "edit",
+      "id": "248affd5af0cf758",
+      "item": {
+        "type": "paragraph",
+        "id": "248affd5af0cf758",
+        "text": "Implicit conversions are retrieved based on source and destination units alone. Should there be multiple conversions that might apply, the closest conversion will be chosen."
+      },
+      "date": 1385668652908
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "f1ff8761bba4da3a"
+      },
+      "id": "f1ff8761bba4da3a",
+      "type": "add",
+      "after": "bf8d6883b0f212c1",
+      "date": 1385668666327
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "bd5cc0715cae69d7",
+        "721be21bc38ef959",
+        "248affd5af0cf758",
+        "f1ff8761bba4da3a",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1"
+      ],
+      "id": "f1ff8761bba4da3a",
+      "date": 1385668671902
+    },
+    {
+      "type": "edit",
+      "id": "f1ff8761bba4da3a",
+      "item": {
+        "type": "paragraph",
+        "id": "f1ff8761bba4da3a",
+        "text": "2400 Annual per Capita Lighting (kW Hr)"
+      },
+      "date": 1385668838791
+    },
+    {
+      "type": "remove",
+      "id": "f1ff8761bba4da3a",
+      "date": 1385668851455
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "ab363daff83ea92e"
+      },
+      "id": "ab363daff83ea92e",
+      "type": "add",
+      "after": "bf8d6883b0f212c1",
+      "date": 1385668854425
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "bd5cc0715cae69d7",
+        "721be21bc38ef959",
+        "248affd5af0cf758",
+        "ab363daff83ea92e",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1"
+      ],
+      "id": "ab363daff83ea92e",
+      "date": 1385668858585
+    },
+    {
+      "type": "edit",
+      "id": "ab363daff83ea92e",
+      "item": {
+        "type": "method",
+        "id": "ab363daff83ea92e",
+        "text": "2400 Annual per Capita Lighting (kW Hr)\n(kg) CO2 from (kW Hr) Grid Electricity\nPRODUCT"
+      },
+      "date": 1385668902445
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "83e8530877899e11",
+        "text": ""
+      },
+      "id": "83e8530877899e11",
+      "type": "add",
+      "after": "248affd5af0cf758",
+      "date": 1385668949432
+    },
+    {
+      "type": "edit",
+      "id": "83e8530877899e11",
+      "item": {
+        "type": "paragraph",
+        "id": "83e8530877899e11",
+        "text": "Conversion factors can be explicitly applied by recalling exactly the factor desired and applying it with PRODUCT."
+      },
+      "date": 1385669090907
+    },
+    {
+      "type": "edit",
+      "id": "ab363daff83ea92e",
+      "item": {
+        "type": "method",
+        "id": "ab363daff83ea92e",
+        "text": "2400 Annual per Capita Lighting (kW Hr)\n(kg) CO2 from (kW Hr) Grid Electricity\nPRODUCT Annual CO2 per Capita Lighting (kg)"
+      },
+      "date": 1385669128545
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "00612c0db54bda30",
+        "text": ""
+      },
+      "id": "00612c0db54bda30",
+      "type": "add",
+      "after": "721be21bc38ef959",
+      "date": 1385669305448
+    },
+    {
+      "type": "edit",
+      "id": "00612c0db54bda30",
+      "item": {
+        "type": "paragraph",
+        "id": "00612c0db54bda30",
+        "text": "8 Wide (Feet)"
+      },
+      "date": 1385669337069
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "0e170500a4ba1229",
+        "text": ""
+      },
+      "id": "0e170500a4ba1229",
+      "type": "add",
+      "after": "00612c0db54bda30",
+      "date": 1385669337578
+    },
+    {
+      "type": "remove",
+      "id": "0e170500a4ba1229",
+      "date": 1385669341343
+    },
+    {
+      "type": "edit",
+      "id": "00612c0db54bda30",
+      "item": {
+        "type": "paragraph",
+        "id": "00612c0db54bda30",
+        "text": "Consider an 8 x 10 foot holding tank filled to 9 inches with water. We can compute the weight using conversions above."
+      },
+      "date": 1385669427810
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "e6382e058f8a4e41"
+      },
+      "id": "e6382e058f8a4e41",
+      "type": "add",
+      "after": "bf8d6883b0f212c1",
+      "date": 1385669433267
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "bd5cc0715cae69d7",
+        "721be21bc38ef959",
+        "00612c0db54bda30",
+        "e6382e058f8a4e41",
+        "248affd5af0cf758",
+        "83e8530877899e11",
+        "ab363daff83ea92e",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1"
+      ],
+      "id": "e6382e058f8a4e41",
+      "date": 1385669442888
+    },
+    {
+      "type": "edit",
+      "id": "e6382e058f8a4e41",
+      "item": {
+        "type": "method",
+        "id": "e6382e058f8a4e41",
+        "text": "8 Wide (Feet)\n10 Long (Feet)\nPRODUCT (Square Inches)\n9 Deep (Inches)\nPRODUCT (Cubic Feet)\nSUM (Gallons)\nSUM (Pounds)"
+      },
+      "date": 1385669723424
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) from (Feet)\n144 (Square Inches) from (Square Feet)\n\n8.34 (Pounds) from (Gallons) Water\n0.44548 (kg) CO2 from (kW Hr) Grid Electricity"
+      },
+      "date": 1385669824677
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) from (Feet)\n144 (Square Inches) from (Square Feet)\n1728 (Cubic Inches) from (Cubic Feet)\n8.34 (Pounds) from (Gallons) Water\n0.44548 (kg) CO2 from (kW Hr) Grid Electricity"
+      },
+      "date": 1385669937544
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) from (Feet)\n144 (Square Inches) from (Square Feet)\n1728 (Cubic Inches) from (Cubic Feet)\n7.48052 (Gallons) from (Cubic Feet) Water\n8.34 (Pounds) from (Gallons) Water\n0.44548 (kg) CO2 from (kW Hr) Grid Electricity"
+      },
+      "date": 1385670097046
+    },
+    {
+      "type": "edit",
+      "id": "248affd5af0cf758",
+      "item": {
+        "type": "paragraph",
+        "id": "248affd5af0cf758",
+        "text": "<i>not yet implemented, sum of 77 expected"
+      },
+      "date": 1385670131527
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "1fe16c0626349f22",
+        "text": "Implicit conversions are retrieved based on source and destination units alone. Should there be multiple conversions that might apply, the closest conversion will be chosen."
+      },
+      "id": "1fe16c0626349f22",
+      "type": "add",
+      "after": "248affd5af0cf758",
+      "date": 1385670132039
+    },
+    {
+      "type": "edit",
+      "id": "248affd5af0cf758",
+      "item": {
+        "type": "paragraph",
+        "id": "248affd5af0cf758",
+        "text": "<i>not yet implemented, 448 gallons, "
+      },
+      "date": 1385670358874
+    },
+    {
+      "type": "edit",
+      "id": "248affd5af0cf758",
+      "item": {
+        "type": "paragraph",
+        "id": "248affd5af0cf758",
+        "text": "<i>not yet implemented, expected 60 cubic feet, 448 gallons, "
+      },
+      "date": 1385670429357
+    },
+    {
+      "type": "edit",
+      "id": "248affd5af0cf758",
+      "item": {
+        "type": "paragraph",
+        "id": "248affd5af0cf758",
+        "text": "<i>not yet implemented, expected 60 cubic feet, 448 gallons, 3745 pounds."
+      },
+      "date": 1385670700230
+    },
+    {
+      "type": "edit",
+      "id": "bf8d6883b0f212c1",
+      "item": {
+        "type": "paragraph",
+        "id": "bf8d6883b0f212c1",
+        "text": "<h3> Errors"
+      },
+      "date": 1385670854620
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "48c20d51671c001e",
+        "text": ""
+      },
+      "id": "48c20d51671c001e",
+      "type": "add",
+      "after": "bf8d6883b0f212c1",
+      "date": 1385670855130
+    },
+    {
+      "type": "edit",
+      "id": "48c20d51671c001e",
+      "item": {
+        "type": "paragraph",
+        "id": "48c20d51671c001e",
+        "text": "It is an error to sum quantities that cannot be converted to the prevailing unit."
+      },
+      "date": 1385670941768
+    },
+    {
+      "type": "edit",
+      "id": "48c20d51671c001e",
+      "item": {
+        "type": "paragraph",
+        "id": "48c20d51671c001e",
+        "text": "It is an error to sum quantities that cannot be converted to the prevailing unit"
+      },
+      "date": 1385670981320
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "59d39498a0d91af3",
+        "text": ""
+      },
+      "id": "59d39498a0d91af3",
+      "type": "add",
+      "after": "48c20d51671c001e",
+      "date": 1385670981828
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "562e9406327385fb",
+        "text": "."
+      },
+      "id": "562e9406327385fb",
+      "type": "add",
+      "after": "48c20d51671c001e",
+      "date": 1385670981833
+    },
+    {
+      "type": "edit",
+      "id": "562e9406327385fb",
+      "item": {
+        "type": "paragraph",
+        "id": "562e9406327385fb",
+        "text": "It is an error to sum quantities that are ratios (have units in the denominator)."
+      },
+      "date": 1385671123341
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "8e6c786c950b681a",
+        "text": ""
+      },
+      "id": "8e6c786c950b681a",
+      "type": "add",
+      "after": "562e9406327385fb",
+      "date": 1385671146085
+    },
+    {
+      "type": "edit",
+      "id": "8e6c786c950b681a",
+      "item": {
+        "type": "paragraph",
+        "id": "8e6c786c950b681a",
+        "text": "It is not an error to multiply quantities that cannot be converted to the prevailing unit. (However, this may lead to unwanted units that won't convert later.)"
+      },
+      "date": 1385671211904
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "9c4947bc9b3ee208",
+        "text": ""
+      },
+      "id": "9c4947bc9b3ee208",
+      "type": "add",
+      "after": "bf8d6883b0f212c1",
+      "date": 1385671236633
+    },
+    {
+      "type": "edit",
+      "id": "9c4947bc9b3ee208",
+      "item": {
+        "type": "paragraph",
+        "id": "9c4947bc9b3ee208",
+        "text": "It is an error to convert a result with units to other units for which there is not a direct conversion factor."
+      },
+      "date": 1385671342751
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "a44e49da14a35c29",
+        "text": ""
+      },
+      "id": "a44e49da14a35c29",
+      "type": "add",
+      "after": "9c4947bc9b3ee208",
+      "date": 1385671343260
+    },
+    {
+      "type": "edit",
+      "id": "a44e49da14a35c29",
+      "item": {
+        "type": "paragraph",
+        "id": "a44e49da14a35c29",
+        "text": "It is not an error to convert a result without units to any units desired. (But this conversion simply asserts the units of the current result.)"
+      },
+      "date": 1385671418683
+    },
+    {
+      "type": "edit",
+      "id": "562e9406327385fb",
+      "item": {
+        "type": "paragraph",
+        "id": "562e9406327385fb",
+        "text": "It is an error to sum quantities that are ratios (have units in the denominator.)"
+      },
+      "date": 1385671429012
+    },
+    {
+      "type": "edit",
+      "id": "3ce6aff72ab21349",
+      "item": {
+        "type": "paragraph",
+        "id": "3ce6aff72ab21349",
+        "text": "We propose to extend the Method plugin's calculation with measurement unit tracking, checking, formatting and some implicit conversions. Unit nomenclature and allowed conversions will be written explicitly on nearby pages."
+      },
+      "date": 1385671832315
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "b29d1b74f7de5b78"
+      },
+      "id": "b29d1b74f7de5b78",
+      "type": "add",
+      "after": "59d39498a0d91af3",
+      "date": 1385671995287
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "b29d1b74f7de5b78",
+        "bd5cc0715cae69d7",
+        "721be21bc38ef959",
+        "00612c0db54bda30",
+        "e6382e058f8a4e41",
+        "248affd5af0cf758",
+        "1fe16c0626349f22",
+        "83e8530877899e11",
+        "ab363daff83ea92e",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1",
+        "9c4947bc9b3ee208",
+        "a44e49da14a35c29",
+        "48c20d51671c001e",
+        "562e9406327385fb",
+        "8e6c786c950b681a",
+        "59d39498a0d91af3"
+      ],
+      "id": "b29d1b74f7de5b78",
+      "date": 1385672005274
+    },
+    {
+      "type": "edit",
+      "id": "623718b263695a84",
+      "item": {
+        "type": "method",
+        "id": "623718b263695a84",
+        "text": "12 (Inches) from (Feet)\n144 (Square Inches) from (Square Feet)\n1728 (Cubic Inches) from (Cubic Feet)"
+      },
+      "date": 1385672022002
+    },
+    {
+      "type": "edit",
+      "id": "b29d1b74f7de5b78",
+      "item": {
+        "type": "method",
+        "id": "b29d1b74f7de5b78",
+        "text": "7.48052 (Gallons) from (Cubic Feet) Water\n8.34 (Pounds) from (Gallons) Water\n0.44548 (kg) CO2 from (kW Hr) Grid Electricity"
+      },
+      "date": 1385672027534
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "a71289bd6bf55a9c",
+        "text": ""
+      },
+      "id": "a71289bd6bf55a9c",
+      "type": "add",
+      "after": "645e03a3a8dcfa6e",
+      "date": 1385672062492
+    },
+    {
+      "type": "edit",
+      "id": "a71289bd6bf55a9c",
+      "item": {
+        "type": "paragraph",
+        "id": "a71289bd6bf55a9c",
+        "text": "Conversions may assume additional physical properties such as what is being measured and/or converted. These appear outside the parenthesis. Additional assumptions are not checked but can be viewed by hovering over converted quantities."
+      },
+      "date": 1385672239117
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "a71289bd6bf55a9c",
+        "b29d1b74f7de5b78",
+        "bd5cc0715cae69d7",
+        "721be21bc38ef959",
+        "00612c0db54bda30",
+        "e6382e058f8a4e41",
+        "248affd5af0cf758",
+        "1fe16c0626349f22",
+        "83e8530877899e11",
+        "ab363daff83ea92e",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1",
+        "9c4947bc9b3ee208",
+        "a44e49da14a35c29",
+        "48c20d51671c001e",
+        "562e9406327385fb",
+        "8e6c786c950b681a",
+        "59d39498a0d91af3"
+      ],
+      "id": "a71289bd6bf55a9c",
+      "date": 1385672243740
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "1eb908b961ac6d9b"
+      },
+      "id": "1eb908b961ac6d9b",
+      "type": "add",
+      "after": "59d39498a0d91af3",
+      "date": 1385673894348
+    },
+    {
+      "type": "edit",
+      "id": "1eb908b961ac6d9b",
+      "item": {
+        "type": "paragraph",
+        "id": "1eb908b961ac6d9b",
+        "text": "102.310182 Japanese (Yen) from U.S. (Dollars)"
+      },
+      "date": 1385673943607
+    },
+    {
+      "type": "remove",
+      "id": "1eb908b961ac6d9b",
+      "date": 1385673948277
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "59f1ed4b91d957a0"
+      },
+      "id": "59f1ed4b91d957a0",
+      "type": "add",
+      "after": "59d39498a0d91af3",
+      "date": 1385673950326
+    },
+    {
+      "type": "edit",
+      "id": "59f1ed4b91d957a0",
+      "item": {
+        "type": "method",
+        "id": "59f1ed4b91d957a0",
+        "text": "102.310182 Japanese (Yen) from U.S. (Dollars)"
+      },
+      "date": 1385673958162
+    },
+    {
+      "type": "edit",
+      "id": "59f1ed4b91d957a0",
+      "item": {
+        "type": "method",
+        "id": "59f1ed4b91d957a0",
+        "text": "102.310182 Japanese (Yen) from US (Dollars)"
+      },
+      "date": 1385673967335
+    },
+    {
+      "type": "edit",
+      "id": "59f1ed4b91d957a0",
+      "item": {
+        "type": "method",
+        "id": "59f1ed4b91d957a0",
+        "text": "106.1092 Japanese (Yen) from US (Dollars)"
+      },
+      "date": 1385674061586
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "a71289bd6bf55a9c",
+        "b29d1b74f7de5b78",
+        "bd5cc0715cae69d7",
+        "721be21bc38ef959",
+        "00612c0db54bda30",
+        "e6382e058f8a4e41",
+        "248affd5af0cf758",
+        "1fe16c0626349f22",
+        "83e8530877899e11",
+        "ab363daff83ea92e",
+        "59f1ed4b91d957a0",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1",
+        "9c4947bc9b3ee208",
+        "a44e49da14a35c29",
+        "48c20d51671c001e",
+        "562e9406327385fb",
+        "8e6c786c950b681a",
+        "59d39498a0d91af3"
+      ],
+      "id": "59f1ed4b91d957a0",
+      "date": 1385674075641
+    },
+    {
+      "type": "edit",
+      "id": "59f1ed4b91d957a0",
+      "item": {
+        "type": "method",
+        "id": "59f1ed4b91d957a0",
+        "text": "106.1092 Japanese (Yen) from US (Dollars)\n1.5084 US (Dollars) from GB (Pounds) "
+      },
+      "date": 1385674380345
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "a71289bd6bf55a9c",
+        "b29d1b74f7de5b78",
+        "bd5cc0715cae69d7",
+        "59f1ed4b91d957a0",
+        "721be21bc38ef959",
+        "00612c0db54bda30",
+        "e6382e058f8a4e41",
+        "248affd5af0cf758",
+        "1fe16c0626349f22",
+        "83e8530877899e11",
+        "ab363daff83ea92e",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1",
+        "9c4947bc9b3ee208",
+        "a44e49da14a35c29",
+        "48c20d51671c001e",
+        "562e9406327385fb",
+        "8e6c786c950b681a",
+        "59d39498a0d91af3"
+      ],
+      "id": "59f1ed4b91d957a0",
+      "date": 1385674427954
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "87a1633af7878566",
+        "text": ""
+      },
+      "id": "87a1633af7878566",
+      "type": "add",
+      "after": "bd5cc0715cae69d7",
+      "date": 1385674442529
+    },
+    {
+      "type": "edit",
+      "id": "87a1633af7878566",
+      "item": {
+        "type": "paragraph",
+        "id": "87a1633af7878566",
+        "text": "Some conversion factors may need explanation that exceeds that possible in the label. Consider the example of these historic exchange rates averaged over the month of June, 2000. "
+      },
+      "date": 1385674545610
+    },
+    {
+      "type": "edit",
+      "id": "87a1633af7878566",
+      "item": {
+        "type": "paragraph",
+        "id": "87a1633af7878566",
+        "text": "Some conversion factors may need explanation that exceeds that possible in the label. Consider the example of these historic exchange rates averaged over the month of June, 2000. [http://fxtop.com/en/historical-exchange-rates.php source]"
+      },
+      "date": 1385674615821
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "131f280f1df128e2",
+        "text": ""
+      },
+      "id": "131f280f1df128e2",
+      "type": "add",
+      "after": "562e9406327385fb",
+      "date": 1385674887696
+    },
+    {
+      "type": "remove",
+      "id": "131f280f1df128e2",
+      "date": 1385674906571
+    },
+    {
+      "type": "edit",
+      "id": "562e9406327385fb",
+      "item": {
+        "type": "paragraph",
+        "id": "562e9406327385fb",
+        "text": "It is an error to sum quantities that are ratios (have a unit denominator.) A ratio who's units have canceled is still considered to have a denominator."
+      },
+      "date": 1385675033057
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "fa8a4f61a8789fd0",
+        "text": ""
+      },
+      "id": "fa8a4f61a8789fd0",
+      "type": "add",
+      "after": "8e6c786c950b681a",
+      "date": 1385675090855
+    },
+    {
+      "type": "edit",
+      "id": "fa8a4f61a8789fd0",
+      "item": {
+        "type": "paragraph",
+        "id": "fa8a4f61a8789fd0",
+        "text": "It is not possible to convert Centigrade to Farnheight with this conversion mechanism."
+      },
+      "date": 1385675160982
+    },
+    {
+      "type": "edit",
+      "id": "fa8a4f61a8789fd0",
+      "item": {
+        "type": "paragraph",
+        "id": "fa8a4f61a8789fd0",
+        "text": "It is not possible to convert Centigrade to Fahrenheit with this conversion mechanism."
+      },
+      "date": 1385675196293
+    },
+    {
+      "type": "edit",
+      "id": "323c2d52de2d01a1",
+      "item": {
+        "type": "paragraph",
+        "id": "323c2d52de2d01a1",
+        "text": "<i>not yet implemented, sum of 5.5 expected"
+      },
+      "date": 1385675289586
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "b176b25a6003f9ae",
+        "text": "A product of ratios will yield unit numerators and denominators composed independently. "
+      },
+      "id": "b176b25a6003f9ae",
+      "type": "add",
+      "after": "323c2d52de2d01a1",
+      "date": 1385675290093
+    },
+    {
+      "type": "edit",
+      "id": "323c2d52de2d01a1",
+      "item": {
+        "type": "paragraph",
+        "id": "323c2d52de2d01a1",
+        "text": "<i>not a reasonable computation, compute weighted average instead."
+      },
+      "date": 1385675336530
+    },
+    {
+      "type": "edit",
+      "id": "323c2d52de2d01a1",
+      "item": {
+        "type": "paragraph",
+        "id": "323c2d52de2d01a1",
+        "text": "<i>not a reasonable computation, prefer weighted average"
+      },
+      "date": 1385675350791
+    },
+    {
+      "type": "edit",
+      "id": "00612c0db54bda30",
+      "item": {
+        "type": "paragraph",
+        "id": "00612c0db54bda30",
+        "text": "Consider an 8 x 10 foot holding tank filled to 9 inches with water. We can compute the water's weight using conversions above."
+      },
+      "date": 1385675501495
+    },
+    {
+      "type": "edit",
+      "id": "00612c0db54bda30",
+      "item": {
+        "type": "paragraph",
+        "id": "00612c0db54bda30",
+        "text": "Consider an 8 x 10 foot holding tank filled to 9 inches with water. We can compute the water's weight using conversions above. We switch from feet to inches and back then from gallons to pounds to match the available conversions."
+      },
+      "date": 1385675581400
+    },
+    {
+      "type": "edit",
+      "id": "00612c0db54bda30",
+      "item": {
+        "type": "paragraph",
+        "id": "00612c0db54bda30",
+        "text": "Consider an 8 x 10 foot holding tank filled to 9 inches with water. We can compute the water's weight using conversions above."
+      },
+      "date": 1385675606799
+    },
+    {
+      "type": "edit",
+      "id": "1fe16c0626349f22",
+      "item": {
+        "type": "paragraph",
+        "id": "1fe16c0626349f22",
+        "text": " We switch from feet to inches and back then from gallons to pounds to match the available conversions."
+      },
+      "date": 1385675614328
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "56e7671875caed38",
+        "text": "Implicit conversions are retrieved based on source and destination units alone. Should there be multiple conversions that might apply, the closest conversion will be chosen."
+      },
+      "id": "56e7671875caed38",
+      "type": "add",
+      "after": "1fe16c0626349f22",
+      "date": 1385675614836
+    },
+    {
+      "type": "edit",
+      "id": "1fe16c0626349f22",
+      "item": {
+        "type": "paragraph",
+        "id": "1fe16c0626349f22",
+        "text": "We switch from feet to inches and back then from gallons to pounds to match the available conversions."
+      },
+      "date": 1385675621559
+    },
+    {
+      "type": "edit",
+      "id": "1fe16c0626349f22",
+      "item": {
+        "type": "paragraph",
+        "id": "1fe16c0626349f22",
+        "text": "We switch from feet to inches and back and then from gallons to pounds to match the available conversions."
+      },
+      "date": 1385675636606
+    },
+    {
+      "type": "edit",
+      "id": "09107457fa1b6075",
+      "item": {
+        "type": "method",
+        "id": "09107457fa1b6075",
+        "text": "5 Coarse Height (feet)\n6 And Then Some (inches)\nSUM Actual Height"
+      },
+      "date": 1385676297589
+    },
+    {
+      "type": "edit",
+      "id": "2f2f1e7203c2bb99",
+      "item": {
+        "type": "method",
+        "id": "2f2f1e7203c2bb99",
+        "text": "5 Coarse Height (feet)\n6 And Then Some (inches)\nSUM Actual Height (feet)"
+      },
+      "date": 1385676303758
+    },
+    {
+      "type": "edit",
+      "id": "85cc2dbc49d24626",
+      "item": {
+        "type": "paragraph",
+        "id": "85cc2dbc49d24626",
+        "text": "When conversion factors have been provided they can be applied automatically to sum measurements in different units. A running sum will be in the units last used. A measurement without units will sum as the prevailing unit."
+      },
+      "date": 1385680632981
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "c4d26213d5cfebdb",
+        "text": ""
+      },
+      "id": "c4d26213d5cfebdb",
+      "type": "add",
+      "after": "76705321ff32c889",
+      "date": 1385680740545
+    },
+    {
+      "type": "edit",
+      "id": "c4d26213d5cfebdb",
+      "item": {
+        "type": "paragraph",
+        "id": "c4d26213d5cfebdb",
+        "text": "When units aren't specified for SHOW they will be inferred and added to the visible caption on a line by itself."
+      },
+      "date": 1385680799086
+    },
+    {
+      "type": "edit",
+      "id": "fa8a4f61a8789fd0",
+      "item": {
+        "type": "paragraph",
+        "id": "fa8a4f61a8789fd0",
+        "text": "It is not yet possible to convert Centigrade to Fahrenheit with this conversion mechanism."
+      },
+      "date": 1385685120215
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "5812c30cd5029be3",
+        "text": ""
+      },
+      "id": "5812c30cd5029be3",
+      "type": "add",
+      "after": "fa8a4f61a8789fd0",
+      "date": 1386547397176
+    },
+    {
+      "type": "edit",
+      "id": "5812c30cd5029be3",
+      "item": {
+        "type": "paragraph",
+        "id": "5812c30cd5029be3",
+        "text": "<h3> Representation"
+      },
+      "date": 1386547410613
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "f6de14b98f82b8a9",
+        "text": ""
+      },
+      "id": "f6de14b98f82b8a9",
+      "type": "add",
+      "after": "5812c30cd5029be3",
+      "date": 1386547411120
+    },
+    {
+      "type": "edit",
+      "id": "f6de14b98f82b8a9",
+      "item": {
+        "type": "paragraph",
+        "id": "f6de14b98f82b8a9",
+        "text": "A feature of this scheme is that it almost works with no more representation than that squeezed into value labels themselves. However, there are a few additional needs that will drive us to attach units directly to values."
+      },
+      "date": 1386547623974
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "606c5b42e79fe8a4",
+        "text": ""
+      },
+      "id": "606c5b42e79fe8a4",
+      "type": "add",
+      "after": "f6de14b98f82b8a9",
+      "date": 1386547624487
+    },
+    {
+      "type": "edit",
+      "id": "606c5b42e79fe8a4",
+      "item": {
+        "type": "paragraph",
+        "id": "606c5b42e79fe8a4",
+        "text": "We need for units to travel with values even when the values leave their labeled locations. We have asValue() to extract a number from a more complex value."
+      },
+      "date": 1386547713037
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "4e98f8c888b24c24",
+        "text": ""
+      },
+      "id": "4e98f8c888b24c24",
+      "type": "add",
+      "after": "606c5b42e79fe8a4",
+      "date": 1386547713543
+    },
+    {
+      "type": "edit",
+      "id": "4e98f8c888b24c24",
+      "item": {
+        "type": "paragraph",
+        "id": "4e98f8c888b24c24",
+        "text": "We need to know if units given in labels have been interpreted and how they have been interpreted if there is any ambiguity."
+      },
+      "date": 1386547816735
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "3b45116df6408a0a",
+        "text": ""
+      },
+      "id": "3b45116df6408a0a",
+      "type": "add",
+      "after": "4e98f8c888b24c24",
+      "date": 1386547817242
+    },
+    {
+      "type": "edit",
+      "id": "3b45116df6408a0a",
+      "item": {
+        "type": "paragraph",
+        "id": "3b45116df6408a0a",
+        "text": "We need to know what units have been assumed when units have not been provided."
+      },
+      "date": 1386547892921
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "28813eb6f0767789",
+        "text": ""
+      },
+      "id": "28813eb6f0767789",
+      "type": "add",
+      "after": "3b45116df6408a0a",
+      "date": 1386547893429
+    },
+    {
+      "type": "edit",
+      "id": "28813eb6f0767789",
+      "item": {
+        "type": "paragraph",
+        "id": "28813eb6f0767789",
+        "text": "We need a normalized and easily interpreted form for units that is independent of any formatting fashion, say between square inches, inches squared and inches<sup>2</sup>."
+      },
+      "date": 1386548029723
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "fb9e155c0d52a177"
+      },
+      "id": "fb9e155c0d52a177",
+      "type": "add",
+      "after": "59d39498a0d91af3",
+      "date": 1386548264416
+    },
+    {
+      "type": "edit",
+      "id": "fb9e155c0d52a177",
+      "item": {
+        "type": "paragraph",
+        "id": "fb9e155c0d52a177",
+        "text": "quantity = number | measure"
+      },
+      "date": 1386548347105
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "ba7c23033517ee73",
+        "text": ""
+      },
+      "id": "ba7c23033517ee73",
+      "type": "add",
+      "after": "fb9e155c0d52a177",
+      "date": 1386548347613
+    },
+    {
+      "type": "remove",
+      "id": "ba7c23033517ee73",
+      "date": 1386548352143
+    },
+    {
+      "type": "remove",
+      "id": "fb9e155c0d52a177",
+      "date": 1386548359088
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "32e21d3266824394"
+      },
+      "id": "32e21d3266824394",
+      "type": "add",
+      "after": "59d39498a0d91af3",
+      "date": 1386548361184
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "quantity = number | measure\nmeasure = { value: number, units: ratio }\nratio = { numerator: terms, denominator: terms }\nterms = [ words ]"
+      },
+      "date": 1386548584344
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "21deb303c7fe410e"
+      },
+      "id": "21deb303c7fe410e",
+      "type": "add",
+      "after": "32e21d3266824394",
+      "date": 1386548667046
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "quantity = number | measure\nmeasure = { value: number, units: terms | ratio }\nratio = { numerator: terms, denominator: terms }\nterms = [ words ]"
+      },
+      "date": 1386548769529
+    },
+    {
+      "type": "edit",
+      "id": "21deb303c7fe410e",
+      "item": {
+        "type": "paragraph",
+        "id": "21deb303c7fe410e",
+        "text": "Terms are alphabetized arrays of single unit names. Square feet would be [ \"feet\", \"feet\" ]."
+      },
+      "date": 1386549262545
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "e8e0cc624abbdce2",
+        "text": ""
+      },
+      "id": "e8e0cc624abbdce2",
+      "type": "add",
+      "after": "21deb303c7fe410e",
+      "date": 1386549263058
+    },
+    {
+      "type": "edit",
+      "id": "e8e0cc624abbdce2",
+      "item": {
+        "type": "paragraph",
+        "id": "e8e0cc624abbdce2",
+        "text": "A measure has units which may be terms or a ratio of terms. When units cancel a denominator may become empty but it won't revert from a ratio."
+      },
+      "date": 1386549654269
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "fe5e99f6eeb73315",
+        "text": ""
+      },
+      "id": "fe5e99f6eeb73315",
+      "type": "add",
+      "after": "e8e0cc624abbdce2",
+      "date": 1386549654775
+    },
+    {
+      "type": "edit",
+      "id": "fe5e99f6eeb73315",
+      "item": {
+        "type": "paragraph",
+        "id": "fe5e99f6eeb73315",
+        "text": "A conversion factors are measures that add source units in a <i>from: terms | ratio</i> property."
+      },
+      "date": 1386549945530
+    },
+    {
+      "type": "edit",
+      "id": "fe5e99f6eeb73315",
+      "item": {
+        "type": "paragraph",
+        "id": "fe5e99f6eeb73315",
+        "text": "A conversion factors are measures that add source units in a <i>from: terms | ratio</i> field."
+      },
+      "date": 1386549974021
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "67c08432cc3c0922"
+      },
+      "id": "67c08432cc3c0922",
+      "type": "add",
+      "after": "fe5e99f6eeb73315",
+      "date": 1386549980912
+    },
+    {
+      "type": "edit",
+      "id": "67c08432cc3c0922",
+      "item": {
+        "type": "code",
+        "id": "67c08432cc3c0922",
+        "text": "{\n"
+      },
+      "date": 1386549994155
+    },
+    {
+      "type": "edit",
+      "id": "67c08432cc3c0922",
+      "item": {
+        "type": "code",
+        "id": "67c08432cc3c0922",
+        "text": "{\n    value: 144,\n    units: [\"inch\", \"inch\"],\n    from: [\"foot\", \"foot\"]\n}"
+      },
+      "date": 1386550103540
+    },
+    {
+      "type": "edit",
+      "id": "67c08432cc3c0922",
+      "item": {
+        "type": "code",
+        "id": "67c08432cc3c0922",
+        "text": "{\n    value: 144,\n    units: [\"Inch\", \"inch\"],\n    from: [\"foot\", \"foot\"]\n}"
+      },
+      "date": 1386550142897
+    },
+    {
+      "type": "edit",
+      "id": "67c08432cc3c0922",
+      "item": {
+        "type": "code",
+        "id": "67c08432cc3c0922",
+        "text": "{\n    value: 144,\n    units: [\"Inches\", \"Inches\"],\n    from: [\"Feet\", \"Feet\"]\n}"
+      },
+      "date": 1386550200391
+    },
+    {
+      "type": "edit",
+      "id": "67c08432cc3c0922",
+      "item": {
+        "type": "code",
+        "id": "67c08432cc3c0922",
+        "text": "{\n    \"value\": 144,\n    \"units\": [\"Inches\", \"Inches\"],\n    \"from\": [\"Feet\", \"Feet\"]\n}"
+      },
+      "date": 1386550280469
+    },
+    {
+      "type": "edit",
+      "id": "21deb303c7fe410e",
+      "item": {
+        "type": "paragraph",
+        "id": "21deb303c7fe410e",
+        "text": "Terms are alphabetized arrays of single unit names. Square feet would be [ \"Feet\", \"Feet\" ]."
+      },
+      "date": 1386550345745
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "quantity = number | measurement\nmeasurement = { value: number, units: terms | ratio }\nratio = { numerator: terms, denominator: terms }\nterms = [ words ]"
+      },
+      "date": 1386550520246
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "quantity = number | measure\nmeasure = { value: number, units: terms | ratio }\nratio = { numerator: terms, denominator: terms }\nterms = [ words ]"
+      },
+      "date": 1386550532670
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "value = number | measure\nmeasure = { value: number, units: terms | ratio }\nratio = { numerator: terms, denominator: terms }\nterms = [ words ]"
+      },
+      "date": 1386550609237
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "16ee7e4f2a02d996",
+        "text": ""
+      },
+      "id": "16ee7e4f2a02d996",
+      "type": "add",
+      "after": "28813eb6f0767789",
+      "date": 1386550637348
+    },
+    {
+      "type": "edit",
+      "id": "16ee7e4f2a02d996",
+      "item": {
+        "type": "paragraph",
+        "id": "16ee7e4f2a02d996",
+        "text": "A value with units will be represented by an object that we will informally call a measurement."
+      },
+      "date": 1386550676688
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "value = number | measurement\nmeasurement = {\n    value: number,\n    units: terms | ratio,\n    from: terms | ratio\n}\nratio = {\n    numerator: terms,\n    denominator: terms\n}\nterms = [ words ]"
+      },
+      "date": 1386550914452
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "value = number | measurement\n\nmeasurement = {\n    value: number,\n    units: terms | ratio,\n    from: terms | ratio\n}"
+      },
+      "date": 1386550977466
+    },
+    {
+      "type": "remove",
+      "id": "32e21d3266824394",
+      "date": 1386551061324
+    },
+    {
+      "type": "add",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "value = number | measure\nmeasure = { value: number, units: terms | ratio }\nratio = { numerator: terms, denominator: terms }\nterms = [ words ]"
+      },
+      "after": "16ee7e4f2a02d996",
+      "id": "32e21d3266824394",
+      "date": 1386551087967
+    },
+    {
+      "type": "edit",
+      "id": "e8e0cc624abbdce2",
+      "item": {
+        "type": "paragraph",
+        "id": "e8e0cc624abbdce2",
+        "text": "A measurement has units which may be terms or a ratio of terms. When units cancel a denominator may become empty but it won't revert from a ratio."
+      },
+      "date": 1386551599193
+    },
+    {
+      "type": "edit",
+      "id": "fe5e99f6eeb73315",
+      "item": {
+        "type": "paragraph",
+        "id": "fe5e99f6eeb73315",
+        "text": "A conversion factors are measurements that add source units in a <i>from: terms | ratio</i> field."
+      },
+      "date": 1386551607654
+    },
+    {
+      "type": "edit",
+      "id": "fe5e99f6eeb73315",
+      "item": {
+        "type": "paragraph",
+        "id": "fe5e99f6eeb73315",
+        "text": "A conversion factors are measurements that add source units in a from field, <i>from: terms | ratio</i>."
+      },
+      "date": 1386551682380
+    },
+    {
+      "type": "edit",
+      "id": "67c08432cc3c0922",
+      "item": {
+        "type": "code",
+        "id": "67c08432cc3c0922",
+        "text": "{   \"value\": 144,\n    \"units\": [ \"Inches\", \"Inches\" ],\n    \"from\": [ \"Feet\", \"Feet\" ] }"
+      },
+      "date": 1386551748980
+    },
+    {
+      "type": "edit",
+      "id": "67c08432cc3c0922",
+      "item": {
+        "type": "code",
+        "id": "67c08432cc3c0922",
+        "text": "{   \"value\": 144,\n    \"units\": [ \"Inches\", \"Inches\" ],\n    \"from\":  [ \"Feet\", \"Feet\" ] }"
+      },
+      "date": 1386551782386
+    },
+    {
+      "type": "edit",
+      "id": "3ce6aff72ab21349",
+      "item": {
+        "type": "paragraph",
+        "id": "3ce6aff72ab21349",
+        "text": "We propose to extend the Method plugin's calculation with measurement unit tracking, checking, formatting and some implicit conversions. Unit nomenclature and allowed conversions will be written explicitly on nearby pages. See [[Method Unit Coding]]"
+      },
+      "date": 1388254771956
+    },
+    {
+      "type": "edit",
+      "id": "32e21d3266824394",
+      "item": {
+        "type": "code",
+        "id": "32e21d3266824394",
+        "text": "value = number | measure\nmeasure = { value: number, units: terms | ratio }\nratio = { units: terms, per: terms }\nterms = [ words ]"
+      },
+      "date": 1388340101740
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "9038e34f351b90fb",
+        "text": ""
+      },
+      "id": "9038e34f351b90fb",
+      "type": "add",
+      "after": "fa8a4f61a8789fd0",
+      "date": 1388603057376
+    },
+    {
+      "type": "edit",
+      "id": "9038e34f351b90fb",
+      "item": {
+        "type": "paragraph",
+        "id": "9038e34f351b90fb",
+        "text": "One can check that variables are being defined with the expected units by setting \"debug\" to non-zero."
+      },
+      "date": 1388603170235
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "84e0ecd583f6351f"
+      },
+      "id": "84e0ecd583f6351f",
+      "type": "add",
+      "after": "67c08432cc3c0922",
+      "date": 1388603176186
+    },
+    {
+      "type": "edit",
+      "id": "84e0ecd583f6351f",
+      "item": {
+        "type": "method",
+        "id": "84e0ecd583f6351f",
+        "text": "1 debug"
+      },
+      "date": 1388603184363
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "c4d26213d5cfebdb",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "b176b25a6003f9ae",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "a71289bd6bf55a9c",
+        "b29d1b74f7de5b78",
+        "bd5cc0715cae69d7",
+        "87a1633af7878566",
+        "59f1ed4b91d957a0",
+        "721be21bc38ef959",
+        "00612c0db54bda30",
+        "e6382e058f8a4e41",
+        "248affd5af0cf758",
+        "1fe16c0626349f22",
+        "56e7671875caed38",
+        "83e8530877899e11",
+        "ab363daff83ea92e",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1",
+        "9c4947bc9b3ee208",
+        "a44e49da14a35c29",
+        "48c20d51671c001e",
+        "562e9406327385fb",
+        "8e6c786c950b681a",
+        "fa8a4f61a8789fd0",
+        "9038e34f351b90fb",
+        "84e0ecd583f6351f",
+        "5812c30cd5029be3",
+        "f6de14b98f82b8a9",
+        "606c5b42e79fe8a4",
+        "4e98f8c888b24c24",
+        "3b45116df6408a0a",
+        "28813eb6f0767789",
+        "16ee7e4f2a02d996",
+        "32e21d3266824394",
+        "59d39498a0d91af3",
+        "21deb303c7fe410e",
+        "e8e0cc624abbdce2",
+        "fe5e99f6eeb73315",
+        "67c08432cc3c0922"
+      ],
+      "id": "84e0ecd583f6351f",
+      "date": 1388603192137
+    },
+    {
+      "type": "edit",
+      "id": "9038e34f351b90fb",
+      "item": {
+        "type": "paragraph",
+        "id": "9038e34f351b90fb",
+        "text": "One can check that variables are being defined with the expected units by setting \"debug\" to non-zero. Refresh whole pages to see debug output."
+      },
+      "date": 1388603227000
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "18e6780538782f07",
+        "text": ""
+      },
+      "id": "18e6780538782f07",
+      "type": "add",
+      "after": "9038e34f351b90fb",
+      "date": 1388608192289
+    },
+    {
+      "type": "remove",
+      "id": "18e6780538782f07",
+      "date": 1388608207347
+    },
+    {
+      "type": "edit",
+      "id": "85cc2dbc49d24626",
+      "item": {
+        "type": "paragraph",
+        "id": "85cc2dbc49d24626",
+        "text": "When conversion factors have been provided they can be applied automatically to sum measurements in different units."
+      },
+      "date": 1388810940740
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "1fe8be1ca48d7aa9",
+        "text": "A running sum will be in the units last used. A measurement without units will sum as the prevailing unit."
+      },
+      "id": "1fe8be1ca48d7aa9",
+      "type": "add",
+      "after": "85cc2dbc49d24626",
+      "date": 1388810941246
+    },
+    {
+      "type": "edit",
+      "id": "84e0ecd583f6351f",
+      "item": {
+        "type": "method",
+        "id": "84e0ecd583f6351f",
+        "text": "0 debug"
+      },
+      "date": 1388810956090
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "63f2c2a7b6f35a27"
+      },
+      "id": "63f2c2a7b6f35a27",
+      "type": "add",
+      "after": "67c08432cc3c0922",
+      "date": 1388810960325
+    },
+    {
+      "type": "edit",
+      "id": "63f2c2a7b6f35a27",
+      "item": {
+        "type": "method",
+        "id": "63f2c2a7b6f35a27",
+        "text": "12 (Inches) per (Feet)"
+      },
+      "date": 1388810988155
+    },
+    {
+      "type": "move",
+      "order": [
+        "3ce6aff72ab21349",
+        "525432e02c375c5d",
+        "e11e11501dc13c9a",
+        "845fc86d899f9ab0",
+        "a113da842edd0914",
+        "62874084310f12c3",
+        "32ac8e020c1cd2fd",
+        "d9c8c464b9e23c32",
+        "1e672adc12a3f324",
+        "7b03dfb7011a51ce",
+        "fa63ab0393a1836b",
+        "85cc2dbc49d24626",
+        "63f2c2a7b6f35a27",
+        "1fe8be1ca48d7aa9",
+        "09107457fa1b6075",
+        "b313fe681b6daab6",
+        "08bdc8d78f94a472",
+        "2f2f1e7203c2bb99",
+        "5e51ead6371b6f5c",
+        "3e7f75fb3f1bec61",
+        "76705321ff32c889",
+        "c4d26213d5cfebdb",
+        "55e58c1887ed135d",
+        "ee2f0a9928a4f839",
+        "c3c68c01412cfab7",
+        "9b0a7bc5f9597a90",
+        "e909e883048d2a40",
+        "3e77667f0a5bdea8",
+        "03ee61d49a23089d",
+        "94cb6dd8e2d8f949",
+        "de59e7792ace8b13",
+        "0f9a01fe65f987e4",
+        "323c2d52de2d01a1",
+        "b176b25a6003f9ae",
+        "fd9431226174d6cd",
+        "abb022a35df34d66",
+        "3fb050c05379f0d3",
+        "142766c33e0fd56b",
+        "645e03a3a8dcfa6e",
+        "623718b263695a84",
+        "a71289bd6bf55a9c",
+        "b29d1b74f7de5b78",
+        "bd5cc0715cae69d7",
+        "87a1633af7878566",
+        "59f1ed4b91d957a0",
+        "721be21bc38ef959",
+        "00612c0db54bda30",
+        "e6382e058f8a4e41",
+        "248affd5af0cf758",
+        "1fe16c0626349f22",
+        "56e7671875caed38",
+        "83e8530877899e11",
+        "ab363daff83ea92e",
+        "cf4d070adc529927",
+        "970adeeaa04c1103",
+        "8ccc4d34753c1779",
+        "bf8d6883b0f212c1",
+        "9c4947bc9b3ee208",
+        "a44e49da14a35c29",
+        "48c20d51671c001e",
+        "562e9406327385fb",
+        "8e6c786c950b681a",
+        "fa8a4f61a8789fd0",
+        "9038e34f351b90fb",
+        "84e0ecd583f6351f",
+        "5812c30cd5029be3",
+        "f6de14b98f82b8a9",
+        "606c5b42e79fe8a4",
+        "4e98f8c888b24c24",
+        "3b45116df6408a0a",
+        "28813eb6f0767789",
+        "16ee7e4f2a02d996",
+        "32e21d3266824394",
+        "59d39498a0d91af3",
+        "21deb303c7fe410e",
+        "e8e0cc624abbdce2",
+        "fe5e99f6eeb73315",
+        "67c08432cc3c0922"
+      ],
+      "id": "63f2c2a7b6f35a27",
+      "date": 1388811003824
+    },
+    {
+      "type": "edit",
+      "id": "63f2c2a7b6f35a27",
+      "item": {
+        "type": "method",
+        "id": "63f2c2a7b6f35a27",
+        "text": "12 (inches) per (feet)"
+      },
+      "date": 1388811015577
+    },
+    {
+      "type": "edit",
+      "id": "b313fe681b6daab6",
+      "item": {
+        "type": "paragraph",
+        "id": "b313fe681b6daab6",
+        "text": "<i>not yet implemented, sum of 66 expected"
+      },
+      "date": 1388811041000
+    },
+    {
+      "type": "edit",
+      "id": "b313fe681b6daab6",
+      "item": {
+        "type": "paragraph",
+        "id": "b313fe681b6daab6",
+        "text": "<i>when implemented, sum of 66 expected"
+      },
+      "date": 1388811053662
+    },
+    {
+      "type": "edit",
+      "id": "5e51ead6371b6f5c",
+      "item": {
+        "type": "paragraph",
+        "id": "5e51ead6371b6f5c",
+        "text": "<i>when implemented, sum of 5.5 expected"
+      },
+      "date": 1388811062894
+    },
+    {
+      "type": "edit",
+      "id": "94cb6dd8e2d8f949",
+      "item": {
+        "type": "method",
+        "id": "94cb6dd8e2d8f949",
+        "text": "150 Distance Traveled (Miles)\n2.5 Elapsed Time (Hours)\nRATIO Average Speed (Miles / Hours)"
+      },
+      "date": 1388811083904
+    },
+    {
+      "type": "fork",
+      "site": "ward.fed.wiki.org",
+      "date": 1389486969757
+    }
+  ]
+}
