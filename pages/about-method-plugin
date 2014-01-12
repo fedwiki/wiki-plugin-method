@@ -132,8 +132,18 @@
       "text": "See [[Method Expressions]] for concise formulas."
     },
     {
+      "type": "method",
+      "id": "79c19bfe4976f0d2",
+      "text": "650 (miles)\n9.5 (hours)\nRATIO\nSHOW Average Speed"
+    },
+    {
       "type": "paragraph",
       "id": "56356deed9dd765e",
+      "text": "Say <b>SHOW</b> to display specific results in large digits while hiding other calculatons. (SHOW is otherwise like SUM)"
+    },
+    {
+      "type": "paragraph",
+      "id": "e37cccee0e49821a",
       "text": "<h3> Programming"
     },
     {
@@ -1270,6 +1280,126 @@
         "text": "See [[Method Expressions]] for concise formulas."
       },
       "date": 1389487498819
+    },
+    {
+      "type": "edit",
+      "id": "56356deed9dd765e",
+      "item": {
+        "type": "paragraph",
+        "id": "56356deed9dd765e",
+        "text": "Say <b>SHOW</b> to display specific results while hiding others."
+      },
+      "date": 1389488116519
+    },
+    {
+      "item": {
+        "type": "paragraph",
+        "id": "e37cccee0e49821a",
+        "text": "<h3> Programming"
+      },
+      "id": "e37cccee0e49821a",
+      "type": "add",
+      "after": "56356deed9dd765e",
+      "date": 1389488117030
+    },
+    {
+      "type": "edit",
+      "id": "56356deed9dd765e",
+      "item": {
+        "type": "paragraph",
+        "id": "56356deed9dd765e",
+        "text": "Say <b>SHOW</b> to display specific results while hiding others. (SHOW is otherwise like SUM>)"
+      },
+      "date": 1389488228235
+    },
+    {
+      "type": "edit",
+      "id": "56356deed9dd765e",
+      "item": {
+        "type": "paragraph",
+        "id": "56356deed9dd765e",
+        "text": "Say <b>SHOW</b> to display specific results in large digits while hiding other calculatons. (SHOW is otherwise like SUM)"
+      },
+      "date": 1389488276784
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "79c19bfe4976f0d2"
+      },
+      "id": "79c19bfe4976f0d2",
+      "type": "add",
+      "after": "d17103da4b9a4d55",
+      "date": 1389488300210
+    },
+    {
+      "type": "edit",
+      "id": "79c19bfe4976f0d2",
+      "item": {
+        "type": "method",
+        "id": "79c19bfe4976f0d2",
+        "text": "650 (miles)\n7.5 (hours)\nRATIO\nSHOW"
+      },
+      "date": 1389488394662
+    },
+    {
+      "type": "edit",
+      "id": "79c19bfe4976f0d2",
+      "item": {
+        "type": "method",
+        "id": "79c19bfe4976f0d2",
+        "text": "650 (miles)\n9.5 (hours)\nRATIO\nSHOW"
+      },
+      "date": 1389488406764
+    },
+    {
+      "type": "edit",
+      "id": "79c19bfe4976f0d2",
+      "item": {
+        "type": "method",
+        "id": "79c19bfe4976f0d2",
+        "text": "650 (miles)\n9.5 (hours)\nRATIO\nSHOW Average Speed"
+      },
+      "date": 1389488421069
+    },
+    {
+      "type": "move",
+      "order": [
+        "df8885c094fc1710",
+        "682d22af9d46f3a5",
+        "cd9bdca1991d8090",
+        "942ad9155083e706",
+        "c6c02f7fae9f4f03",
+        "c5af6f487a7b9907",
+        "bbcc1f9548618bb4",
+        "aec640909082f3b3",
+        "f982813c60a78119",
+        "9b5e3d7a7cc65329",
+        "8519d81d9328a3e1",
+        "4968dfe1c5eeef2f",
+        "272daa7fa38d7f96",
+        "8e0f628fb3aef156",
+        "dadb1d9bccf7b8ec",
+        "79c2fa20baa8fe70",
+        "69084bb462636274",
+        "f3532c800d9b42ba",
+        "0c61adb097e329f2",
+        "641952825d9a9aae",
+        "5072042a5e1ddf59",
+        "760060c9bbaee23f",
+        "efe879fb582668e9",
+        "f14032666eff5947",
+        "38d211f128c7e310",
+        "3461b41cc070b51a",
+        "79c19bfe4976f0d2",
+        "56356deed9dd765e",
+        "e37cccee0e49821a",
+        "bb9c2304a9526427",
+        "c723cceb207630d0",
+        "d17103da4b9a4d55"
+      ],
+      "id": "79c19bfe4976f0d2",
+      "date": 1389488438630
     }
   ]
 }
