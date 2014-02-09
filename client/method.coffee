@@ -409,7 +409,8 @@ emit = (div, item, done) ->
   state = {div: div, item: item, input: input, output: output, report:[]}
   dispatch state, (state) ->
     if state.show
-      state.div.append $show = $ "<div class=data>"
+      state.div.addClass "data"
+      state.div.append $show = $ "<div>"
       for each in state.show
         $show.append $ """
           <p class=readout>#{each.readout}</p>
