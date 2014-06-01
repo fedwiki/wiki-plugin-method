@@ -12,3 +12,24 @@ Wiki Plugin - method
   date: 2014-01-07
   changes:
     - Migrated to fedwiki GitHub organization
+
+0.1.2
+  date: 2014-01-08
+  changes:
+    - ChangeLog updated
+
+0.1.3
+  date: 2014-01-18
+  changes:
+    - adding new functions and tests
+
+0.1.4
+  date: 2014-02-9
+  changes:
+    - for SHOW move class "data" to item's div
+
+0.1.5
+  date: 2014-06-01
+  changes:
+    - more careful digging though other items
+    - update devDependencies
