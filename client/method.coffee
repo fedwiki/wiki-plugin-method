@@ -392,7 +392,7 @@ emit = (div, item, done) ->
     if elem.hasClass 'radar-source'
       _.extend input, elem.get(0).radarData()
     else if elem.hasClass 'data'
-      _.extend input, elem.data('item').data[0]
+      _.extend input, elem.data('item')?.data?[0]
 
   div.addClass 'radar-source'
   div.get(0).radarData = -> output
