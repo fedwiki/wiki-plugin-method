@@ -187,8 +187,11 @@ print = (report, value, hover, line, comment, color) ->
     line = "#{line.substr 0, 20} ... #{line.substr -15}"
   report.push """
     <tr style="background:#{color};">
-      <td style="width: 20%; text-align: right; padding: 0 4px;" title="#{hover||''}">
-        <b>#{round asValue value}</b>
+      <td class="value"
+        data-value="#{asValue value}"
+        style="width: 20%; text-align: right; padding: 0 4px;"
+        title="#{hover||''}">
+          <b>#{round asValue value}</b>
       <td title="#{long}">#{line}#{annotate comment}</td>
     """
 
@@ -380,6 +383,12 @@ dispatch = (state, done) ->
 
 ############ interface ############
 
+scrub = (e, $td, $b) ->
+  width = $td.width()/2
+  scale = Math.pow(2, (e.offsetX-width)/width)
+  $b.text(round $td.data('value')*scale)
+
+
 bind = (div, item) ->
 emit = (div, item, done) ->
 
@@ -398,8 +407,13 @@ emit = (div, item, done) ->
   div.get(0).radarData = -> output
 
   div.mousemove (e) ->
-    if $(e.target).is('td')
-      $(div).triggerHandler('thumb', $(e.target).text())
+    $target = $(e.target)
+    if $target.is('td')
+      $(div).triggerHandler('thumb', $target.text())
+    if $target.is('td.value')
+      scrub e, $target, $target.find('b')
+    if $target.is('b')
+      scrub e, $target.parent(), $target
   div.dblclick (e) ->
     if e.shiftKey
       wiki.dialog "JSON for Method plugin",  $('<pre/>').text(JSON.stringify(item, null, 2))
