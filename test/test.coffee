@@ -371,3 +371,35 @@ describe 'method plugin', ->
 			method.dispatch state, (state) ->
 				expect(state.list[0]).to.eql {value: 0, units: ['in']}
 				done()
+
+	describe 'scrubbing', ->
+		it 'sums 2 + 3', (done) ->
+			state =
+				item: {text: "2\n3\nSUM"}
+			method.dispatch state, (state) ->
+				expect(state.list[0]).to.eql 5
+				done()
+
+		it 'sums 2 + 3, scrubbing 2 to 1.5', (done) ->
+			state =
+				item: {text: "2\n3\nSUM"}
+				patch: {'1': 1.5}
+			method.dispatch state, (state) ->
+				expect(state.list[0]).to.eql 4.5
+				done()
+
+		it 'sums 2 + 3, scrubbing 3 to 3.3', (done) ->
+			state =
+				item: {text: "2\n3\nSUM"}
+				patch: {'2': 3.3}
+			method.dispatch state, (state) ->
+				expect(state.list[0]).to.eql 5.3
+				done()
+
+		it 'sums 2 + 3 inches, scrubbing 3 to 3.3', (done) ->
+			state =
+				item: {text: "2 (in)\n3 (in)\nSUM"}
+				patch: {'2': 3.3}
+			method.dispatch state, (state) ->
+				expect(state.list[0]).to.eql { value: 5.3, units: [ 'in' ] }
+				done()

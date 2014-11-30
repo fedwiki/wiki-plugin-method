@@ -179,7 +179,7 @@ annotate = (text) ->
   return '' unless text?
   " <span title=\"#{text}\">*</span>"
 
-print = (report, value, hover, line, comment, color) ->
+print = (report, value, hover, line, comment, color, linenum=0, unpatched=value) ->
   return unless report?
   long = ''
   if line.length > 40
@@ -187,8 +187,12 @@ print = (report, value, hover, line, comment, color) ->
     line = "#{line.substr 0, 20} ... #{line.substr -15}"
   report.push """
     <tr style="background:#{color};">
-      <td style="width: 20%; text-align: right; padding: 0 4px;" title="#{hover||''}">
-        <b>#{round asValue value}</b>
+      <td class="value"
+        data-value="#{asValue unpatched}"
+        data-linenum="#{linenum}"
+        style="width: 20%; text-align: right; padding: 0 4px;"
+        title="#{hover||''}">
+          <b>#{round asValue value}</b>
       <td title="#{long}">#{line}#{annotate comment}</td>
     """
 
@@ -254,7 +258,10 @@ dispatch = (state, done) ->
   state.input ||= {}
   state.output ||= {}
   state.local ||= {}
+  state.patch ||= {}
   state.lines ||= state.item.text.split "\n"
+  state.linenum ||= 0
+  state.linenum += 1
   line = state.lines.shift()
   return done state unless line?
 
@@ -316,6 +323,11 @@ dispatch = (state, done) ->
     else
       coerce toUnits, result
 
+  unpatched = null
+  patch = (value) ->
+    unpatched = value
+    state.patch[state.linenum] || value
+
   color = '#eee'
   value = comment = hover = null
   conversions = input = state.input
@@ -325,11 +337,15 @@ dispatch = (state, done) ->
   label = null
 
   try
+
+    # 99.9 Label (units)
     if args = line.match /^([0-9.eE-]+) +([\w \.%(){},&\*\/+-]+)$/
-      result = +args[1]
+      result = patch +args[1]
       units = parseLabel label = args[2]
       result = extend {value: result}, units if units
       local[label] = output[label] = value = result
+
+    # OPERATION Label (units)
     else if args = line.match /^([A-Z]+) +([\w \.%(){},&\*\/+-]+)$/
       [value, list, count] = [apply(args[1], list, args[2]), [], list.length]
       color = '#ddd'
@@ -345,25 +361,34 @@ dispatch = (state, done) ->
           color = '#faa'
           label += " != #{asValue(v).toFixed(4)}"
           state.caller.errors.push({message: label}) if state.caller
+
+    # OPERATION
     else if args = line.match /^([A-Z]+)$/
       [value, list, count] = [apply(args[1], list), [], list.length]
+      value = patch value
       local[args[1]] = value
       color = '#ddd'
       hover = "#{args[1]} of #{count} numbers\n= #{asValue value} #{printUnits asUnits value}"
+
+    # 99.9
     else if line.match /^[0-9\.eE-]+$/
-      value = +line
+      value = patch +line
       label = ''
+
+    # Label
     else if args = line.match /^ *([\w \.%(){},&\*\/+-]+)$/
       if output[args[1]]?
-        local[args[1]] = value = output[args[1]]
+        local[args[1]] = value = patch output[args[1]]
       else if input[args[1]]?
-        local[args[1]] = value = input[args[1]]
+        local[args[1]] = value = patch input[args[1]]
       else
         color = '#edd'
         comment = "can't find value of '#{line}'"
+
     else
       color = '#edd'
       comment = "can't parse '#{line}'"
+
   catch err
     color = '#edd'
     value = null
@@ -374,11 +399,12 @@ dispatch = (state, done) ->
   state.list = list
   state.list.push value if value? and ! isNaN asValue value
   # console.log "#{line} => #{inspect state.list} #{comment||''}"
-  print state.report, value, hover, label||line, comment, color
+  print state.report, value, hover, label||line, comment, color, state.linenum, unpatched
   dispatch state, done
 
 
 ############ interface ############
+
 
 bind = (div, item) ->
 emit = (div, item, done) ->
@@ -386,28 +412,7 @@ emit = (div, item, done) ->
   input = {}
   output = {}
 
-  candidates = $(".item:lt(#{$('.item').index(div)})")
-  for elem in candidates
-    elem = $(elem)
-    if elem.hasClass 'radar-source'
-      _.extend input, elem.get(0).radarData()
-    else if elem.hasClass 'data'
-      _.extend input, elem.data('item')?.data?[0]
-
-  div.addClass 'radar-source'
-  div.get(0).radarData = -> output
-
-  div.mousemove (e) ->
-    if $(e.target).is('td')
-      $(div).triggerHandler('thumb', $(e.target).text())
-  div.dblclick (e) ->
-    if e.shiftKey
-      wiki.dialog "JSON for Method plugin",  $('<pre/>').text(JSON.stringify(item, null, 2))
-    else
-      wiki.textEditor state.div, state.item
-
-  state = {div: div, item: item, input: input, output: output, report:[]}
-  dispatch state, (state) ->
+  refresh = (state) ->
     if state.show
       state.div.addClass "data"
       state.div.append $show = $ "<div>"
@@ -426,6 +431,47 @@ emit = (div, item, done) ->
       if output['debug']
         for label, value of state.input
           state.div.append $("<p class=error>#{label} =><br> #{inspect value}</p>")
+
+  scrub = (e, $td, $b) ->
+    width = $td.width()/2
+    scale = Math.pow(2, (e.offsetX-width)/width)
+    scale = Math.min(2, Math.max(0.5, scale))
+    patch = {}
+    patch[$td.data('linenum')] = $td.data('value')*scale
+    state = {div, item, input, output, report:[], patch}
+    dispatch state, (state) ->
+      div.empty()
+      refresh state
+
+
+  candidates = $(".item:lt(#{$('.item').index(div)})")
+  for elem in candidates
+    elem = $(elem)
+    if elem.hasClass 'radar-source'
+      _.extend input, elem.get(0).radarData()
+    else if elem.hasClass 'data'
+      _.extend input, elem.data('item')?.data?[0]
+
+  div.addClass 'radar-source'
+  div.get(0).radarData = -> output
+
+  div.mousemove (e) ->
+    $target = $(e.target)
+    if $target.is('td')
+      $(div).triggerHandler('thumb', $target.text())
+    if $target.is('td.value')
+      scrub e, $target, $target.find('b')
+    if $target.is('b')
+      scrub e, $target.parent(), $target
+  div.dblclick (e) ->
+    if e.shiftKey
+      wiki.dialog "JSON for Method plugin",  $('<pre/>').text(JSON.stringify(item, null, 2))
+    else
+      wiki.textEditor state.div, state.item
+
+  state = {div, item, input, output, report:[]}
+  dispatch state, (state) ->
+    refresh state
     setTimeout done, 10  # slower is better for firefox
 
 evaluate = (caller, item, input, done) ->
