@@ -433,6 +433,9 @@ emit = (div, item, done) ->
           state.div.append $("<p class=error>#{label} =><br> #{inspect value}</p>")
 
   scrub = (e, $td, $b) ->
+    if typeof e.offsetX == "undefined"
+      # from http://bugs.jquery.com/ticket/8523#comment:16
+      e.offsetX = e.pageX - $(e.target).offset().left
     width = $td.width()/2
     scale = Math.pow(2, (e.offsetX-width)/width)
     scale = Math.min(2, Math.max(0.5, scale))
