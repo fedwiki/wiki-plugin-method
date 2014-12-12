@@ -22,9 +22,9 @@
       "text": "See [https://github.com/fedwiki/wiki-plugin-method GitHub] for plugin source."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "c6c02f7fae9f4f03",
-      "text": "<h3>Lines"
+      "text": "<h3>Lines</h3>"
     },
     {
       "type": "paragraph",
@@ -32,17 +32,17 @@
       "text": "The first few characters determine how a line of a method is interpreted."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "bbcc1f9548618bb4",
       "text": "A line starting with <b>digits</b> defines a value and contributes that value to the contribution."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "aec640909082f3b3",
       "text": "A line starting with <b>words</b> retrieves that value from nearby datasets and contributes it to the computation."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "f982813c60a78119",
       "text": "A line starting with <b>all-caps</b> calls out a computation to be applied to previous contributions."
     },
@@ -52,9 +52,9 @@
       "text": "Defined values and computation results are available to subsequent methods by the name that follows on the remainder of the line."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "8519d81d9328a3e1",
-      "text": "<h3> Units"
+      "text": "<h3>Units</h3>"
     },
     {
       "type": "paragraph",
@@ -82,42 +82,42 @@
       "text": "See [[Method Unit Conversions]] for more examples."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "69084bb462636274",
-      "text": "<h3>Computations"
+      "text": "<h3>Computations</h3>"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "f3532c800d9b42ba",
       "text": "All computations are defined in the <i>apply</i> function inside the method plugin. This limits the things you can say to compute."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "0c61adb097e329f2",
       "text": "Say <b>SUM</b> to sum the previous contributions."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "641952825d9a9aae",
       "text": "Say <b>PRODUCT</b> to multiply the previous contributions."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "5072042a5e1ddf59",
       "text": "Say <b>AVERAGE</b> to average the previous contributions."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "760060c9bbaee23f",
       "text": "Say <b>MINIUM</b> or <b>MAXIUM</b> to find extremes."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "efe879fb582668e9",
       "text": "Say <b>RATIO</b> to find the ratio of two numbers."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "f14032666eff5947",
       "text": "Say <b>ACCUMULATE</b> to add to a running sum."
     },
@@ -137,14 +137,14 @@
       "text": "650 (miles)\n9.5 (hours)\nRATIO\nSHOW Average Speed"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "56356deed9dd765e",
       "text": "Say <b>SHOW</b> to display specific results in large digits while hiding other calculatons. (SHOW is otherwise like SUM)"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "2c50f66172992a44",
-      "text": "<h3> Application"
+      "text": "<h3>Application</h3>"
     },
     {
       "type": "paragraph",
@@ -162,9 +162,9 @@
       "text": "See [[About Reduce Plugin]] to see how calculation on a specified sequence of pages can be treated as a whole and evaluated repeatedly as such."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "e37cccee0e49821a",
-      "text": "<h3> Programming"
+      "text": "<h3>Programming</h3>"
     },
     {
       "type": "paragraph",
@@ -172,7 +172,7 @@
       "text": "Additional computations may be added as needed by programmers for use on a specific site."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "c723cceb207630d0",
       "text": "The plugin's <i>apply</i> function recognizes computations by name and performs the appropriate computation."
     },
@@ -1504,6 +1504,227 @@
         "text": "See [[About Reduce Plugin]] to see how calculation on a specified sequence of pages can be treated as a whole and evaluated repeatedly as such."
       },
       "date": 1389490086672
+    },
+    {
+      "type": "edit",
+      "id": "c6c02f7fae9f4f03",
+      "item": {
+        "type": "html",
+        "id": "c6c02f7fae9f4f03",
+        "text": "<h3>Lines"
+      },
+      "date": 1418320425457
+    },
+    {
+      "type": "edit",
+      "id": "c6c02f7fae9f4f03",
+      "item": {
+        "type": "html",
+        "id": "c6c02f7fae9f4f03",
+        "text": "<h3>Lines</h3>"
+      },
+      "date": 1418320431609
+    },
+    {
+      "type": "edit",
+      "id": "bbcc1f9548618bb4",
+      "item": {
+        "type": "html",
+        "id": "bbcc1f9548618bb4",
+        "text": "A line starting with <b>digits</b> defines a value and contributes that value to the contribution."
+      },
+      "date": 1418320434807
+    },
+    {
+      "type": "edit",
+      "id": "aec640909082f3b3",
+      "item": {
+        "type": "html",
+        "id": "aec640909082f3b3",
+        "text": "A line starting with <b>words</b> retrieves that value from nearby datasets and contributes it to the computation."
+      },
+      "date": 1418320436135
+    },
+    {
+      "type": "edit",
+      "id": "f982813c60a78119",
+      "item": {
+        "type": "html",
+        "id": "f982813c60a78119",
+        "text": "A line starting with <b>all-caps</b> calls out a computation to be applied to previous contributions."
+      },
+      "date": 1418320438318
+    },
+    {
+      "type": "edit",
+      "id": "8519d81d9328a3e1",
+      "item": {
+        "type": "html",
+        "id": "8519d81d9328a3e1",
+        "text": "<h3> Units"
+      },
+      "date": 1418320446720
+    },
+    {
+      "type": "edit",
+      "id": "8519d81d9328a3e1",
+      "item": {
+        "type": "html",
+        "id": "8519d81d9328a3e1",
+        "text": "<h3>Units</h3>"
+      },
+      "date": 1418320455085
+    },
+    {
+      "type": "edit",
+      "id": "69084bb462636274",
+      "item": {
+        "type": "html",
+        "id": "69084bb462636274",
+        "text": "<h3>Computations"
+      },
+      "date": 1418320459350
+    },
+    {
+      "type": "edit",
+      "id": "69084bb462636274",
+      "item": {
+        "type": "html",
+        "id": "69084bb462636274",
+        "text": "<h3>Computations</h3>"
+      },
+      "date": 1418320465645
+    },
+    {
+      "type": "edit",
+      "id": "f3532c800d9b42ba",
+      "item": {
+        "type": "html",
+        "id": "f3532c800d9b42ba",
+        "text": "All computations are defined in the <i>apply</i> function inside the method plugin. This limits the things you can say to compute."
+      },
+      "date": 1418320467509
+    },
+    {
+      "type": "edit",
+      "id": "0c61adb097e329f2",
+      "item": {
+        "type": "html",
+        "id": "0c61adb097e329f2",
+        "text": "Say <b>SUM</b> to sum the previous contributions."
+      },
+      "date": 1418320468814
+    },
+    {
+      "type": "edit",
+      "id": "641952825d9a9aae",
+      "item": {
+        "type": "html",
+        "id": "641952825d9a9aae",
+        "text": "Say <b>PRODUCT</b> to multiply the previous contributions."
+      },
+      "date": 1418320470469
+    },
+    {
+      "type": "edit",
+      "id": "5072042a5e1ddf59",
+      "item": {
+        "type": "html",
+        "id": "5072042a5e1ddf59",
+        "text": "Say <b>AVERAGE</b> to average the previous contributions."
+      },
+      "date": 1418320472760
+    },
+    {
+      "type": "edit",
+      "id": "760060c9bbaee23f",
+      "item": {
+        "type": "html",
+        "id": "760060c9bbaee23f",
+        "text": "Say <b>MINIUM</b> or <b>MAXIUM</b> to find extremes."
+      },
+      "date": 1418320474048
+    },
+    {
+      "type": "edit",
+      "id": "efe879fb582668e9",
+      "item": {
+        "type": "html",
+        "id": "efe879fb582668e9",
+        "text": "Say <b>RATIO</b> to find the ratio of two numbers."
+      },
+      "date": 1418320475174
+    },
+    {
+      "type": "edit",
+      "id": "f14032666eff5947",
+      "item": {
+        "type": "html",
+        "id": "f14032666eff5947",
+        "text": "Say <b>ACCUMULATE</b> to add to a running sum."
+      },
+      "date": 1418320476414
+    },
+    {
+      "type": "edit",
+      "id": "56356deed9dd765e",
+      "item": {
+        "type": "html",
+        "id": "56356deed9dd765e",
+        "text": "Say <b>SHOW</b> to display specific results in large digits while hiding other calculatons. (SHOW is otherwise like SUM)"
+      },
+      "date": 1418320481776
+    },
+    {
+      "type": "edit",
+      "id": "2c50f66172992a44",
+      "item": {
+        "type": "html",
+        "id": "2c50f66172992a44",
+        "text": "<h3> Application"
+      },
+      "date": 1418320483870
+    },
+    {
+      "type": "edit",
+      "id": "2c50f66172992a44",
+      "item": {
+        "type": "html",
+        "id": "2c50f66172992a44",
+        "text": "<h3>Application</h3>"
+      },
+      "date": 1418320492604
+    },
+    {
+      "type": "edit",
+      "id": "e37cccee0e49821a",
+      "item": {
+        "type": "html",
+        "id": "e37cccee0e49821a",
+        "text": "<h3> Programming"
+      },
+      "date": 1418320496742
+    },
+    {
+      "type": "edit",
+      "id": "e37cccee0e49821a",
+      "item": {
+        "type": "html",
+        "id": "e37cccee0e49821a",
+        "text": "<h3>Programming</h3>"
+      },
+      "date": 1418320504028
+    },
+    {
+      "type": "edit",
+      "id": "c723cceb207630d0",
+      "item": {
+        "type": "html",
+        "id": "c723cceb207630d0",
+        "text": "The plugin's <i>apply</i> function recognizes computations by name and performs the appropriate computation."
+      },
+      "date": 1418320506309
     }
-  ]
+  ],
+  "plugin": "method"
 }

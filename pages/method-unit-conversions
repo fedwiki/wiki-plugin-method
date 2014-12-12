@@ -7,9 +7,9 @@
       "text": "We propose to extend the Method plugin's calculation with measurement unit tracking, checking, formatting and some implicit conversions. Unit nomenclature and allowed conversions will be written explicitly on nearby pages. See [[Method Unit Coding]]"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "525432e02c375c5d",
-      "text": "<h3> Unit Labels"
+      "text": "<h3>Unit Labels</h3>"
     },
     {
       "type": "paragraph",
@@ -27,34 +27,34 @@
       "text": "We will interpret the contents of parentheses as units. However, our interpretation will depend on a series of conventions applied quite literally."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "62874084310f12c3",
       "text": "Unit names may be singular or plural, but not both interchangeably. That is <b>Acre</b> and <b>Acres</b> are different."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "32ac8e020c1cd2fd",
       "text": "Unit names must be identical if they are to name the same unit. That is <b>foot</b>, <b>Foot</b> and <b>Feet</b> are three different units."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "d9c8c464b9e23c32",
       "text": "Unit names won't contain spaces if they name an individual unit. Thus metric tons must be spelt <b>MetricTons</b>"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "1e672adc12a3f324",
       "text": "Unit names combine when measurements involve multiple scales. The combination is independent of the order. That is <b>Foot Pound</b> and <b>Pound Foot</b> are the same internally."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "7b03dfb7011a51ce",
       "text": "Unit names for ratios may be composed of a numerator and denominator represented by a single slash. Units to the right of the slash are all in the denominator. That is tonne per year per person would be <b>Tonne / Year Person</b>."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "fa63ab0393a1836b",
-      "text": "<h3> Sums"
+      "text": "<h3>Sums</h3>"
     },
     {
       "type": "paragraph",
@@ -77,7 +77,7 @@
       "text": "5 Coarse Height (feet)\n6 And Then Some (inches)\nSUM Actual Height"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "b313fe681b6daab6",
       "text": "<i>when implemented, sum of 66 expected"
     },
@@ -92,9 +92,9 @@
       "text": "5 Coarse Height (feet)\n6 And Then Some (inches)\nSUM Actual Height (feet)"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "5e51ead6371b6f5c",
-      "text": "<i>when implemented, sum of 5.5 expected"
+      "text": "<i>when implemented, sum of 5.5 expected</i>"
     },
     {
       "type": "paragraph",
@@ -112,9 +112,9 @@
       "text": "When units aren't specified for SHOW they will be inferred and added to the visible caption on a line by itself."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "55e58c1887ed135d",
-      "text": "<h3> Products"
+      "text": "<h3>Products</h3>"
     },
     {
       "type": "paragraph",
@@ -137,9 +137,9 @@
       "text": "Alternatively, the Google calculator is happy to report inches x inches as inches squared or square inches."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "3e77667f0a5bdea8",
-      "text": "<h3> Ratios"
+      "text": "<h3>Ratios</h3>"
     },
     {
       "type": "paragraph",
@@ -162,9 +162,9 @@
       "text": "18.7 City Traffic (MPG)\n23.5 Open Road (MPG)\nSUM Total Fuel Efficency"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "323c2d52de2d01a1",
-      "text": "<i>not a reasonable computation, prefer weighted average"
+      "text": "<i>not a reasonable computation, prefer weighted average</i>"
     },
     {
       "type": "paragraph",
@@ -187,9 +187,9 @@
       "text": "A ratio can yield a unit-less quantity which is not the same as a quantity for which units have not been specified. The two have different default behavior in sums."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "142766c33e0fd56b",
-      "text": "<h3> Conversions"
+      "text": "<h3>Conversions</h3>"
     },
     {
       "type": "paragraph",
@@ -242,9 +242,9 @@
       "text": "8 Wide (Feet)\n10 Long (Feet)\nPRODUCT (Square Inches)\n9 Deep (Inches)\nPRODUCT (Cubic Feet)\nSUM (Gallons)\nSUM (Pounds)"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "248affd5af0cf758",
-      "text": "<i>not yet implemented, expected 60 cubic feet, 448 gallons, 3745 pounds."
+      "text": "<i>not yet implemented, expected 60 cubic feet, 448 gallons, 3745 pounds.</i>"
     },
     {
       "type": "paragraph",
@@ -282,9 +282,9 @@
       "text": "60 (Miles / Hours)\n88 (Feet / Seconds)\nRATIO (Miles / Hours) from (Feet / Seconds)"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "bf8d6883b0f212c1",
-      "text": "<h3> Errors"
+      "text": "<h3>Errors</h3>"
     },
     {
       "type": "paragraph",
@@ -327,9 +327,9 @@
       "text": "0 debug"
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "5812c30cd5029be3",
-      "text": "<h3> Representation"
+      "text": "<h3>Representation</h3>"
     },
     {
       "type": "paragraph",
@@ -352,7 +352,7 @@
       "text": "We need to know what units have been assumed when units have not been provided."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "28813eb6f0767789",
       "text": "We need a normalized and easily interpreted form for units that is independent of any formatting fashion, say between square inches, inches squared and inches<sup>2</sup>."
     },
@@ -382,7 +382,7 @@
       "text": "A measurement has units which may be terms or a ratio of terms. When units cancel a denominator may become empty but it won't revert from a ratio."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "fe5e99f6eeb73315",
       "text": "A conversion factors are measurements that add source units in a from field, <i>from: terms | ratio</i>."
     },
@@ -397,9 +397,7 @@
       "type": "create",
       "item": {
         "title": "Method Unit Conversions",
-        "story": [
-
-        ]
+        "story": []
       },
       "date": 1385654989049
     },
@@ -4190,6 +4188,327 @@
       "type": "fork",
       "site": "ward.fed.wiki.org",
       "date": 1389486969757
+    },
+    {
+      "type": "edit",
+      "id": "525432e02c375c5d",
+      "item": {
+        "type": "paragraph",
+        "id": "525432e02c375c5d",
+        "text": "<h3>Unit Labels</h3>"
+      },
+      "date": 1418320604973
+    },
+    {
+      "type": "edit",
+      "id": "525432e02c375c5d",
+      "item": {
+        "type": "html",
+        "id": "525432e02c375c5d",
+        "text": "<h3>Unit Labels</h3>"
+      },
+      "date": 1418320621261
+    },
+    {
+      "type": "edit",
+      "id": "525432e02c375c5d",
+      "item": {
+        "type": "html",
+        "id": "525432e02c375c5d",
+        "text": "<h3>Unit Labels</h3>"
+      },
+      "date": 1418320621265
+    },
+    {
+      "type": "edit",
+      "id": "62874084310f12c3",
+      "item": {
+        "type": "html",
+        "id": "62874084310f12c3",
+        "text": "Unit names may be singular or plural, but not both interchangeably. That is <b>Acre</b> and <b>Acres</b> are different."
+      },
+      "date": 1418320624422
+    },
+    {
+      "type": "edit",
+      "id": "32ac8e020c1cd2fd",
+      "item": {
+        "type": "html",
+        "id": "32ac8e020c1cd2fd",
+        "text": "Unit names must be identical if they are to name the same unit. That is <b>foot</b>, <b>Foot</b> and <b>Feet</b> are three different units."
+      },
+      "date": 1418320634852
+    },
+    {
+      "type": "edit",
+      "id": "d9c8c464b9e23c32",
+      "item": {
+        "type": "html",
+        "id": "d9c8c464b9e23c32",
+        "text": "Unit names won't contain spaces if they name an individual unit. Thus metric tons must be spelt <b>MetricTons</b>"
+      },
+      "date": 1418320639770
+    },
+    {
+      "type": "edit",
+      "id": "1e672adc12a3f324",
+      "item": {
+        "type": "html",
+        "id": "1e672adc12a3f324",
+        "text": "Unit names combine when measurements involve multiple scales. The combination is independent of the order. That is <b>Foot Pound</b> and <b>Pound Foot</b> are the same internally."
+      },
+      "date": 1418320641219
+    },
+    {
+      "type": "edit",
+      "id": "7b03dfb7011a51ce",
+      "item": {
+        "type": "html",
+        "id": "7b03dfb7011a51ce",
+        "text": "Unit names for ratios may be composed of a numerator and denominator represented by a single slash. Units to the right of the slash are all in the denominator. That is tonne per year per person would be <b>Tonne / Year Person</b>."
+      },
+      "date": 1418320643586
+    },
+    {
+      "type": "edit",
+      "id": "fa63ab0393a1836b",
+      "item": {
+        "type": "html",
+        "id": "fa63ab0393a1836b",
+        "text": "<h3> Sums"
+      },
+      "date": 1418320645762
+    },
+    {
+      "type": "edit",
+      "id": "fa63ab0393a1836b",
+      "item": {
+        "type": "html",
+        "id": "fa63ab0393a1836b",
+        "text": "<h3>Sums</h3>"
+      },
+      "date": 1418320653089
+    },
+    {
+      "type": "edit",
+      "id": "b313fe681b6daab6",
+      "item": {
+        "type": "html",
+        "id": "b313fe681b6daab6",
+        "text": "<i>when implemented, sum of 66 expected"
+      },
+      "date": 1418320671403
+    },
+    {
+      "type": "edit",
+      "id": "5e51ead6371b6f5c",
+      "item": {
+        "type": "html",
+        "id": "5e51ead6371b6f5c",
+        "text": "<i>when implemented, sum of 5.5 expected"
+      },
+      "date": 1418320686964
+    },
+    {
+      "type": "edit",
+      "id": "5e51ead6371b6f5c",
+      "item": {
+        "type": "html",
+        "id": "5e51ead6371b6f5c",
+        "text": "<i>when implemented, sum of 5.5 expected</i>"
+      },
+      "date": 1418320694386
+    },
+    {
+      "type": "edit",
+      "id": "55e58c1887ed135d",
+      "item": {
+        "type": "html",
+        "id": "55e58c1887ed135d",
+        "text": "<h3> Products"
+      },
+      "date": 1418320704242
+    },
+    {
+      "type": "edit",
+      "id": "55e58c1887ed135d",
+      "item": {
+        "type": "html",
+        "id": "55e58c1887ed135d",
+        "text": "<h3>Products</h3>"
+      },
+      "date": 1418320713303
+    },
+    {
+      "type": "edit",
+      "id": "3e77667f0a5bdea8",
+      "item": {
+        "type": "html",
+        "id": "3e77667f0a5bdea8",
+        "text": "<h3> Ratios"
+      },
+      "date": 1418320723208
+    },
+    {
+      "type": "edit",
+      "id": "3e77667f0a5bdea8",
+      "item": {
+        "type": "html",
+        "id": "3e77667f0a5bdea8",
+        "text": "<h3>Ratios</h3>"
+      },
+      "date": 1418320730887
+    },
+    {
+      "type": "edit",
+      "id": "323c2d52de2d01a1",
+      "item": {
+        "type": "html",
+        "id": "323c2d52de2d01a1",
+        "text": "<i>not a reasonable computation, prefer weighted average"
+      },
+      "date": 1418320734704
+    },
+    {
+      "type": "edit",
+      "id": "323c2d52de2d01a1",
+      "item": {
+        "type": "html",
+        "id": "323c2d52de2d01a1",
+        "text": "<i>not a reasonable computation, prefer weighted average</i>"
+      },
+      "date": 1418320739806
+    },
+    {
+      "type": "edit",
+      "id": "142766c33e0fd56b",
+      "item": {
+        "type": "paragraph",
+        "id": "142766c33e0fd56b",
+        "text": "<h3>Conversions</h3>"
+      },
+      "date": 1418320750017
+    },
+    {
+      "type": "edit",
+      "id": "142766c33e0fd56b",
+      "item": {
+        "type": "html",
+        "id": "142766c33e0fd56b",
+        "text": "<h3>Conversions</h3>"
+      },
+      "date": 1418320752169
+    },
+    {
+      "type": "edit",
+      "id": "142766c33e0fd56b",
+      "item": {
+        "type": "html",
+        "id": "142766c33e0fd56b",
+        "text": "<h3>Conversions</h3>"
+      },
+      "date": 1418320752172
+    },
+    {
+      "type": "edit",
+      "id": "248affd5af0cf758",
+      "item": {
+        "type": "html",
+        "id": "248affd5af0cf758",
+        "text": "<i>not yet implemented, expected 60 cubic feet, 448 gallons, 3745 pounds."
+      },
+      "date": 1418320768273
+    },
+    {
+      "type": "edit",
+      "id": "248affd5af0cf758",
+      "item": {
+        "type": "html",
+        "id": "248affd5af0cf758",
+        "text": "<i>not yet implemented, expected 60 cubic feet, 448 gallons, 3745 pounds.</i>"
+      },
+      "date": 1418320775350
+    },
+    {
+      "type": "edit",
+      "id": "bf8d6883b0f212c1",
+      "item": {
+        "type": "paragraph",
+        "id": "bf8d6883b0f212c1",
+        "text": "<h3>Errors</h3>"
+      },
+      "date": 1418320814454
+    },
+    {
+      "type": "edit",
+      "id": "bf8d6883b0f212c1",
+      "item": {
+        "type": "html",
+        "id": "bf8d6883b0f212c1",
+        "text": "<h3>Errors</h3>"
+      },
+      "date": 1418320816033
+    },
+    {
+      "type": "edit",
+      "id": "bf8d6883b0f212c1",
+      "item": {
+        "type": "html",
+        "id": "bf8d6883b0f212c1",
+        "text": "<h3>Errors</h3>"
+      },
+      "date": 1418320816038
+    },
+    {
+      "type": "edit",
+      "id": "5812c30cd5029be3",
+      "item": {
+        "type": "paragraph",
+        "id": "5812c30cd5029be3",
+        "text": "<h3>Representation</h3>"
+      },
+      "date": 1418320840397
+    },
+    {
+      "type": "edit",
+      "id": "5812c30cd5029be3",
+      "item": {
+        "type": "html",
+        "id": "5812c30cd5029be3",
+        "text": "<h3>Representation</h3>"
+      },
+      "date": 1418320841863
+    },
+    {
+      "type": "edit",
+      "id": "5812c30cd5029be3",
+      "item": {
+        "type": "html",
+        "id": "5812c30cd5029be3",
+        "text": "<h3>Representation</h3>"
+      },
+      "date": 1418320841866
+    },
+    {
+      "type": "edit",
+      "id": "28813eb6f0767789",
+      "item": {
+        "type": "html",
+        "id": "28813eb6f0767789",
+        "text": "We need a normalized and easily interpreted form for units that is independent of any formatting fashion, say between square inches, inches squared and inches<sup>2</sup>."
+      },
+      "date": 1418320847085
+    },
+    {
+      "type": "edit",
+      "id": "fe5e99f6eeb73315",
+      "item": {
+        "type": "html",
+        "id": "fe5e99f6eeb73315",
+        "text": "A conversion factors are measurements that add source units in a from field, <i>from: terms | ratio</i>."
+      },
+      "date": 1418320856221
     }
-  ]
+  ],
+  "plugin": "method"
 }
