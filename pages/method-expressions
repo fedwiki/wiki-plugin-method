@@ -12,7 +12,7 @@
       "text": "The existing middle-school math encourages step by step calculations that are hard to misinterpret. Mostly this is due to long and more precise names."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "d1b4c370f23b9ac6",
       "text": "Say <b>CALC</b> to calculate a formula that appears on the remainder of the line."
     },
@@ -22,9 +22,9 @@
       "text": "The formula, without the word CALC, becomes the name of the result and can be used to recall it in later calcuations."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "7dc8b925782038fb",
-      "text": "<h3> Example"
+      "text": "<h3>Example</h3>"
     },
     {
       "type": "paragraph",
@@ -77,9 +77,9 @@
       "text": "Hover over the results from this and the previous calculation to compare the difference that units makes."
     },
     {
-      "type": "paragraph",
+      "type": "html",
       "id": "74c330ff65795579",
-      "text": "<h3> Resources"
+      "text": "<h3>Resources</h3>"
     },
     {
       "type": "paragraph",
@@ -107,9 +107,7 @@
       "type": "create",
       "item": {
         "title": "Method Expressions",
-        "story": [
-
-        ]
+        "story": []
       },
       "date": 1385393561039
     },
@@ -820,6 +818,57 @@
         "text": "The formula, without the word CALC, becomes the name of the result and can be used to recall it in later calcuations."
       },
       "date": 1389494231005
+    },
+    {
+      "type": "edit",
+      "id": "d1b4c370f23b9ac6",
+      "item": {
+        "type": "html",
+        "id": "d1b4c370f23b9ac6",
+        "text": "Say <b>CALC</b> to calculate a formula that appears on the remainder of the line."
+      },
+      "date": 1418320535439
+    },
+    {
+      "type": "edit",
+      "id": "7dc8b925782038fb",
+      "item": {
+        "type": "html",
+        "id": "7dc8b925782038fb",
+        "text": "<h3> Example"
+      },
+      "date": 1418320537364
+    },
+    {
+      "type": "edit",
+      "id": "7dc8b925782038fb",
+      "item": {
+        "type": "html",
+        "id": "7dc8b925782038fb",
+        "text": "<h3>Example</h3>"
+      },
+      "date": 1418320545501
+    },
+    {
+      "type": "edit",
+      "id": "74c330ff65795579",
+      "item": {
+        "type": "html",
+        "id": "74c330ff65795579",
+        "text": "<h3> Resources"
+      },
+      "date": 1418320553708
+    },
+    {
+      "type": "edit",
+      "id": "74c330ff65795579",
+      "item": {
+        "type": "html",
+        "id": "74c330ff65795579",
+        "text": "<h3>Resources</h3>"
+      },
+      "date": 1418320560554
     }
-  ]
+  ],
+  "plugin": "method"
 }
