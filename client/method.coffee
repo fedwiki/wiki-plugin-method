@@ -1,4 +1,9 @@
-
+###
+ * Federated Wiki : Method Plugin
+ *
+ * Licensed under the MIT license.
+ * https://github.com/fedwiki/wiki-plugin-method/blob/master/LICENSE.txt
+###
 
 ############ units ############
 
@@ -484,4 +489,3 @@ evaluate = (caller, item, input, done) ->
 
 window.plugins.method = {emit, bind, eval:evaluate} if window?
 module.exports = {lexer, parser, dispatch, asValue, asUnits, hasUnits, simplify, parseUnits, parseRatio, parseLabel} if module?
-
