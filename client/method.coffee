@@ -443,7 +443,7 @@ emit = (div, item, done) ->
         # from http://bugs.jquery.com/ticket/8523#comment:16
       if typeof e.offsetX == "undefined"
         e.offsetX = e.pageX - $(e.target).offset().left
-      console.log 'scrub', e
+      # console.log 'scrub', e
       width = $td.width()/2
       scale = Math.pow(2, (e.offsetX-width)/width)
       scale = Math.min(2, Math.max(0.5, scale))
@@ -473,9 +473,9 @@ emit = (div, item, done) ->
   div.addClass 'radar-source'
   div.get(0).radarData = -> output
 
-  div.mousemove (e) -> handleScrub e
+  div.on 'mousemove', (e) -> handleScrub e
 
-  div.dblclick (e) ->
+  div.on 'dblclick', (e) ->
     if e.shiftKey
       wiki.dialog "JSON for Method plugin",  $('<pre/>').text(JSON.stringify(item, null, 2))
     else
