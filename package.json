@@ -1,6 +1,6 @@
 {
   "name": "wiki-plugin-method",
-  "version": "0.3.0",
+  "version": "0.4.0-rc.1",
   "description": "Federated Wiki - Method Plug-in",
   "keywords": [
     "wiki",
@@ -25,18 +25,22 @@
     }
   ],
   "scripts": {
-    "test": "mocha"
+    "build": "npm run clean; npm run test; node --no-warnings scripts/build-client.js",
+    "clean": "rm client/method.js client/method.js.map",
+    "prettier:format": "prettier --write './**/*.js'",
+    "prettier:check": "prettier --check ./**/*.js",
+    "test": "mocha",
+    "update-authors": "node scripts/update-authors.cjs"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
+    "@eslint/js": "^9.17.0",
+    "esbuild": "^0.24.2",
+    "eslint": "^9.17.0",
     "expect.js": "*",
-    "grunt": "^1.0.4",
-    "grunt-contrib-coffee": "^2.1.0",
-    "grunt-contrib-watch": "^1.1.0",
+    "globals": "^15.14.0",
     "grunt-git-authors": "~3",
-    "grunt-mocha-test": "^0.13.3",
-    "mocha": "^10.0.0"
+    "mocha": "^10.0.0",
+    "prettier": "^3.4.2"
   },
   "license": "MIT",
   "repository": {
@@ -46,7 +50,8 @@
   "bugs": {
     "url": "https://github.com/fedwiki/wiki-plugin-method/issues"
   },
+  "type": "module",
   "engines": {
-    "node": ">=0.10"
+    "node": ">=18"
   }
 }
