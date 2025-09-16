@@ -587,7 +587,7 @@ const dispatch = (state, done) => {
 // ############ interface ############
 
 const bind = (div, item) => {}
-const emit = (div, item, done) => {
+const emit = async (div, item) => {
   let input = {}
   let output = {}
 
@@ -680,9 +680,11 @@ const emit = (div, item, done) => {
   })
 
   let state = { div, item, input, output, report: [] }
-  dispatch(state, state => {
-    refresh(state)
-    setTimeout(done, 10) // slower is better for firefox
+  await new Promise(resolve => {
+    dispatch(state, state => {
+      refresh(state)
+      setTimeout(resolve, 10) // slower is better for firefox
+    })
   })
 }
 
