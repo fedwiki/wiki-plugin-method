@@ -29,18 +29,17 @@
     "clean": "rm client/method.js client/method.js.map",
     "prettier:format": "prettier --write './**/*.js'",
     "prettier:check": "prettier --check ./**/*.js",
-    "test": "mocha",
+    "test": "node --test",
     "update-authors": "node scripts/update-authors.cjs"
   },
   "devDependencies": {
-    "@eslint/js": "^9.37.0",
-    "esbuild": "^0.25.10",
-    "eslint": "^9.37.0",
+    "@eslint/js": "^10.0.1",
+    "esbuild": "^0.28.0",
+    "eslint": "^10.3.0",
     "expect.js": "*",
-    "globals": "^16.4.0",
+    "globals": "^17.6.0",
     "grunt-git-authors": "~3",
-    "mocha": "^11.7.4",
-    "prettier": "^3.6.2"
+    "prettier": "^3.8.3"
   },
   "license": "MIT",
   "repository": {

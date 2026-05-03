@@ -1,4 +1,5 @@
 import { method } from '../src/client/method.js'
+import { describe, it } from 'node:test'
 import expect from 'expect.js'
 
 describe('method plugin', () => {
@@ -57,84 +58,77 @@ describe('method plugin', () => {
   })
 
   describe('parsing', () => {
-    it('recognizes numbers', done => {
+    it('recognizes numbers', () => {
       const state = {
         item: { text: '123' },
       }
       method.dispatch(state, state => {
         expect(state.list).to.eql[123]
-        done()
       })
     })
 
-    it('defines values', done => {
+    it('defines values', () => {
       const state = {
         item: { text: '321 abc' },
       }
       method.dispatch(state, state => {
         expect(state.output.abc).to.be(321)
-        done()
       })
     })
 
-    it('retrieves values', done => {
+    it('retrieves values', () => {
       const state = {
         item: { text: 'abc' },
         input: { abc: 456 },
       }
       method.dispatch(state, state => {
         expect(state.list).to.eql[456]
-        done()
       })
     })
 
-    it('computes sums', done => {
+    it('computes sums', () => {
       const state = {
         item: { text: 'abc\n2000\nSUM\n1000\nSUM xyz' },
         input: { abc: 456 },
       }
       method.dispatch(state, state => {
         expect(state.output.xyz).to.be(3456)
-        done()
       })
     })
   })
 
   describe('errors', () => {
-    it('illegal input', done => {
+    it('illegal input', () => {
       const state = {
         item: { text: '!!!' },
         caller: { errors: [] },
       }
       method.dispatch(state, state => {
         expect(state.caller.errors[0].message).to.be("can't parse '!!!'")
-        done()
       })
     })
 
-    it('undefined variable', done => {
+    it('undefined variable', () => {
       const state = {
         item: { text: 'foo' },
         caller: { errors: [] },
       }
       method.dispatch(state, state => {
         expect(state.caller.errors[0].message).to.be("can't find value of 'foo'")
-        done()
       })
     })
 
-    it('undefined function', done => {
+    it('undefined function', () => {
       const state = {
         item: { text: 'RUMBA' },
         caller: { errors: [] },
       }
       method.dispatch(state, state => {
         expect(state.caller.errors[0].message).to.be("don't know how to 'RUMBA'")
-        done()
       })
     })
 
-    it('precomputed checks', done => {
+    it('precomputed checks', () => {
       const state = {
         item: { text: '2\n3\nSUM five', checks: { five: 6 } },
         caller: { errors: [] },
@@ -142,7 +136,6 @@ describe('method plugin', () => {
 
       method.dispatch(state, state => {
         expect(state.caller.errors[0].message).to.be('five != 6.0000')
-        done()
       })
     })
   })
@@ -196,17 +189,16 @@ describe('method plugin', () => {
       })
     })
 
-    it('defines values as objects', done => {
+    it('defines values as objects', () => {
       const state = {
         item: { text: '321 abc (mph)' },
       }
       method.dispatch(state, state => {
         expect(state.output['abc (mph)']).to.eql({ value: 321, units: ['mph'] })
-        done()
       })
     })
 
-    it('defines conversion constants as objects', done => {
+    it('defines conversion constants as objects', () => {
       const state = {
         item: { text: '1.47 (Feet/Seconds) from (Miles/Hours)' },
       }
@@ -222,7 +214,6 @@ describe('method plugin', () => {
             denominator: ['hours'],
           },
         })
-        done()
       })
     })
   })
@@ -240,7 +231,7 @@ describe('method plugin', () => {
       },
     }
 
-    it('apply to arguments', done => {
+    it('apply to arguments', () => {
       const state = {
         input: input,
         item: { text: '30 (mph)\n44 (fps)\nSUM speed' },
@@ -250,11 +241,10 @@ describe('method plugin', () => {
           value: 88,
           units: ['fps'],
         })
-        done()
       })
     })
 
-    it('apply to variables', done => {
+    it('apply to variables', () => {
       const state = {
         input: input,
         item: { text: 'speed\n44 (fps)\nSUM speed' },
@@ -264,11 +254,10 @@ describe('method plugin', () => {
           value: 88,
           units: ['fps'],
         })
-        done()
       })
     })
 
-    it('apply to results', done => {
+    it('apply to results', () => {
       const state = {
         input: input,
         item: { text: '60 (mph)\nSUM (fps)' },
@@ -278,11 +267,10 @@ describe('method plugin', () => {
           value: 88,
           units: ['fps'],
         })
-        done()
       })
     })
 
-    it('selected from alternatives', done => {
+    it('selected from alternatives', () => {
       const alternatives = {
         speeding: {
           value: 120,
@@ -312,11 +300,10 @@ describe('method plugin', () => {
           value: 88 * 2,
           units: ['fps'],
         })
-        done()
       })
     })
 
-    it('optional when units are acceptable', done => {
+    it('optional when units are acceptable', () => {
       const state = {
         input: input,
         item: { text: '60 (mph)\n30 (mph)\nSUM' },
@@ -326,11 +313,10 @@ describe('method plugin', () => {
           value: 90,
           units: ['mph'],
         })
-        done()
       })
     })
 
-    it('reported when missing', done => {
+    it('reported when missing', () => {
       const state = {
         item: { text: '22 (fps)\n15 (mps)\nSUM' },
         caller: { errors: [] },
@@ -341,11 +327,10 @@ describe('method plugin', () => {
           units: ['fps'],
         })
         expect(state.caller.errors[0].message).to.be("can't convert to [mps] from [fps]")
-        done()
       })
     })
 
-    it('adds units to SHOW legend', done => {
+    it('adds units to SHOW legend', () => {
       const state = {
         item: { text: '36 (in/yd)\nSHOW Mumble' },
       }
@@ -354,7 +339,6 @@ describe('method plugin', () => {
           legend: 'Mumble<br>( in / yd )',
           readout: '36',
         })
-        done()
       })
     })
   })
@@ -372,7 +356,7 @@ describe('method plugin', () => {
       },
     }
 
-    it('repeats units', done => {
+    it('repeats units', () => {
       const state = {
         input: input,
         item: { text: 'side\nside\nPRODUCT area' },
@@ -382,11 +366,10 @@ describe('method plugin', () => {
           value: 36,
           units: ['Inches', 'Inches'],
         })
-        done()
       })
     })
 
-    it('cancels units', done => {
+    it('cancels units', () => {
       const state = {
         input: input,
         item: { text: '2 (yd)\n3 (ft/yd)\n12 (in/ft)\nPRODUCT height' },
@@ -396,11 +379,10 @@ describe('method plugin', () => {
           value: 72,
           units: ['in'],
         })
-        done()
       })
     })
 
-    it('invert units for ratio', done => {
+    it('invert units for ratio', () => {
       const state = {
         input: input,
         item: { text: '72 (in)\n2 (yd)\nRATIO' },
@@ -410,7 +392,6 @@ describe('method plugin', () => {
           value: 36,
           units: { numerator: ['in'], denominator: ['yd'] },
         })
-        done()
       })
     })
   })
@@ -442,39 +423,36 @@ describe('method plugin', () => {
       expect(value).to.be(25)
     })
 
-    it('applied by CALC', done => {
+    it('applied by CALC', () => {
       const state = {
         item: { text: 'CALC 12+(345-678)*910' },
       }
       method.dispatch(state, state => {
         expect(state.list[0]).to.be(-303018)
-        done()
       })
     })
 
-    it('applied by CALC with local variables', done => {
+    it('applied by CALC with local variables', () => {
       const state = {
         local: { 'Hourly Rate': 16.45, 'Regular Hours': 40, 'Overtime Hours': 12 },
         item: { text: 'CALC Rate * ( Regular + 1.5 * Overtime )' },
       }
       method.dispatch(state, state => {
         expect(Math.round(state.list[0])).to.eql(954)
-        done()
       })
     })
 
-    it('applied by CALC with recalled input variables', done => {
+    it('applied by CALC with recalled input variables', () => {
       const state = {
         input: { 'Hourly Rate': 16.45, 'Regular Hours': 40, 'Overtime Hours': 12 },
         item: { text: 'Hourly Rate\nRegular Hours\nOvertime Hours\nCALC Rate * ( Regular + 1.5 * Overtime )' },
       }
       method.dispatch(state, state => {
         expect(Math.round(state.list[0])).to.eql(954)
-        done()
       })
     })
 
-    it('applied by CALC with computed variables and units', done => {
+    it('applied by CALC with computed variables and units', () => {
       const state = {
         item: {
           text: '20.00 Rate (dollar / hour)\n40 Regular (hour)\n12 Overtime (hour)\nCALC Rate * ( Regular + 1.5 * Overtime )',
@@ -482,62 +460,56 @@ describe('method plugin', () => {
       }
       method.dispatch(state, state => {
         expect(state.list[0]).to.eql({ value: 1160.0, units: ['dollar'] })
-        done()
       })
     })
 
-    it('applied by CALC with all operators, variables and units', done => {
+    it('applied by CALC with all operators, variables and units', () => {
       const state = {
         item: { text: '10 w (in)\n30 h (in)\n15 t (s)\nCALC t*(h/t + w/t - (h+w)/t)' },
       }
       method.dispatch(state, state => {
         expect(state.list[0]).to.eql({ value: 0, units: ['in'] })
-        done()
       })
     })
   })
 
   describe('scrubbing', () => {
-    it('sums 2 + 3', done => {
+    it('sums 2 + 3', () => {
       const state = {
         item: { text: '2\n3\nSUM' },
       }
       method.dispatch(state, state => {
         expect(state.list[0]).to.eql(5)
-        done()
       })
     })
 
-    it('sums 2 + 3, scrubbing 2 to 1.5', done => {
+    it('sums 2 + 3, scrubbing 2 to 1.5', () => {
       const state = {
         item: { text: '2\n3\nSUM' },
         patch: { 1: 1.5 },
       }
       method.dispatch(state, state => {
         expect(state.list[0]).to.eql(4.5)
-        done()
       })
     })
 
-    it('sums 2 + 3, scrubbing 3 to 3.3', done => {
+    it('sums 2 + 3, scrubbing 3 to 3.3', () => {
       const state = {
         item: { text: '2\n3\nSUM' },
         patch: { 2: 3.3 },
       }
       method.dispatch(state, state => {
         expect(state.list[0]).to.eql(5.3)
-        done()
       })
     })
 
-    it('sums 2 + 3 inches, scrubbing 3 to 3.3', done => {
+    it('sums 2 + 3 inches, scrubbing 3 to 3.3', () => {
       const state = {
         item: { text: '2 (in)\n3 (in)\nSUM' },
         patch: { 2: 3.3 },
       }
       method.dispatch(state, state => {
         expect(state.list[0]).to.eql({ value: 5.3, units: ['in'] })
-        done()
       })
     })
   })
